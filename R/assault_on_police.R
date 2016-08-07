@@ -1,6 +1,7 @@
 library(RSocrata)
 library(jsonlite)
 library(lubridate)
+library(stringr)
 
 ######## Assault on police ########
 

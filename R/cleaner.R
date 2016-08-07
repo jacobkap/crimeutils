@@ -10,16 +10,19 @@ street_cleaner <- function(street){
   street <- gsub("^s ", "south ", street, ignore.case = TRUE)
   street <- gsub("^w ", "west ", street, ignore.case = TRUE)
   street <- gsub("^e ", "east ", street, ignore.case = TRUE)
+  street <- gsub("[][!#$%()*,.:;<=>@^_`|~.{}-]|\\&", "", street)
+
   street <- tolower(street)
   return(street)
 }
 
 hour_cleaner <- function(hour){
   hour <- gsub("(.*)(..$)", "\\1:\\2", hour)
-  for (i in 1:length(hour_cleaner)){
-  if(nchar(hour[i]) < 4) {
-    hour[i] <- gsub("(.*)", "0\\1", hour[i])
-  }
+
+  for (i in 1:length(hour)){
+    if (nchar(hour[i]) < 4) {
+      hour[i] <- gsub("(.*)", "00\\1", hour[i])
+    }
   }
   return(hour)
 }
