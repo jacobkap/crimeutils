@@ -1,0 +1,31 @@
+street_cleaner <- function(street){
+  street <- gsub("ST$", "street", street, ignore.case = TRUE)
+  street <- gsub("CT$", "court", street, ignore.case = TRUE)
+  street <- gsub("AV$", "avenue", street, ignore.case = TRUE)
+  street <- gsub("rd$", "road", street, ignore.case = TRUE)
+  street <- gsub("bd$|blvd$", "boulevard", street, ignore.case = TRUE)
+  street <- gsub("dr$", "drive", street, ignore.case = TRUE)
+  street <- gsub("wy$", "way", street, ignore.case = TRUE)
+  street <- gsub("^n ", "north ", street, ignore.case = TRUE)
+  street <- gsub("^s ", "south ", street, ignore.case = TRUE)
+  street <- gsub("^w ", "west ", street, ignore.case = TRUE)
+  street <- gsub("^e ", "east ", street, ignore.case = TRUE)
+  street <- tolower(street)
+  return(street)
+}
+
+hour_cleaner <- function(hour){
+  hour <- gsub("(.*)(..$)", "\\1:\\2", hour)
+  for (i in 1:length(hour_cleaner)){
+  if(nchar(hour[i]) < 4) {
+    hour[i] <- gsub("(.*)", "0\\1", hour[i])
+  }
+  }
+  return(hour)
+}
+
+
+address_cleaner <- function(address){
+  address <- gsub("NA^", "", address, ignore.case = TRUE)
+  return(address)
+}
