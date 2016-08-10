@@ -2,14 +2,16 @@ library(RSocrata)
 library(jsonlite)
 library(lubridate)
 library(stringr)
+library(gdata)
+library(RCurl)
 
 ######## Assault on police ########
 
 ### Hartford Connecticut assault on police
-hartford_assault_on_polic_url <- paste("https://data.hartford.gov/Public-Safety/",
-                                       "Assault-on-a-Police-Officer-2005",
-                                       "-Current/p3tu-ygwc", sep = "")
-hartford_assault_on_police <- read.socrata(hartford_assault_on_polic_url)
+hartford_assault_on_police <- read.socrata(
+                                paste("https://data.hartford.gov/Public-Safety/",
+                                      "Assault-on-a-Police-Officer-2005",
+                                      "-Current/p3tu-ygwc", sep = ""))
 hartford_assault_on_police$UCR_1_Category <-
   gsub(".*- (.*)", "\\1", hartford_assault_on_police$UCR_1_Category)
 hartford_assault_on_police$UCR_2_Category <-
@@ -33,11 +35,12 @@ names(hartford_assault_on_police) <- tolower(names(hartford_assault_on_police))
 
 
 ### Louisville Kentucky assault on police
-louisville_assault_on_police_url <- paste("http://api.louisvilleky.gov/api/File/",
+louisville_assault_on_police <- read.csv(url(
+                                    paste("http://api.louisvilleky.gov/api/File/",
                                           "DownloadFile?fileName=Assaulted",
                                           "OfficerData.csv",
                                           sep = "")
-louisville_assault_on_police <- read.csv(url(louisville_assault_on_police_url))
+                                ))
 louisville_assault_on_police$DATE_REPORTED <-
                          ymd_hms(louisville_assault_on_police$DATE_REPORTED)
 louisville_assault_on_police$DATE_OCCURED <-
@@ -47,10 +50,11 @@ names(louisville_assault_on_police)[12] <- "address"
 
 
 ### Montgomery Maryland assault on police
-montgomery_assault_on_police_url <- paste("https://data.montgomerycountymd.gov",
+montgomery_assault_on_police <- read.socrata(
+                                    paste("https://data.montgomerycountymd.gov",
                                           "/Public-Safety/Assaults-on-Officers/",
                                           "dhdu-k59t", sep = "")
-montgomery_assault_on_police <- read.socrata(montgomery_assault_on_police_url)
+                                          )
 montgomery_assault_on_police$Dispatch.Date...Time <-
       mdy_hms(montgomery_assault_on_police$Dispatch.Date...Time)
 names(montgomery_assault_on_police)[2] <- "dispatch_date"
@@ -75,10 +79,11 @@ names(montgomery_assault_on_police) <- gsub("\\.", "_",
 
 
 #### Tuscon Ariona assault on police
-tuscon_assault_on_police_url <- paste("http://gisdata.tucsonaz.gov/datasets/",
-                                      "16aa6ea45f4e40a5a629ee6da98618fd_0.csv",
-                                      sep = "")
-tuscon_assault_on_police <- read.csv(url(tuscon_assault_on_police_url))
+tuscon_assault_on_police <- read.csv(url(
+                                    paste("http://gisdata.tucsonaz.gov/datasets/",
+                                          "16aa6ea45f4e40a5a629ee6da98618fd_0.csv",
+                                          sep = "")
+                                    ))
 names(tuscon_assault_on_police)[1] <- "longitude"
 names(tuscon_assault_on_police)[2] <- "latitude"
 tuscon_assault_on_police$OBJECTID <- NULL
