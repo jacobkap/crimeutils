@@ -34,18 +34,19 @@ address_cleaner <- function(address){
 }
 
 race_cleaner <- function(column){
-  column <- gsub("b", "black", column, ignore.case = TRUE)
-  column <- gsub("w", "white", column, ignore.case = TRUE)
-  column <- gsub("h", "hispanic", column, ignore.case = TRUE)
-  column <- gsub("a", "asian", column, ignore.case = TRUE)
-  column <- gsub("u", "unknown", column, ignore.case = TRUE)
+  column <- gsub("^b$", "black", column, ignore.case = TRUE)
+  column <- gsub("^w$", "white", column, ignore.case = TRUE)
+  column <- gsub("^h$", "hispanic", column, ignore.case = TRUE)
+  column <- gsub("^a$", "asian", column, ignore.case = TRUE)
+  column <- gsub("^u$", "unknown", column, ignore.case = TRUE)
   return(column)
 }
 
 gender_cleaner <- function(column){
-  column <- gsub("m", "male", column, ignore.case = TRUE)
-  column <- gsub("f", "female", column, ignore.case = TRUE)
-  column <- gsub("u", "unknown", column, ignore.case = TRUE)
+  column <- gsub("^m$", "male", column, ignore.case = TRUE)
+  column <- gsub("^f$", "female", column, ignore.case = TRUE)
+  column <- gsub("^u$", "unknown", column, ignore.case = TRUE)
+  column <- tolower(column)
   return(column)
 }
 
@@ -53,7 +54,18 @@ gender_cleaner <- function(column){
 binary_cleaner <- function(column){
   column <- gsub("yes", 1, column, ignore.case = TRUE)
   column <- gsub("no", 0, column, ignore.case = TRUE)
-  column[column != 0 & column != 1] <- NA
+  column <- gsub("false", 0, column, ignore.case = TRUE)
+  column <- gsub("true", 1, column, ignore.case = TRUE)
+    column[column != 0 & column != 1] <- NA
   column <- as.numeric(column)
   return(column)
 }
+
+
+defactor <- function(dataset){
+  for (i in 1:ncol(dataset)){
+    dataset[,i] <- as.character(dataset[,i])
+   }
+  return(dataset)
+}
+

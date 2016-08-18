@@ -4,6 +4,7 @@ library(lubridate)
 library(stringr)
 library(gdata)
 library(RCurl)
+library(ggmap)
 
 ######## Assault on police ########
 
@@ -78,49 +79,52 @@ names(montgomery_assault_on_police) <- gsub("\\.", "_",
                                             names(montgomery_assault_on_police))
 
 
-#### Tuscon Ariona assault on police
-tuscon_assault_on_police <- read.csv(url(
+#### Tucson Ariona assault on police
+tucson_assault_on_police <- read.csv(url(
                                     paste("http://gisdata.tucsonaz.gov/datasets/",
                                           "16aa6ea45f4e40a5a629ee6da98618fd_0.csv",
                                           sep = "")
                                     ))
-names(tuscon_assault_on_police)[1] <- "longitude"
-names(tuscon_assault_on_police)[2] <- "latitude"
-tuscon_assault_on_police$OBJECTID <- NULL
-tuscon_assault_on_police$xcoord <- NULL
-tuscon_assault_on_police$ycoord <- NULL
-tuscon_assault_on_police$offender_r <- as.character(
-                 tuscon_assault_on_police$offender_r)
-tuscon_assault_on_police$offender_s <- as.character(
-  tuscon_assault_on_police$offender_s)
-tuscon_assault_on_police$offender_w <- as.character(
-  tuscon_assault_on_police$offender_w)
-tuscon_assault_on_police$street <- street_cleaner(tuscon_assault_on_police$street)
-tuscon_assault_on_police$address <- paste(tuscon_assault_on_police$streetnbr,
-                                          tuscon_assault_on_police$street,
-                                          tuscon_assault_on_police$city,
-                                          tuscon_assault_on_police$state,
-                                          tuscon_assault_on_police$zip,
+names(tucson_assault_on_police)[1] <- "longitude"
+names(tucson_assault_on_police)[2] <- "latitude"
+tucson_assault_on_police$OBJECTID <- NULL
+tucson_assault_on_police$xcoord <- NULL
+tucson_assault_on_police$ycoord <- NULL
+tucson_assault_on_police$offender_r <- as.character(
+                 tucson_assault_on_police$offender_r)
+tucson_assault_on_police$offender_s <- as.character(
+  tucson_assault_on_police$offender_s)
+tucson_assault_on_police$offender_w <- as.character(
+  tucson_assault_on_police$offender_w)
+tucson_assault_on_police$street <- street_cleaner(tucson_assault_on_police$street)
+tucson_assault_on_police$address <- paste(tucson_assault_on_police$streetnbr,
+                                          tucson_assault_on_police$street,
+                                          tucson_assault_on_police$city,
+                                          tucson_assault_on_police$state,
+                                          tucson_assault_on_police$zip,
                                           sep = " ")
-tuscon_assault_on_police$streetnbr <- NULL
-tuscon_assault_on_police$street <- NULL
-tuscon_assault_on_police$address <- address_cleaner(
-                     tuscon_assault_on_police$address)
-names(tuscon_assault_on_police)[8] <- "reported_as"
-names(tuscon_assault_on_police)[9] <- "charged_as"
-names(tuscon_assault_on_police)[10] <- "arrest_charge"
-tuscon_assault_on_police$hour_occu <- hour_cleaner(
-               tuscon_assault_on_police$hour_occu)
-tuscon_assault_on_police$date_occu <- ymd_hms(tuscon_assault_on_police$date_occu)
-tuscon_assault_on_police$date_time <- paste(tuscon_assault_on_police$date_occu,
-                                            tuscon_assault_on_police$hour_occu)
-tuscon_assault_on_police$date_time <- ymd_hm(tuscon_assault_on_police$date_time)
-names(tuscon_assault_on_police)[3] <- "incident_id"
-names(tuscon_assault_on_police)[11] <- "charge_description"
-names(tuscon_assault_on_police)[12] <- "date_occurred"
-names(tuscon_assault_on_police)[13] <- "hour_occurred"
-names(tuscon_assault_on_police)[14] <- "division_sector"
-names(tuscon_assault_on_police)[15] <- "offender_age"
-names(tuscon_assault_on_police)[16] <- "offender_race"
-names(tuscon_assault_on_police)[17] <- "offender_sex"
-names(tuscon_assault_on_police)[18] <- "offender_weapon"
+tucson_assault_on_police$streetnbr <- NULL
+tucson_assault_on_police$street <- NULL
+tucson_assault_on_police$address <- address_cleaner(
+                     tucson_assault_on_police$address)
+names(tucson_assault_on_police)[8] <- "reported_as"
+names(tucson_assault_on_police)[9] <- "charged_as"
+names(tucson_assault_on_police)[10] <- "arrest_charge"
+tucson_assault_on_police$hour_occu <- hour_cleaner(
+               tucson_assault_on_police$hour_occu)
+tucson_assault_on_police$date_occu <- ymd_hms(tucson_assault_on_police$date_occu)
+tucson_assault_on_police$date_time <- paste(tucson_assault_on_police$date_occu,
+                                            tucson_assault_on_police$hour_occu)
+tucson_assault_on_police$date_time <- ymd_hm(tucson_assault_on_police$date_time)
+names(tucson_assault_on_police)[3] <- "incident_id"
+names(tucson_assault_on_police)[11] <- "charge_description"
+names(tucson_assault_on_police)[12] <- "date_occurred"
+names(tucson_assault_on_police)[13] <- "hour_occurred"
+names(tucson_assault_on_police)[14] <- "division_sector"
+names(tucson_assault_on_police)[15] <- "offender_age"
+names(tucson_assault_on_police)[16] <- "offender_race"
+names(tucson_assault_on_police)[17] <- "offender_sex"
+names(tucson_assault_on_police)[18] <- "offender_weapon"
+
+
+NYC_311 <- fromJSON("https://data.cityofnewyork.us/resource/fhrw-4uyv.json?park_borough=BRONX")
