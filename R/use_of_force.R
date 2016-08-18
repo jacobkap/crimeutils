@@ -1,3 +1,6 @@
+use_of_force_cleaner <- function(dataset_name){
+
+
 ##### Austin Texas use of force #####
 
 
@@ -318,9 +321,9 @@ fayetteville_use_force <- read.csv(url(paste("http://data.fayettevillenc.gov/",
                           sep = "")))
 fayetteville_use_force$date <- ymd_hms(fayetteville_use_force$Incident_Date)
 fayetteville_use_force$Incident_Date <- NULL
-fayetteville_use_force$longitude <- fayetteville_use_force$ï..X
+fayetteville_use_force$longitude <- fayetteville_use_force[,1]
 fayetteville_use_force$latitude <- fayetteville_use_force$Y
-fayetteville_use_force$ï..X <- NULL
+fayetteville_use_force[,1]
 fayetteville_use_force$Y <- NULL
 fayetteville_use_force$address <- paste(fayetteville_use_force$Location,
                                         fayetteville_use_force$City,
@@ -719,4 +722,5 @@ rutland_use_force$officer_age <- as.numeric(rutland_use_force$officer_age)
 rutland_use_force$subject_age <- as.numeric(rutland_use_force$subject_age)
 
 return(rutland_use_force)
+}
 }
