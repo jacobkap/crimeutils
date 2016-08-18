@@ -33,6 +33,9 @@ baltimore_use_force$address <- paste(baltimore_use_force$address,
                                      "Baltimore",
                                      "MD",
                                      sep = ", ")
+
+baltimore_use_force$department_name <- "baltimore_police"
+
 return(baltimore_use_force)
 }
 
@@ -176,6 +179,8 @@ names(bloomington_use_force)[16] <- "officer_exposed_to_blood_borne_pathogen"
 names(bloomington_use_force)[17] <- "suspect_female"
 names(bloomington_use_force)[18] <- "suspect_male"
 
+bloomington_use_force$department_name <- "bloomington_police"
+
 return(bloomington_use_force)
 }
 
@@ -309,6 +314,8 @@ dallas_use_force <- dallas_use_force[!is.na(
                         dallas_use_force$officer_badge_number) &
                           !is.na(dallas_use_force$longitude),]
 
+dallas_use_force$department_name <- "dallas_police"
+
 return(dallas_use_force)
 }
 
@@ -412,6 +419,8 @@ fayetteville_use_force$officers_r_s <- NULL
 names(fayetteville_use_force)[1] <- "file_number"
 names(fayetteville_use_force)[2] <- "subject_age"
 
+fayetteville_use_force$department_name <- "fayetteville_police"
+
 return(fayetteville_use_force)
 }
 
@@ -463,6 +472,8 @@ names(indianapolis_use_force)[22] <- "officer_gender"
 names(indianapolis_use_force)[23] <- "officer_age"
 names(indianapolis_use_force)[24] <- "officer_experience_years"
 names(indianapolis_use_force)[25] <- "officer_identifier"
+
+indianapolis_use_force$department_name <- "indianapolis_police"
 
 return(indianapolis_use_force)
 }
@@ -700,6 +711,8 @@ message(paste("This dataset does not include Hispanic as a race",
               "officer count",
               sep = " "))
 
+orlando_use_force$department_name <- "orlando_police"
+
 return(orlando_use_force)
 }
 
@@ -720,6 +733,8 @@ for (i in 1:ncol(rutland_use_force)) {
 }
 rutland_use_force$officer_age <- as.numeric(rutland_use_force$officer_age)
 rutland_use_force$subject_age <- as.numeric(rutland_use_force$subject_age)
+
+rutland_use_force$department_name <- "rutland_city_police"
 
 return(rutland_use_force)
 }

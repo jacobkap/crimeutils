@@ -18,7 +18,9 @@ baltimore_service$latitude <- gsub(".(.*),.*",  "\\1",
                                     baltimore_service$location)
 baltimore_service$location <- NULL
 
-return(baltimore_serivce)
+baltimore_service$department_name <- "baltimore_police"
+
+return(baltimore_service)
 }
 
 #### Bloomington indiana calls for service ####
@@ -62,6 +64,8 @@ names(bloomington_service) <- gsub("report_no_report",
                                    "police_report_made",
                                    names(bloomington_service))
 
+bloomington_service$department_name <- "bloomington_police"
+
 return(bloomington_service)
 }
 
@@ -77,6 +81,8 @@ burlington_service <- read.csv(url(paste("https://public.tableau.",
                               sep = "")))
 
 burlington_service <- defactor(burlington_service)
+
+burlington_service$department_name <- "burlington_police"
 
 return(burlington_service)
 }

@@ -31,6 +31,8 @@ hartford_assault_on_police$date_time <- mdy_hm(hartford_assault_on_police$date_t
 hartford_assault_on_police$Date <- mdy(hartford_assault_on_police$Date)
 names(hartford_assault_on_police) <- tolower(names(hartford_assault_on_police))
 
+hartford_assault_on_police$department_name <- "hartford_police"
+
 return(hartford_assault_on_police)
 }
 
@@ -51,6 +53,8 @@ louisville_assault_on_police$DATE_OCCURED <-
   ymd_hms(louisville_assault_on_police$DATE_OCCURED)
 names(louisville_assault_on_police) <- tolower(names(louisville_assault_on_police))
 names(louisville_assault_on_police)[12] <- "address"
+
+louisville_assault_on_police$department_name <- "louisville_metro_police"
 
 return(louisville_assault_on_police)
 }
@@ -85,6 +89,8 @@ montgomery_assault_on_police$Location <- NULL
 names(montgomery_assault_on_police) <- tolower(names(montgomery_assault_on_police))
 names(montgomery_assault_on_police) <- gsub("\\.", "_",
                                             names(montgomery_assault_on_police))
+
+montgomery_assault_on_police$department_name <- "montgomery_county_police"
 
 return(montgomery_assault_on_police)
 }
@@ -139,6 +145,7 @@ names(tucson_assault_on_police)[16] <- "offender_race"
 names(tucson_assault_on_police)[17] <- "offender_sex"
 names(tucson_assault_on_police)[18] <- "offender_weapon"
 
+tucson_assault_on_police$department_name <- "tucson_police_department"
 return(tucson_assault_on_police)
 }
 }
