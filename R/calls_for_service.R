@@ -1,4 +1,9 @@
+calls_for_service_cleaner <- function(dataset_name){
+
+
 #### Baltimore maryland calls for service ####
+
+  if(dataset_name == "baltimore_service"){
 
 baltimore_service <- fromJSON(paste("https://data.baltimorecity.gov/",
                                     "resource/m8g9-abgb.json",
@@ -13,7 +18,12 @@ baltimore_service$latitude <- gsub(".(.*),.*",  "\\1",
                                     baltimore_service$location)
 baltimore_service$location <- NULL
 
+return(baltimore_serivce)
+}
+
 #### Bloomington indiana calls for service ####
+
+  if (dataset_name == "bloomington_service"){
 
 bloomginton_service1 <- read.csv(url(paste("https://data.bloomington.",
                                 "in.gov/dataset/4451a5ba-3f57-4291-814e",
@@ -52,7 +62,12 @@ names(bloomington_service) <- gsub("report_no_report",
                                    "police_report_made",
                                    names(bloomington_service))
 
+return(bloomington_service)
+}
+
 #### Burlington vermont calls for service ####
+
+if (dataset_name == "burlington_service"){
 
 burlington_service <- read.csv(url(paste("https://public.tableau.",
                               "com/vizql/vud/sessions/012144F1B612",
@@ -62,3 +77,7 @@ burlington_service <- read.csv(url(paste("https://public.tableau.",
                               sep = "")))
 
 burlington_service <- defactor(burlington_service)
+
+return(burlington_service)
+}
+}

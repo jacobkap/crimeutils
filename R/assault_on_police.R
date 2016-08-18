@@ -1,14 +1,12 @@
-library(RSocrata)
-library(jsonlite)
-library(lubridate)
-library(stringr)
-library(gdata)
-library(RCurl)
-library(ggmap)
+assault_on_police_cleaner <- function(dataset_name){
+
 
 ######## Assault on police ########
 
 ### Hartford Connecticut assault on police
+
+if (dataset_name == "hartford_assault_on_police"){
+
 hartford_assault_on_police <- read.socrata(
                                 paste("https://data.hartford.gov/Public-Safety/",
                                       "Assault-on-a-Police-Officer-2005",
@@ -33,9 +31,14 @@ hartford_assault_on_police$date_time <- mdy_hm(hartford_assault_on_police$date_t
 hartford_assault_on_police$Date <- mdy(hartford_assault_on_police$Date)
 names(hartford_assault_on_police) <- tolower(names(hartford_assault_on_police))
 
+return(hartford_assault_on_police)
+}
 
 
 ### Louisville Kentucky assault on police
+
+if (dataset_name == "louisville_assault_on_police"){
+
 louisville_assault_on_police <- read.csv(url(
                                     paste("http://api.louisvilleky.gov/api/File/",
                                           "DownloadFile?fileName=Assaulted",
@@ -49,8 +52,13 @@ louisville_assault_on_police$DATE_OCCURED <-
 names(louisville_assault_on_police) <- tolower(names(louisville_assault_on_police))
 names(louisville_assault_on_police)[12] <- "address"
 
+return(louisville_assault_on_police)
+}
 
 ### Montgomery Maryland assault on police
+
+if (dataset_name == "montgomery_assault_on_police"){
+
 montgomery_assault_on_police <- read.socrata(
                                     paste("https://data.montgomerycountymd.gov",
                                           "/Public-Safety/Assaults-on-Officers/",
@@ -78,8 +86,13 @@ names(montgomery_assault_on_police) <- tolower(names(montgomery_assault_on_polic
 names(montgomery_assault_on_police) <- gsub("\\.", "_",
                                             names(montgomery_assault_on_police))
 
+return(montgomery_assault_on_police)
+}
 
 #### Tucson Ariona assault on police
+
+if (dataset_name == "tucson_assault_on_police"){
+
 tucson_assault_on_police <- read.csv(url(
                                     paste("http://gisdata.tucsonaz.gov/datasets/",
                                           "16aa6ea45f4e40a5a629ee6da98618fd_0.csv",
@@ -126,5 +139,6 @@ names(tucson_assault_on_police)[16] <- "offender_race"
 names(tucson_assault_on_police)[17] <- "offender_sex"
 names(tucson_assault_on_police)[18] <- "offender_weapon"
 
-
-NYC_311 <- fromJSON("https://data.cityofnewyork.us/resource/fhrw-4uyv.json?park_borough=BRONX")
+return(tucson_assault_on_police)
+}
+}

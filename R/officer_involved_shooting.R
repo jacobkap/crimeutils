@@ -1,6 +1,11 @@
+OIS_scraper_cleaner <- function(dataset_name){
+
 ###### Officer involved shootings ######
 
 ### Austin Texas officer involved shootings
+
+if (dataset_name == "austin_OIS_2000_2014") {
+
 austin_OIS_2000_2014 <- read.socrata(
                                   paste("https://data.austintexas.gov/dataset",
                                         "/Officer-Involved-Shooting-2000-2014",
@@ -59,8 +64,13 @@ names(austin_OIS_2000_2014)[28] <- "outcome"
 names(austin_OIS_2000_2014) <- gsub("\\.", "_", names(austin_OIS_2000_2014))
 names(austin_OIS_2000_2014) <- tolower(names(austin_OIS_2000_2014))
 
+return(austin_OIS_2000_2014)
+}
 
 ### Austin Texas officer involved shooting incidents 2006-2015
+
+if (dataset_name == "austin_OIS_2006_2015"){
+
 austin_OIS_2006_2015 <- read.socrata(
                                       paste("https://data.austintexas.gov/",
                                             "Public-Safety/OIS-Dataset-2006",
@@ -132,9 +142,14 @@ austin_OIS_2006_2015$Rank <- gsub("sgt", "sergeant", austin_OIS_2006_2015$Rank)
 austin_OIS_2006_2015$officer_name <- gsub("^.* (.* .*)$", "\\1",
                                           austin_OIS_2006_2015$officer_name)
 
+return(austin_OIS_2006_2015)
+}
 
 
 ### Dallas Texas officer involved shooting
+
+if (dataset_name == "dallas_OIS"){
+
 dallas_OIS <- read.socrata(paste("https://www.dallasopendata.com/",
                                   "Police/Dallas-Police-Public-Data",
                                   "-Officer-Involved-Shootin/4gmt-jyx2",
@@ -241,9 +256,13 @@ names(dallas_OIS)[6] <- "officer_name"
 names(dallas_OIS) <- tolower(names(dallas_OIS))
 names(dallas_OIS) <- gsub(",|\\.", "_", names(dallas_OIS))
 
-
+return(dallas_OIS)
+}
 
 ### Hampton Virginia officer involved shootings
+
+if (dataset_name == "hampton_OIS"){
+
 hampton_OIS <- read.socrata(paste("https://data.hampton.gov/Government",
                                   "/Officer-Involved-Shootings/nhh2-ywzf",
                                   sep = ""))
@@ -266,8 +285,13 @@ hampton_OIS$address <- gsub("e\\.", "east", hampton_OIS$address,
                             ignore.case = TRUE)
 hampton_OIS$location <- NULL
 
+return(hampton_OIS)
+}
 
 ### Hartford Connecticut officer involved shooting
+
+if (dataset_name == "hartford_OIS"){
+
 hartford_OIS <- read.socrata(paste("https://data.hartford.gov/Public-Safety/",
                                    "Officer-Involved-Shooting-2005-Current/",
                                    "dzbp-kiee",
@@ -291,8 +315,13 @@ hartford_OIS$longitude <- as.numeric(hartford_OIS$longitude)
 names(hartford_OIS) <- tolower(names(hartford_OIS))
 names(hartford_OIS) <- gsub(",|\\.", "_", names(hartford_OIS))
 
+return(hartford_OIS)
+}
 
 ### Indianapolis Indiana officer involved shooting
+
+if (dataset_name == 'indianapolis_OIS'){
+
 indianapolis_OIS <- read.csv(url(paste("https://www.projectcomport.org",
                                        "/department/1/ois.csv",
                                        sep = "")))
@@ -311,11 +340,16 @@ names(indianapolis_OIS)[17] <- "officer_sex"
 names(indianapolis_OIS)[18] <- "officer_age"
 names(indianapolis_OIS)[19] <- "officer_experience_years"
 
+return(indianapolis_OIS)
+}
 
 ### Knoxville Tennessee officer involved shooting
 
 
 ### Los Angeles California officer involved shooting
+
+if (dataset_name == "LA_OIS"){
+
 # Suspect Details For Deputy Involved Shooting Incidents (2010-YTD)
 LA_OIS_1 <- read.socrata(paste("https://data.lacounty.gov/Criminal/",
                              "Person-Details-Hit-Shooting-Incidents",
@@ -326,16 +360,6 @@ LA_OIS_2 <- read.socrata(paste("https://data.lacounty.gov/Criminal/",
                                "Deputy-Details-Hit-Shooting-Incidents",
                                "-and-Non-Hit-/7jc3-gsk7",
                                sep = ""))
-# Deputy Details For Non- Suspect Shooting Incidents (2010-YTD)
-LA_OIS_3 <- read.socrata(paste("https://data.lacounty.gov/Criminal/",
-                               "Deputy-Details-For-Non-Suspect-Shooting",
-                               "-Incidents-/9kqg-nmvi",
-                               sep = ""))
-# Non-Suspect Involved Shooting Incidents (2010-YTD)
-LA_OIS_4 <- read.socrata(paste("https://data.lacounty.gov/Criminal/Non-",
-                               "Person-Involved-Shooting-Incidents-2010-",
-                               "to-Pre/3q3t-7t2n",
-                                sep = ""))
 # Deputy Involved Shootings (2010-YTD)
 LA_OIS_5 <- read.socrata(paste("https://data.lacounty.gov/Criminal/All-",
                                "Shooting-Incidents-for-Deputy-Involved-",
@@ -498,8 +522,26 @@ LA_OIS_people$handling_unit_id <- as.character(LA_OIS_people$handling_unit_id)
 LA_OIS_people$handling_unit_name <- as.character(
              LA_OIS_people$handling_unit_name)
 
+return(LA_OIS_people)
+}
+
 
  # LA shooting animal data
+
+if (dataset_name == "LA_OIS_animal"){
+
+  # Deputy Details For Non- Suspect Shooting Incidents (2010-YTD)
+  LA_OIS_3 <- read.socrata(paste("https://data.lacounty.gov/Criminal/",
+                                 "Deputy-Details-For-Non-Suspect-Shooting",
+                                 "-Incidents-/9kqg-nmvi",
+                                 sep = ""))
+  # Non-Suspect Involved Shooting Incidents (2010-YTD)
+  LA_OIS_4 <- read.socrata(paste("https://data.lacounty.gov/Criminal/Non-",
+                                 "Person-Involved-Shooting-Incidents-2010-",
+                                 "to-Pre/3q3t-7t2n",
+                                 sep = ""))
+
+
 LA_OIS_temp <- merge(LA_OIS_3, LA_OIS_4, by = "INCIDENT.NUMBER",
                      suffixes = "zz")
 names(LA_OIS_temp) <- gsub("zz$|NA$", "", names(LA_OIS_temp),
@@ -553,11 +595,15 @@ names(LA_OIS_animal)[16] <- "longitude"
 names(LA_OIS_animal)[19] <- "number_officers_present_during_shooting"
 LA_OIS_animal$city <- temp_city
 
+return(LA_OIS_animal)
+}
 
 
 ### Louisville Kentucky officer involved shooting
 
 ### Philadelphia officer involved shooting
+
+if (dataset_name == "philadelphia_OIS"){
 
 philadelphia_OIS <- read.csv(url(paste("https://data.phila.gov/api/views/",
                               "jr6a-ctmq/rows.csv?accessType=DOWNLOAD",
@@ -647,11 +693,14 @@ philadelphia_OIS$location <- as.character(philadelphia_OIS$location)
 philadelphia_OIS$police_districts <- as.numeric(
                               philadelphia_OIS$police_districts)
 
-
+return(philadelphia_OIS)
+}
 
 ###  San Francisco officer involved shooting
 
 ### Tucson Arizona officer involved shooting
+
+if (dataset_name == "tucson_OIS"){
 
 tucson_OIS <- read.csv(url(paste("http://gisdata.tucsonaz.gov/datasets/",
                            "37659dfb8b8346a4b3f579ad263abe5b_1.csv",
@@ -670,11 +719,11 @@ tucson_OIS$STATE <- NULL
 tucson_OIS$ZIP <- NULL
 tucson_OIS$address <- gsub("^ ,.*", "", tucson_OIS$address)
 
-temp_coords <- geocode(tucson_OIS$address, source = "dsk")
-tucson_OIS$longitude <- temp_coords$lon
-tucson_OIS$latitude <- temp_coords$lat
-tucson_OIS$X_COORD <- NULL
-tucson_OIS$Y_COORD <- NULL
+ temp_coords <- geocode(tucson_OIS$address, source = "dsk")
+ tucson_OIS$longitude <- temp_coords$lon
+ tucson_OIS$latitude <- temp_coords$lat
+ tucson_OIS$X_COORD <- NULL
+ tucson_OIS$Y_COORD <- NULL
 
 names(tucson_OIS) <- tolower(names(tucson_OIS))
 names(tucson_OIS) <- gsub("\\.", "_", names(tucson_OIS))
@@ -712,8 +761,9 @@ tucson_OIS$officer_killed[tucson_OIS$ofc_injdec == "None"] <- 0
 tucson_OIS$ofc_injdec <- NULL
 
 names(tucson_OIS)[2] <- "date"
-names(tucson_OIS)[3] <- "incident_number"
 tucson_OIS$inci_num <- as.numeric(tucson_OIS$inci_num)
+names(tucson_OIS)[3] <- "incident_number"
+
 names(tucson_OIS)[4] <- "subject_weapon"
 names(tucson_OIS)[5] <- "subject_age"
 names(tucson_OIS)[6] <- "subject_race"
@@ -728,3 +778,7 @@ names(tucson_OIS)[12] <- "independent_police_auditor_outcome"
 names(tucson_OIS)[13] <- "legal_outcome"
 tucson_OIS$longitude <- as.numeric(tucson_OIS$longitude)
 tucson_OIS$latitude <- as.numeric(tucson_OIS$latitude)
+
+return(tucson_OIS)
+}
+}
