@@ -18,5 +18,7 @@ crime
 }
 \examples{
 crime_data("bloomington_use_force")
+
+
 }
 

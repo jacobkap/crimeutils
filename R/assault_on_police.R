@@ -41,7 +41,7 @@ return(hartford_assault_on_police)
 
 if (dataset_name == "louisville_assault_on_police"){
 
-louisville_assault_on_police <- read.csv(url(
+louisville_assault_on_police <- read_csv(url(
                                     paste("http://api.louisvilleky.gov/api/File/",
                                           "DownloadFile?fileName=Assaulted",
                                           "OfficerData.csv",
@@ -99,11 +99,12 @@ return(montgomery_assault_on_police)
 
 if (dataset_name == "tucson_assault_on_police"){
 
-tucson_assault_on_police <- read.csv(url(
-                                    paste("http://gisdata.tucsonaz.gov/datasets/",
-                                          "16aa6ea45f4e40a5a629ee6da98618fd_0.csv",
-                                          sep = "")
-                                    ))
+tucson_assault_on_police <- read_csv(url(
+                        paste("http://gisdata.tucsonaz.gov/datasets/",
+                              "16aa6ea45f4e40a5a629ee6da98618fd_0.csv",
+                              sep = "")))
+
+
 names(tucson_assault_on_police)[1] <- "longitude"
 names(tucson_assault_on_police)[2] <- "latitude"
 tucson_assault_on_police$OBJECTID <- NULL

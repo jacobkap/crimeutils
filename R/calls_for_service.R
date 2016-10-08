@@ -27,14 +27,14 @@ return(baltimore_service)
 
   if (dataset_name == "bloomington_service"){
 
-bloomginton_service1 <- read.csv(url(paste("https://data.bloomington.",
+bloomginton_service1 <- read_csv(url(paste("https://data.bloomington.",
                                 "in.gov/dataset/4451a5ba-3f57-4291-814e",
                                 "-295964cedea0/resource/27b22f66-b3bd-4a",
                                 "1b-98c2-e751ce3bb91e/download/2016-first",
                                 "-quarter-calls-for-service.csv",
                                 sep = "")))
 
-bloomington_service2 <- read.csv(url(paste("https://data.bloomington.in.gov/",
+bloomington_service2 <- read_csv(url(paste("https://data.bloomington.in.gov/",
                                  "dataset/4451a5ba-3f57-4291-814e-295964cedea",
                                  "0/resource/d4928b37-3547-4e57-ad81-d2d598da6",
                                  "efe/download/2016-second-quarter-calls-for-",
@@ -71,19 +71,75 @@ return(bloomington_service)
 
 #### Burlington vermont calls for service ####
 
-if (dataset_name == "burlington_service"){
 
-burlington_service <- read.csv(url(paste("https://public.tableau.",
-                              "com/vizql/vud/sessions/012144F1B612",
-                              "4D8A9A45AA97C7A76B83-0:0/views/81520",
-                              "05872074396685_13949870936102779885?",
-                              "csv=true&showall=true",
-                              sep = "")))
+#### Cincinnati Ohio calls for service ####
+  if (dataset_name == "cincinnati_service"){
+    cincinnati_service <- fromJSON("https://data.cincinnati-oh.gov/resource/2fwx-vbif.json")
 
-burlington_service <- defactor(burlington_service)
+    cincinnati_service$agency <- NULL
+    cincinnati_service$block_begin <- NULL
+    cincinnati_service$block_end <- NULL
+    cincinnati_service$city <- NULL
+    cincinnati_service$closed_time_incident <- NULL
+    cincinnati_service$phone_pickup_time <- NULL
+    cincinnati_service$street_name <- street_cleaner(cincinnati_service$street_name)
+    cincinnati_service$street_name <- address_cleaner(cincinnati_service$street_name)
 
-burlington_service$department_name <- "burlington_police"
 
-return(burlington_service)
-}
+    cincinnati_service$arrival_tume_primary_unit <- ymd_hms(
+                           cincinnati_service$arrival_tume_primary_unit)
+    cincinnati_service$create_time_incident <- ymd_hms(
+                           cincinnati_service$create_time_incident)
+    cincinnati_service$dispatch_time_primary_unit <- ymd_hms(
+                           cincinnati_service$dispatch_time_primary_unit)
+
+    cincinnati_service$minutes_from_call_to_dispatch <- difftime(
+                            cincinnati_service$dispatch_time_primary_unit,
+                            cincinnati_service$create_time_incident,
+                            units = "mins")
+
+    cincinnati_service$minutes_from_call_to_arrival <- difftime(
+                            cincinnati_service$arrival_tume_primary_unit,
+                            cincinnati_service$create_time_incident,
+                            units = "mins")
+
+    cincinnati_service$minutes_from_dispatch_to_arrival <- difftime(
+                            cincinnati_service$arrival_tume_primary_unit,
+                            cincinnati_service$dispatch_time_primary_unit,
+                            units = "mins")
+
+
+    names(cincinnati_service) <- gsub("tume", "time", names(cincinnati_service))
+    names(cincinnati_service) <- gsub("event_", "incident_", names(cincinnati_service))
+
+    cincinnati_service$department_name <- "cincinnati_police"
+
+    return(cincinnati_service)
+    }
+
+  #### Detroit Michigan calls for service
+
+  if (dataset_name == "detroit_service"){
+
+    detroit_service <- fromJSON(paste("https://data.detroitmi.gov/",
+                                      "resource/4m7k-f8s3.json",
+                                      sep = ""))
+
+
+    detroit_service$`:@computed_region_47m5_mdaf` <- NULL
+    detroit_service$`:@computed_region_5esb_gjfg` <- NULL
+    detroit_service$`:@computed_region_d6uh_frh4` <- NULL
+    detroit_service$`:@computed_region_gscg_8e47` <- NULL
+    detroit_service$`:@computed_region_rzav_7efk` <- NULL
+    detroit_service$`:@computed_region_y6sr_nt2p` <- NULL
+
+    detroit_service$location$coordinates <- gsub("^.......$", NA,
+                                     detroit_service$location$coordinates)
+    detroit_service$latitude <- gsub(".*, (.*).", "\\1",
+                                      detroit_service$location$coordinates)
+
+    detroit_service$location <- NULL
+
+    }
+
 }

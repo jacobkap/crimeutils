@@ -43,14 +43,15 @@ return(baltimore_use_force)
 
 if (dataset_name == "bloomington_use_force"){
 
-bloomington_use_force1 <- read.csv(url(paste("https://data.bloomington.",
+
+bloomington_use_force1 <- read_csv(url(paste("https://data.bloomington.",
                         "in.gov/dataset/93c0b51f-f6b6-475e-b2f1-852c4f5c",
                         "6eb7/resource/a3e4c4c3-dc1f-4246-bfe3-41baa85aa4",
                         "66/download/2016-first-quarter-use-of-force.csv",
                         sep = "")),
                         skip = 1)
 
-bloomington_use_force2 <- read.csv(url(paste("https://data.bloomington.in.",
+bloomington_use_force2 <- read_csv(url(paste("https://data.bloomington.in.",
                          "gov/dataset/93c0b51f-f6b6-475e-b2f1-852c4f5c6eb7/",
                          "resource/6928d2c5-0469-417e-84c8-9292cac5511e/",
                          "download/2016-second-quarter-use-of-force.csv",
@@ -323,7 +324,7 @@ return(dallas_use_force)
 
 if (dataset_name == "fayetteville_use_force") {
 
-fayetteville_use_force <- read.csv(url(paste("http://data.fayettevillenc.gov/",
+fayetteville_use_force <- read_csv(url(paste("http://data.fayettevillenc.gov/",
                           "datasets/c99349a76b924a80bb16f93585614c86_0.csv",
                           sep = "")))
 fayetteville_use_force$date <- ymd_hms(fayetteville_use_force$Incident_Date)
@@ -428,7 +429,7 @@ return(fayetteville_use_force)
 
 if (dataset_name == "indianapolis_use_force"){
 
-indianapolis_use_force <- read.csv(url(paste("https://www.projectcomport.org/",
+indianapolis_use_force <- read_csv(url(paste("https://www.projectcomport.org/",
                                        "department/1/uof.csv",
                                        sep = "")))
 
@@ -739,3 +740,4 @@ rutland_use_force$department_name <- "rutland_city_police"
 return(rutland_use_force)
 }
 }
+

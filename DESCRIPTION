@@ -1,14 +1,19 @@
 Package: crime
-Title: Downloads and Cleans Crime Datasets That Are Available Online
+Title: A Comprehensive Set of Functions to Clean, Analyze, and Present Crime Data
 Version: 0.1.0
 Authors@R: person("Jacob", "Kaplan", email = "jacobkap@sas.upenn.edu", role = c("aut", "cre"))
-Description: Downloads publicly available crime (or policing related) datasets
-    and cleans them for easier use.
+Description: A collection of functions that make it easier to understand crime data, and assist others in understanding it. The package helps you read data from various sources, cleans it, fixes column names, and graph or map the data. It can work with various federal and local datasets. 
 Depends:
+    R (>= 2.10)
+Imports:
     RSocrata,
     jsonlite,
     lubridate,
-    ggmap
+    ggmap,
+    readr,
+    tm
 License: GPL
 LazyData: TRUE
+URL: https://github.com/jacobkap/crime
+BugReports: https://github.com/jacobkap/crime/issues
 RoxygenNote: 5.0.1.9000

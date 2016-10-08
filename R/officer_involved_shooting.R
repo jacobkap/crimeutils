@@ -337,7 +337,7 @@ OIS_scraper_cleaner <- function(dataset_name){
 
   if (dataset_name == "indianapolis_OIS"){
 
-    indianapolis_OIS <- read.csv(url(paste("https://www.projectcomport.org",
+    indianapolis_OIS <- read_csv(url(paste("https://www.projectcomport.org",
                                            "/department/1/ois.csv",
                                            sep = "")))
     indianapolis_OIS$occurredDate <- ymd_hms(indianapolis_OIS$occurredDate)
@@ -631,7 +631,7 @@ OIS_scraper_cleaner <- function(dataset_name){
 
   if (dataset_name == "philadelphia_OIS"){
 
-    philadelphia_OIS <- read.csv(url(paste("https://data.phila.gov/api/views/",
+    philadelphia_OIS <- read_csv(url(paste("https://data.phila.gov/api/views/",
                                            "jr6a-ctmq/rows.csv?accessType=DOWNLOAD",
                                            sep = "")))
 
@@ -733,7 +733,7 @@ OIS_scraper_cleaner <- function(dataset_name){
 
   if (dataset_name == "tucson_OIS"){
 
-    tucson_OIS <- read.csv(url(paste("http://gisdata.tucsonaz.gov/datasets/",
+    tucson_OIS <- read_csv(url(paste("http://gisdata.tucsonaz.gov/datasets/",
                                      "37659dfb8b8346a4b3f579ad263abe5b_1.csv",
                                      sep = "")))
     tucson_OIS <- tucson_OIS[-c(1:13)]
