@@ -38,6 +38,22 @@ UCR.OffenseNames <- function(UCR_dataset) {
 
 
 
+#' Fixes column names in LEMAS datasets from 1987 to 2003
+#'
+#' @param lemas_dataset
+#' The LEMAS dataset
+#'
+#' @param year
+#' The year of the LEMAS dataset
+#'
+#' @return
+#' The same data.frame as inputted but with the correct column names
+#' @export
+#'
+#' @examples
+#' example <- data.frame(V22 = 1, V30 = 0)
+#' lemasNames(example, 1999)
+#'
 lemasNames <- function(lemas_dataset, year) {
 
   year <- as.numeric(year)

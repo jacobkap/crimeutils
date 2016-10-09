@@ -3,6 +3,7 @@
 export(UCR.LEOKANames)
 export(UCR.OffenseNames)
 export(crime_data)
+export(lemasNames)
 import(RSocrata)
 import(ggmap)
 import(jsonlite)
