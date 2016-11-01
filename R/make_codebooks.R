@@ -1,5 +1,5 @@
 lemas_codebook <- function(year) {
-  setwd("C:/Users/user/Dropbox/R_project/crime/leoka_codebooks")
+  setwd("C:/Users/user/Dropbox/R_project/crime/lemas_codebooks")
   library(tm)
   Rpdf <- readPDF(control = list(text = "-layout"))
   # Read the PDF

@@ -1,0 +1,240 @@
+                  SUPPLEMENTARY HOMICIDE REPORT
+                           CODING GUIDE
+                          (Revised 5/2012)
+
+
+
+          This coding guide is devised for translation of data from the Supplementary Homicide
+Report into a numerical language which will permit data processing of the information.  The codes are as
+follows:
+
+
+			    HOMICIDE TYPE
+
+	  A - MURDER AND NONNEGLIGENT MANSLAUGHTER
+	  B - MANSLAUGHTER BY NEGLIGENCE		
+
+
+                            SITUATION
+
+          The situation codes set forth below are designed to capture data relative to the number of
+victims/offenders involved in criminal homicides.  A single situation code is used to describe a murder
+situation, regardless of the number of victims or offenders involved.  The utilization of a new code will
+signify the beginning of a new murder situation.
+
+
+          A - Single Victim/Single Offender
+          B - Single Victim/Unknown Offender or Offenders
+          C - Single Victim/Multiple Offenders
+          D - Multiple Victims/Single Offender
+          E - Multiple Victims/Multiple Offenders
+          F - Multiple Victims/Unknown Offender or Offenders
+
+
+                      AGE OF VICTIM/OFFENDER
+
+          01-99          corresponding to age of victim/offender
+
+          NB        birth to one week old (include "abandoned infant")
+
+          BB        one week to twelve months old
+
+          00        age unknown
+
+          99        if 100 years old or older
+
+
+                      SEX OF VICTIM/OFFENDER
+
+          M         male
+
+          F         female
+
+          U         unknown
+                     RACE OF VICTIM/OFFENDER
+
+          W         White (includes Mexican-Americans)
+
+          B         Black
+
+          I         American Indian or Alaskan Native
+
+          A         Asian or Pacific Islander
+
+          U         Unknown
+
+
+                 ETHNIC ORIGIN OF VICTIM/OFFENDER
+
+          H         Hispanic Origin
+
+          N         Not of Hispanic Origin
+
+          U         Unknown
+
+
+               RELATIONSHIP OF VICTIM TO OFFENDER
+
+I.   Within Family
+
+          HU        Husband
+          WI        Wife
+          CH        Common-Law Husband
+          CW        Common-Law Wife
+          MO        Mother
+          FA        Father
+          SO        Son
+          DA        Daughter
+          BR        Brother
+          SI        Sister
+          IL        In-Law
+          SF        Stepfather
+          SM        Stepmother
+          SS        Stepson
+          SD        Stepdaughter
+          OF        Other FamilyII.   Outside family but known to victim
+
+          NE        Neighbor
+          AQ        Acquaintance
+          BF        Boyfriend
+          GF        Girlfriend
+          XH        Ex-Husband
+          XW        Ex-Wife
+          EE        Employee
+          ER        Employer
+          FR        Friend
+          HO        Homosexual Relationship
+          OK        Other - known to victim
+
+III.   Offender not known to victim
+
+          ST        Stranger
+         
+IV.  Unknown relationship
+
+         UN         All instances where relationship of victim to offender cannot be 
+                    determined.
+
+
+
+                              WEAPON
+
+         11   Firearm, type not stated.  (Does not include mechanics grease gun
+              or caulking gun.)
+
+         12   Handgun - pistol, revolver, etc.
+
+         13   Rifle
+
+         14   Shotgun
+
+         15   Other gun/Unknown Gun
+
+         20   Knife or cutting instrument - include icepick, screwdriver, ax, etc.
+
+         30   Blunt object - hammer, club, etc.   Facts must suggest weapon was
+              not hands and/or feet.
+
+         40   Personal weapons - include beating by hands, feet, and/or other 
+              body members or use of teeth.
+
+         50   Poison - does not include gas.
+
+         55   Pushed or thrown out window (Defenestration)
+
+         
+                      WEAPONS (CONTINUED)
+
+         60   Explosives
+
+         65   Fire
+
+         70   Narcotics and drugs - includes sleeping pills.
+
+         75   Drowning
+
+         80   Strangulation - hanging
+
+         85   Asphyxiation - include asphyxiation or death by gas.
+
+         90   Other - type of weapon not designated or type unknown.
+
+
+                                 
+                          CIRCUMSTANCES
+
+              The unlimited set of possible circumstances surrounding homicide creates some
+difficulty in developing clear-cut and precise coding instructions.  This coding, therefore, requires
+intelligent analysis of the circumstances.  
+
+Felony type  -  Felony murder is defined as a killing which occurs in conjunction with the commission of
+another crime such as a robbery, sex motive, and other felonious activities.
+
+              02        Rape 
+              03        Robbery
+              05        Burglary
+              06        Larceny
+              07        Motor Vehicle Theft
+              09        Arson
+              10        Prostitution and Commercialized Vice
+              17        Other Sex Offense
+              32        Abortion
+              18        Narcotic Drug Laws
+              19        Gambling
+              26        Other - not specified
+
+Other than felony type
+
+              40        Lover's Triangle
+              41        Child Killed by Babysitter
+              42        Brawl Due to Influence of Alcohol
+              43        Brawl Due to Influence of Narcotics
+              44        Argument Over Money or Property
+              
+
+                   CIRCUMSTANCES (CONTINUED)
+                                
+                                
+              45        Other Arguments
+              46        Gangland Killings
+              47        Juvenile Gang Killings
+              48        Institutional Killings
+              49        Sniper Attack
+              60        Other
+
+Suspected felony type  -  victim found murdered.  Circumstances indicate possible felony type murder,
+but sufficient facts to identify type of felony not available.
+
+              70        All suspected felony type
+
+Justifiable homicide - The killing of a felon by a peace officer in the line of duty, or the killing (during
+the commission of a felony) of a felon by a private citizen.
+
+              80        Felon killed by a private citizen
+              81        Felon killed by police
+
+Follow either 80 or 81 with the code number as designated below:
+
+              A         Felon attacked police officer
+              B         Felon attacked fellow police officer
+              C         Felon attacked a civilian
+              D         Felon attempted flight from a crime
+              E         Felon killed in commission of a crime
+              F         Felon resisted arrest
+              G         Not enough information to determine
+
+Unable to determine circumstances
+
+              99        All instances where facts provided do not permit determination of 
+                        circumstances.      
+
+
+
+The following are the circumstance codes utilized for manslaughter by negligence:
+
+
+	      50	Victim shot in hunting accident
+	      51	Gun-cleaning death, other than self-inflicted
+	      52	Children playing with gun
+	      53 	Other negligent handling of gun which results in the death of another
+	      59	All other manslaughter by negligence except traffic deaths			

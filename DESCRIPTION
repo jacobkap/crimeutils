@@ -11,7 +11,8 @@ Imports:
     lubridate,
     ggmap,
     readr,
-    tm
+    tm,
+    foreign
 License: GPL
 LazyData: TRUE
 URL: https://github.com/jacobkap/crime
