@@ -7,10 +7,10 @@ assault_on_police_cleaner <- function(dataset_name){
 
 if (dataset_name == "hartford_assault_on_police"){
 
-hartford_assault_on_police <- read.socrata(
-                                paste("https://data.hartford.gov/Public-Safety/",
-                                      "Assault-on-a-Police-Officer-2005",
-                                      "-Current/p3tu-ygwc", sep = ""))
+hartford_assault_on_police <- RSocrata::read.socrata(
+                      paste("https://data.hartford.gov/Public-Safety/",
+                            "Assault-on-a-Police-Officer-2005",
+                            "-Current/p3tu-ygwc", sep = ""))
 hartford_assault_on_police$UCR_1_Category <-
   gsub(".*- (.*)", "\\1", hartford_assault_on_police$UCR_1_Category)
 hartford_assault_on_police$UCR_2_Category <-
@@ -41,7 +41,7 @@ return(hartford_assault_on_police)
 
 if (dataset_name == "louisville_assault_on_police"){
 
-louisville_assault_on_police <- read_csv(url(
+louisville_assault_on_police <- readr::read_csv(url(
                                     paste("http://api.louisvilleky.gov/api/File/",
                                           "DownloadFile?fileName=Assaulted",
                                           "OfficerData.csv",
@@ -63,11 +63,11 @@ return(louisville_assault_on_police)
 
 if (dataset_name == "montgomery_assault_on_police"){
 
-montgomery_assault_on_police <- read.socrata(
-                                    paste("https://data.montgomerycountymd.gov",
-                                          "/Public-Safety/Assaults-on-Officers/",
-                                          "dhdu-k59t", sep = "")
-                                          )
+montgomery_assault_on_police <- RSocrata::read.socrata(
+                      paste("https://data.montgomerycountymd.gov",
+                            "/Public-Safety/Assaults-on-Officers/",
+                            "dhdu-k59t", sep = "")
+                            )
 montgomery_assault_on_police$Dispatch.Date...Time <-
       mdy_hms(montgomery_assault_on_police$Dispatch.Date...Time)
 names(montgomery_assault_on_police)[2] <- "dispatch_date"
@@ -99,12 +99,10 @@ return(montgomery_assault_on_police)
 
 if (dataset_name == "tucson_assault_on_police"){
 
-tucson_assault_on_police <- read_csv(url(
+tucson_assault_on_police <- readr::read_csv(url(
                         paste("http://gisdata.tucsonaz.gov/datasets/",
                               "16aa6ea45f4e40a5a629ee6da98618fd_0.csv",
                               sep = "")))
-
-
 names(tucson_assault_on_police)[1] <- "longitude"
 names(tucson_assault_on_police)[2] <- "latitude"
 tucson_assault_on_police$OBJECTID <- NULL

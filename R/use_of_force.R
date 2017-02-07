@@ -4,13 +4,11 @@ use_of_force_cleaner <- function(dataset_name){
 ##### Austin Texas use of force #####
 
 
+
 ##### Baltimore Maryland use of force ####
 if (dataset_name == "baltimore_use_force") {
 
-baltimore_use_force <- read.socrata(paste("https://data.baltimorecity.gov/",
-                      "Public-Safety/BPD-Officer-Involved-Use-Of-Force/3w4d",
-                      "-kckv",
-                      sep = ""))
+system.time(baltimore_use_force <- read.socrata("https://data.baltimorecity.gov/resource/4ih5-d5d5.json"))
 
 names(baltimore_use_force) <- tolower(names(baltimore_use_force))
 baltimore_use_force$date <- ymd(baltimore_use_force$date)
