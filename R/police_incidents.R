@@ -43,6 +43,7 @@ baltimore_incidents <- function() {
 #' @export
 #'
 #' @examples
+#' @import data.table
 philadelphia_incidents <- function() {
   philadelphia_incident <- data.table::fread(paste0(
     "https://data.phila.gov/api/views",

@@ -2,3 +2,4 @@
 
 export(crime_data)
 export(philadelphia_incidents)
+import(data.table)
