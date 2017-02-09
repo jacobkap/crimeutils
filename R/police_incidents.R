@@ -127,7 +127,7 @@ date_column_maker <- function(dataset) {
                  lubridate::month(date_column, label = TRUE, abbr = FALSE),
                  lubridate::day(date_column),
                  lubridate::wday(date_column, label = TRUE, abbr = FALSE),
-                 lubridate::ymd(year, "-", month,
+                 lubridate::ymd(paste0(lubridate::year(date_column), "-", lubridate::month(date_column)),
                                 truncated = TRUE))]
 
 
