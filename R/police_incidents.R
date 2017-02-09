@@ -49,6 +49,7 @@ philadelphia_incidents <- function() {
     "/sspu-uyfa/rows.csv?accessType=DOWNLOAD"),
      strip.white = TRUE, showProgress = FALSE,
      check.names = TRUE)
+  library(data.table)
 
   philadelphia_incident <- coordinate_splitter(philadelphia_incident, "Shape")
   philadelphia_incident <- smart_date(philadelphia_incident, "Dispatch.Date")
