@@ -6,6 +6,14 @@
 date_column_maker(dataset)
 }
 \arguments{
-\item{column_name}{}
+\item{dataset}{The crime dataset}
+
+\item{column_name}{The name of the date column (as a string)}
+}
+\value{
+The dataset
+}
+\examples{
+2 + 2
 }
 

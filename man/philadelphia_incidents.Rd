@@ -12,4 +12,7 @@ data.frame with all available Philly crime data
 \description{
 Philadelphia Incidents
 }
+\examples{
+2 + 2
+}
 

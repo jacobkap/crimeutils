@@ -43,6 +43,7 @@ baltimore_incidents <- function() {
 #' @export
 #'
 #' @examples
+#' 2 + 2
 #' @import data.table
 philadelphia_incidents <- function() {
   philadelphia_incident <- data.table::fread(paste0(
@@ -65,12 +66,15 @@ philadelphia_incidents <- function() {
 #' Coordinate Splitter
 #'
 #' @param dataset
+#' The crime dataset
 #' @param column_name
-#'
+#' The name of the coordinates column (as a string)
 #' @return
+#' The dataset
 #' @export
 #'
 #' @examples
+#' 2 + 2
 #' @import data.table
 coordinate_splitter <- function(dataset, column_name) {
   if (!is.character(column_name)) {
@@ -105,12 +109,15 @@ coordinate_splitter <- function(dataset, column_name) {
 
 # Makes year, month, day, weekday, and hour columns
 #' @param dataset
+#' The crime dataset
 #' @param column_name
-#'
+#'The name of the date column (as a string)
 #' @return
+#' The dataset
 #' @export
 #'
 #' @examples
+#' 2 + 2
 #' @import data.table
 date_column_maker <- function(dataset) {
 
@@ -128,12 +135,16 @@ date_column_maker <- function(dataset) {
 
 # Smart Date
 #' @param dataset
+#' The crime dataset
 #' @param column_name
+#' The name of the date column (as a string)
 #'
 #' @return
+#' The dataset
 #' @export
 #'
 #' @examples
+#' 2 + 2
 #' @import data.table
 smart_date <- function(dataset, column_name) {
   if (!is.character(column_name)) {

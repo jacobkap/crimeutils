@@ -7,9 +7,17 @@
 coordinate_splitter(dataset, column_name)
 }
 \arguments{
-\item{column_name}{}
+\item{dataset}{The crime dataset}
+
+\item{column_name}{The name of the coordinates column (as a string)}
+}
+\value{
+The dataset
 }
 \description{
 Coordinate Splitter
+}
+\examples{
+2 + 2
 }
 
