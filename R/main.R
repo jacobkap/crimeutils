@@ -14,11 +14,7 @@
 #' crime_data("bloomington_use_force")
 #'
 #'
-#' @import RSocrata
-#' @import jsonlite
-#' @import lubridate
-#' @import ggmap
-#' @import readr
+
 
 
 crime_data <- function(dataset_name) {

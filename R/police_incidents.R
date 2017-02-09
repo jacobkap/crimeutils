@@ -36,6 +36,13 @@ baltimore_incidents <- function() {
 }
 
 
+#' Philadelphia Incidents
+#'
+#' @return
+#' data.frame with all available Philly crime data
+#' @export
+#'
+#' @examples
 philadelphia_incidents <- function() {
   philadelphia_incident <- data.table::fread(paste0(
     "https://data.phila.gov/api/views",
