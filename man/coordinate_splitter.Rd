@@ -2,7 +2,7 @@
 % Please edit documentation in R/police_incidents.R
 \name{coordinate_splitter}
 \alias{coordinate_splitter}
-\title{Coordinate Splitter}
+\title{Splits the coordinate column into a longitude and a latitude column}
 \usage{
 coordinate_splitter(dataset, column_name)
 }
@@ -15,7 +15,7 @@ coordinate_splitter(dataset, column_name)
 The dataset
 }
 \description{
-Coordinate Splitter
+Splits the coordinate column into a longitude and a latitude column
 }
 \examples{
 2 + 2

@@ -56,14 +56,15 @@ philadelphia_incidents <- function() {
   philadelphia_incident <- coordinate_splitter(philadelphia_incident, "Shape")
   philadelphia_incident <- smart_date(philadelphia_incident, "Dispatch.Date")
   philadelphia_incident <- date_column_maker(philadelphia_incident)
-  philadelphia_incident <- philadelphia_incident[order(date_column, decreasing = TRUE)]
+  philadelphia_incident <- philadelphia_incident[order(date_column,
+                                                       decreasing = TRUE)]
 
   philadelphia_incident <- data.frame(philadelphia_incident)
   return(philadelphia_incident)
 }
 
 
-#' Coordinate Splitter
+#' Splits the coordinate column into a longitude and a latitude column
 #'
 #' @param dataset
 #' The crime dataset
@@ -87,7 +88,7 @@ coordinate_splitter <- function(dataset, column_name) {
                                        names(dataset))
 
   dataset[, coordinates_column :=
-            gsub("\\.","0000000123456-", coordinates_column, fixed = TRUE)]
+            gsub("\\.","0000000123456", coordinates_column, perl = TRUE)]
 
   dataset[, coordinates_column :=
             gsub("([:digits:-])|[[:alpha:]]|[[:punct:]]",
@@ -95,7 +96,7 @@ coordinate_splitter <- function(dataset, column_name) {
   dataset[, coordinates_column := stringi::stri_trim(coordinates_column)]
 
   dataset[, coordinates_column :=
-            gsub("0000000123456-","\\,", coordinates_column, fixed = TRUE)]
+            gsub("0000000123456","\\.", coordinates_column, perl = TRUE)]
 
 
   dataset[, c("longitude", "latitude") :=
@@ -107,18 +108,18 @@ coordinate_splitter <- function(dataset, column_name) {
   return(dataset)
 }
 
-# Makes year, month, day, weekday, and hour columns
+
+#' Creates the date value columns
+#'
 #' @param dataset
-#' The crime dataset
-#' @param column_name
-#'The name of the date column (as a string)
+#' Crime data.table
+#'
 #' @return
-#' The dataset
+#' data.table
 #' @export
 #'
 #' @examples
-#' 2 + 2
-#' @import data.table
+#' 1 + 3
 date_column_maker <- function(dataset) {
 
   dataset[, c("year", "month", "day", "weekday") :=
@@ -133,19 +134,20 @@ date_column_maker <- function(dataset) {
 
 
 
-# Smart Date
+
+#' Smartly apply lubridate
+#'
 #' @param dataset
-#' The crime dataset
+#' data.table of crime
 #' @param column_name
-#' The name of the date column (as a string)
+#' The string of the date column name
 #'
 #' @return
-#' The dataset
+#' A data.table
 #' @export
 #'
 #' @examples
-#' 2 + 2
-#' @import data.table
+#' 1* 3
 smart_date <- function(dataset, column_name) {
   if (!is.character(column_name)) {
     stop("column name must be the name of the date column - as a string")

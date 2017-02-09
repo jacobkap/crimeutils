@@ -2,18 +2,20 @@
 % Please edit documentation in R/police_incidents.R
 \name{date_column_maker}
 \alias{date_column_maker}
+\title{Creates the date value columns}
 \usage{
 date_column_maker(dataset)
 }
 \arguments{
-\item{dataset}{The crime dataset}
-
-\item{column_name}{The name of the date column (as a string)}
+\item{dataset}{Crime data.table}
 }
 \value{
-The dataset
+data.table
+}
+\description{
+Creates the date value columns
 }
 \examples{
-2 + 2
+1 + 3
 }
 

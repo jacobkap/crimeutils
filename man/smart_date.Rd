@@ -2,18 +2,22 @@
 % Please edit documentation in R/police_incidents.R
 \name{smart_date}
 \alias{smart_date}
+\title{Smartly apply lubridate}
 \usage{
 smart_date(dataset, column_name)
 }
 \arguments{
-\item{dataset}{The crime dataset}
+\item{dataset}{data.table of crime}
 
-\item{column_name}{The name of the date column (as a string)}
+\item{column_name}{The string of the date column name}
 }
 \value{
-The dataset
+A data.table
+}
+\description{
+Smartly apply lubridate
 }
 \examples{
-2 + 2
+1* 3
 }
 
