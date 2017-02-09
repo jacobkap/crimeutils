@@ -122,7 +122,7 @@ coordinate_splitter <- function(dataset, column_name) {
 #' 1 + 3
 date_column_maker <- function(dataset) {
 
-  dataset[, c("year", "month", "day", "weekday", "month_year") :=
+  dataset[, c("year", "month", "day", "weekday", "year_month") :=
             list(lubridate::year(date_column),
                  lubridate::month(date_column, label = TRUE, abbr = FALSE),
                  lubridate::day(date_column),
