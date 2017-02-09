@@ -6,13 +6,10 @@ Description: A collection of functions that make it easier to understand crime d
 Depends:
     R (>= 2.10)
 Imports:
-    RSocrata,
-    jsonlite,
+    testit,
     lubridate,
-    ggmap,
-    readr,
-    tm,
-    foreign
+    stringr,
+    data.table
 License: GPL
 LazyData: TRUE
 URL: https://github.com/jacobkap/crime
