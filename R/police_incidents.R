@@ -62,6 +62,16 @@ philadelphia_incidents <- function() {
 }
 
 
+#' Coordinate Splitter
+#'
+#' @param dataset
+#' @param column_name
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' @import data.table
 coordinate_splitter <- function(dataset, column_name) {
   if (!is.character(column_name)) {
     stop(paste0("coordinate_column_name is the name of your",
@@ -73,9 +83,15 @@ coordinate_splitter <- function(dataset, column_name) {
                                        names(dataset))
 
   dataset[, coordinates_column :=
+            gsub("\\.","0000000123456-", coordinates_column, fixed = TRUE)]
+
+  dataset[, coordinates_column :=
             gsub("([:digits:-])|[[:alpha:]]|[[:punct:]]",
             "\\1", coordinates_column, perl = TRUE)]
   dataset[, coordinates_column := stringi::stri_trim(coordinates_column)]
+
+  dataset[, coordinates_column :=
+            gsub("0000000123456-","\\,", coordinates_column, fixed = TRUE)]
 
 
   dataset[, c("longitude", "latitude") :=
@@ -88,18 +104,37 @@ coordinate_splitter <- function(dataset, column_name) {
 }
 
 # Makes year, month, day, weekday, and hour columns
+#' @param dataset
+#' @param column_name
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' @import data.table
 date_column_maker <- function(dataset) {
 
   dataset[, c("year", "month", "day", "weekday") :=
-            list(year(date_column),
-                 month(date_column, label = TRUE, abbr = FALSE),
-                 day(date_column),
-                 wday(date_column, label = TRUE, abbr = FALSE))]
+            list(lubridate::year(date_column),
+                 lubridate::month(date_column, label = TRUE, abbr = FALSE),
+                 lubridate::day(date_column),
+                 lubridate::wday(date_column, label = TRUE, abbr = FALSE))]
 
 
   return(dataset)
 }
 
+
+
+# Smart Date
+#' @param dataset
+#' @param column_name
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' @import data.table
 smart_date <- function(dataset, column_name) {
   if (!is.character(column_name)) {
     stop("column name must be the name of the date column - as a string")
@@ -121,17 +156,17 @@ smart_date <- function(dataset, column_name) {
   # Auto selects correct lubridate order for dates (no times)
   if (!testit::has_warning(mdy(dataset[sample_rows, date_column]))) {
 
-    return(dataset[, date_column := mdy(date_column)]) # month day year
-  } else if (!testit::has_warning(myd(dataset[sample_rows, date_column]))) {
-    return(dataset[, date_column := myd(date_column)]) # month year day
-  } else if (!testit::has_warning(ymd(dataset[sample_rows, date_column]))) {
-    return(dataset[, date_column := ymd(date_column)]) # year month day
-  } else if (!testit::has_warning(ydm(dataset[sample_rows, date_column]))) {
-    return(dataset[, date_column := ydm(date_column)]) # year day month
-  } else if (!testit::has_warning(dmy(dataset[sample_rows, date_column]))) {
-    return(dataset[, date_column := dmy(date_column)]) # day month year
-  } else if (!testit::has_warning(dym(dataset[sample_rows, date_column]))) {
-    return(dataset[, date_column := dym(date_column)]) # day year month
+    return(dataset[, date_column := lubridate::mdy(date_column)]) # month day year
+  } else if (!testit::has_warning(lubridate::myd(dataset[sample_rows, date_column]))) {
+    return(dataset[, date_column := lubridate::myd(date_column)]) # month year day
+  } else if (!testit::has_warning(lubridate::ymd(dataset[sample_rows, date_column]))) {
+    return(dataset[, date_column := lubridate::ymd(date_column)]) # year month day
+  } else if (!testit::has_warning(lubridate::ydm(dataset[sample_rows, date_column]))) {
+    return(dataset[, date_column := lubridate::ydm(date_column)]) # year day month
+  } else if (!testit::has_warning(lubridate::dmy(dataset[sample_rows, date_column]))) {
+    return(dataset[, date_column := lubridate::dmy(date_column)]) # day month year
+  } else if (!testit::has_warning(lubridate::dym(dataset[sample_rows, date_column]))) {
+    return(dataset[, date_column := lubridate::dym(date_column)]) # day year month
   }
 
 }
