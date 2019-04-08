@@ -20,7 +20,7 @@ indicate_outliers <- function(data,
   numeric_variables <- numeric_variables[sapply(data, is.numeric)]
 
   if (!is.null(select_numeric_variables)) {
-    select_numeric_variables <- select_numeric_variables[select_numeric_variables %in% numeric_variables]
+    numeric_variables <- select_numeric_variables[select_numeric_variables %in% numeric_variables]
   }
 
   unique_groups <- unique(data[[group_variable]])
