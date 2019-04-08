@@ -1,17 +1,21 @@
 Package: crime
 Title: A Comprehensive Set of Functions to Clean, Analyze, and Present Crime Data
 Version: 0.1.0
-Authors@R: person("Jacob", "Kaplan", email = "jacobkap@sas.upenn.edu", role = c("aut", "cre"))
+Authors@R: person("Jacob", "Kaplan", email = "jkkaplan6@gmail.com", role = c("aut", "cre"))
 Description: A collection of functions that make it easier to understand crime data, and assist others in understanding it. The package helps you read data from various sources, cleans it, fixes column names, and graph or map the data. It can work with various federal and local datasets. 
 Depends:
     R (>= 2.10)
 Imports:
-    testit,
-    lubridate,
-    stringr,
-    data.table
-License: GPL
+    dplyr,
+    ggplot2,
+    gridExtra,
+    ggthemes,
+    scales
+License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/jacobkap/crime
 BugReports: https://github.com/jacobkap/crime/issues
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.1.1
+Suggests: 
+    spelling
+Language: en-US
