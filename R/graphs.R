@@ -28,6 +28,8 @@ time_series_data_graph <- function(data,
       data %>%
       dplyr::filter(!!as.name(group_variable) %in% current_group)
 
+
+
     mean_value <- mean(plot1[, numeric_variable], na.rm = TRUE)
     lower_outlier <- mean_value - (outlier_std_dev_value * sd(plot1[, numeric_variable], na.rm = TRUE))
     upper_outlier <- mean_value + (outlier_std_dev_value * sd(plot1[, numeric_variable], na.rm = TRUE))
@@ -41,24 +43,33 @@ time_series_data_graph <- function(data,
       plot1 %>%
       ggplot2::ggplot(ggplot2::aes_string(x = time_variable,
                                           y = numeric_variable)) +
-      ggplot2::geom_point(aes(color = outlier_zero_checker), size = 2.5) +
+      ggplot2::geom_point(ggplot2::aes(color = outlier_zero_checker), size = 2.5) +
       ggplot2::stat_smooth(method = 'lm', se = FALSE) +
       ggplot2::ggtitle(paste(current_group, numeric_variable),
                        subtitle = paste0("Outlier = mean +- ", outlier_std_dev_value, " * standard deviations\n",
                                          "Outliers: ", number_of_outliers,
                                          "\nZeros:    ", number_of_zeros)) +
       ggplot2::theme_minimal() +
-      scale_y_continuous(labels = dollar) +
-      scale_color_manual(values = cols) +
-      theme(legend.position = "none",
+      ggplot2::scale_y_continuous(labels = scales::dollar) +
+      ggplot2::scale_color_manual(values = cols) +
+      ggplot2::theme(legend.position = "none",
             plot.title = element_text(size = 16),
             axis.title.x = element_text(size = 14),
             axis.title.y = element_text(size = 14)) +
-      geom_hline(yintercept = mean_value,    color = "black",   linetype = "solid", size = 1.05) +
-      geom_hline(yintercept = lower_outlier, color = "#d95f02", linetype = "dashed", size = 1.1)  +
-      geom_hline(yintercept = upper_outlier, color = "#d95f02", linetype = "dashed", size = 1.1)
+      ggplot2::geom_hline(yintercept = mean_value,
+                          color = "black",
+                          linetype = "solid",
+                          size = 1.05) +
+      ggplot2::geom_hline(yintercept = lower_outlier,
+                          color = "#d95f02",
+                          linetype = "dashed",
+                          size = 1.1)  +
+      ggplot2::geom_hline(yintercept = upper_outlier,
+                          color = "#d95f02",
+                          linetype = "dashed",
+                          size = 1.1)
 
-    grid.arrange(plot1)
+    gridExtra::grid.arrange(plot1)
   }
   dev.off()
 }

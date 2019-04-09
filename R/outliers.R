@@ -28,6 +28,7 @@ indicate_outliers <- function(data,
 
     data[, paste0(numeric_variable, "_outlier", outlier_std_dev_value)]      <- 0
     data[, paste0(numeric_variable, "_outlier", outlier_std_dev_value, "_ever")] <- 0
+    data[, paste0(numeric_variable, "_outlier", outlier_std_dev_value, "_freq")] <- 0
 
     for (i in 1:length(unique_groups)) {
 
@@ -55,6 +56,10 @@ indicate_outliers <- function(data,
                                                                outlier_std_dev_value, "_ever")] <- 1
 
       }
+      # Number of times that group has had an outlier!!!!!!!
+      data[data[, group_variable] %in% current_group, paste0(numeric_variable, "_outlier",
+                                                             outlier_std_dev_value, "_freq")] <-
+        sum(temp[, paste0(numeric_variable, "_outlier", outlier_std_dev_value)])
     }
   }
   return(data)
