@@ -1,3 +1,14 @@
+#' Title
+#'
+#' @param data
+#' @param start_year
+#' @param end_year
+#' @param minimum_months_reported
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ucr_constant_reporter_oris <- function(data,
                                        start_year,
                                        end_year,

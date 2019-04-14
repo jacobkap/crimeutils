@@ -1,3 +1,16 @@
+#' Title
+#'
+#' @param data
+#' @param numeric_variable
+#' @param time_variable
+#' @param group_variable
+#' @param outlier_std_dev_value
+#' @param file_name
+#'
+#' @return
+#' @export
+#'
+#' @examples
 time_series_data_graph <- function(data,
                                    numeric_variable,
                                    time_variable,
@@ -76,6 +89,18 @@ time_series_data_graph <- function(data,
 
 
 
+#' Title
+#'
+#' @param data
+#' @param numeric_variable1
+#' @param numeric_variable2
+#' @param group_variable
+#' @param file_name
+#'
+#' @return
+#' @export
+#'
+#' @examples
 scatterplot_data_graph <- function(data,
                                    numeric_variable1,
                                    numeric_variable2,
