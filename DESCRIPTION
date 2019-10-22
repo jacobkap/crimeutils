@@ -1,8 +1,12 @@
-Package: crime
+Package: crimeutils
 Title: A Comprehensive Set of Functions to Clean, Analyze, and Present Crime Data
 Version: 0.1.0
-Authors@R: person("Jacob", "Kaplan", email = "jkkaplan6@gmail.com", role = c("aut", "cre"))
-Description: A collection of functions that make it easier to understand crime data, and assist others in understanding it. The package helps you read data from various sources, cleans it, fixes column names, and graph or map the data. It can work with various federal and local datasets. 
+Authors@R: person("Jacob", "Kaplan", email = "jkkaplan6@gmail.com",
+    role = c("aut", "cre"))
+Description: A collection of functions that make it easier to understand crime
+    data, and assist others in understanding it. The package helps you read data 
+    from various sources, cleans it, fixes column names, and graph or map the
+    data. It can work with various federal and local datasets. 
 Depends:
     R (>= 2.10)
 Imports:
