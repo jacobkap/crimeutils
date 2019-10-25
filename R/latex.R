@@ -4,6 +4,20 @@
 # multi_column <- c(" " = 1, "column1" = 2, "column2" = 3)
 
 #make_latex_tables("test", "title", "label", z, "caption", multi_column, "NOTE ")
+#' Title
+#'
+#' @param file_name
+#' @param table_title
+#' @param table_reference_label
+#' @param data
+#' @param panel_caption
+#' @param multi_column
+#' @param footnote
+#'
+#' @return
+#' @export
+#'
+#' @examples
 make_latex_tables <- function(file_name,
                               table_title,
                               table_reference_label,
