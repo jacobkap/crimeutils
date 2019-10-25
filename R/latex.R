@@ -80,6 +80,11 @@ make_b_to_beta <- function(.data) {
   return(.data)
 }
 
+fix_percent <- function(.data) {
+  .data <- gsub("%", "\\%", .data)
+  return(.data)
+}
+
 
 get_column_alignments <- function(data) {
   alignment <- paste0("l", paste0(rep("r",
@@ -119,6 +124,7 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
     row_data <- data[i, ]
     row_data <- make_big_ci_brackets(row_data)
     row_data <- make_b_to_beta(row_data)
+    row_data <- fix_percent(row_data)
     row_data <- paste0(data[i, ], " &", collapse = " ")
     row_data <- gsub("&$", "\\\\\\\\", row_data)
     writeLines(row_data)
