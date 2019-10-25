@@ -68,8 +68,8 @@ make_latex_tables <- function(file_name,
 }
 
 make_big_ci_brackets <- function(.data) {
-  .data <- gsub("\\[", "\big\\[", .data)
-  .data <- gsub("\\]", "\big\\]", .data)
+  .data <- gsub("\\[", "\\big\\[", .data)
+  .data <- gsub("\\]", "\\big\\]", .data)
   return(.data)
 }
 
