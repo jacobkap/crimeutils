@@ -2,7 +2,7 @@
 % Please edit documentation in R/cleaning_utils.R
 \name{pad_decimals}
 \alias{pad_decimals}
-\title{Pad decimal places with trailing zeros}
+\title{Pad decimal places with trailing zeros.}
 \usage{
 pad_decimals(numbers, digits = NULL)
 }
@@ -16,5 +16,5 @@ number of decimal places in the numbers input.}
 The original numbers but with trailing zeros added to the decimal places.
 }
 \description{
-Pad decimal places with trailing zeros
+Pad decimal places with trailing zeros.
 }
