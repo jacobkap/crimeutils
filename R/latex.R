@@ -40,10 +40,10 @@ make_latex_tables <- function(file_name,
 
 
   if (is.data.frame(data)) {
-    make_latex_table_panel(data, panel_caption)
+    make_latex_table_panel(data, panel_caption, multi_column)
   } else if (is.list(data) && !is.data.frame(data)) {
     for (i in 1:length(data)) {
-      make_latex_table_panel(data[[i]], names(data)[i])
+      make_latex_table_panel(data[[i]], names(data)[i], multi_column)
     }
   }
 
