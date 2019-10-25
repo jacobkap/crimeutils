@@ -2,7 +2,7 @@
 % Please edit documentation in R/latex.R
 \name{make_latex_tables}
 \alias{make_latex_tables}
-\title{Title}
+\title{Creates a .tex file with LaTeX code to create a table from an R data.frame.}
 \usage{
 make_latex_tables(file_name, table_title, table_reference_label, data,
   panel_caption, multi_column = NULL, footnote = "",
@@ -12,5 +12,5 @@ make_latex_tables(file_name, table_title, table_reference_label, data,
 \item{sideways}{}
 }
 \description{
-Title
+Creates a .tex file with LaTeX code to create a table from an R data.frame.
 }

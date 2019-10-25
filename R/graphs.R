@@ -1,11 +1,18 @@
 #' Create a PDF with one time-series graph for each group in the data.
 #'
 #' @param data
+#' A data.frame
 #' @param numeric_variable
+#' A string with the name of the column with numeric data to graph.
 #' @param time_variable
+#' A string with the name of the column that contains the time variable.
 #' @param group_variable
+#' A string with the name of the column with the grouping variable.
 #' @param outlier_std_dev_value
+#' A number that indicates how many standard deviations from the group mean
+#' an outlier is. Outliers will be colored orange in the data.
 #' @param file_name
+#' A string with the name of the PDF to be made with one page for each graph.
 #'
 #' @return
 #' @export
@@ -44,8 +51,10 @@ time_series_data_graph <- function(data,
 
 
     mean_value <- mean(plot1[, numeric_variable], na.rm = TRUE)
-    lower_outlier <- mean_value - (outlier_std_dev_value * sd(plot1[, numeric_variable], na.rm = TRUE))
-    upper_outlier <- mean_value + (outlier_std_dev_value * sd(plot1[, numeric_variable], na.rm = TRUE))
+    lower_outlier <- mean_value - (outlier_std_dev_value *
+                                     sd(plot1[, numeric_variable], na.rm = TRUE))
+    upper_outlier <- mean_value + (outlier_std_dev_value *
+                                     sd(plot1[, numeric_variable], na.rm = TRUE))
 
     plot1$outlier_zero_checker[plot1[[numeric_variable]] < lower_outlier |
                                  plot1[[numeric_variable]] > upper_outlier ] <- "outlier"
@@ -59,7 +68,8 @@ time_series_data_graph <- function(data,
       ggplot2::geom_point(ggplot2::aes(color = outlier_zero_checker), size = 2.5) +
       ggplot2::stat_smooth(method = 'lm', se = FALSE) +
       ggplot2::ggtitle(paste(current_group, numeric_variable),
-                       subtitle = paste0("Outlier = mean +- ", outlier_std_dev_value, " * standard deviations\n",
+                       subtitle = paste0("Outlier = mean +- ",
+                                         outlier_std_dev_value, " * standard deviations\n",
                                          "Outliers: ", number_of_outliers,
                                          "\nZeros:    ", number_of_zeros)) +
       ggplot2::theme_minimal() +
@@ -88,14 +98,25 @@ time_series_data_graph <- function(data,
 }
 
 
-
 #' Create a PDF with one scatterplot for each group in the data.
 #'
 #' @param data
-#' @param numeric_variable1
-#' @param numeric_variable2
+#' A data.frame
 #' @param group_variable
+#' A string with the name of the column with the grouping variable.
+#' @param outlier_std_dev_value
+#' A number that indicates how many standard deviations from the group mean
+#' an outlier is. Outliers will be colored orange in the data.
 #' @param file_name
+#' A string with the name of the PDF to be made with one page for each graph.
+
+#' Create a PDF with one scatterplot for each group in the data.
+#'
+#' @param numeric_variable1
+#' A string with the name of the first column with numeric data to graph.
+#' @param numeric_variable2
+#' A string with the name of the second column with numeric data to graph.
+#' @inheritParams time_series_data_graph
 #'
 #' @return
 #' @export

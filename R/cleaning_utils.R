@@ -1,10 +1,13 @@
 #' Pad decimal places with trailing zeros.
 #'
 #' @param numbers
-#' A number or vector of numbers to pad.
+#' A number or vector of numbers.
 #' @param digits
 #' Number of decimal places to pad. If NULL (default), uses the maximum
-#' number of decimal places in the numbers input.
+#' number of decimal places in the numbers input. If digits is less than
+#' the number of decimal places in the data, rounds the data to the decimal
+#' place specified. If rounding at a 5, follows R's rules to round to the
+#' nearest even number.
 #'
 #' @return
 #' The original numbers but with trailing zeros added to the decimal places.
@@ -49,34 +52,6 @@ fix_column_names <- function(.names) {
 
 
 
-
-
-#' Prepare .tex output from kableExtra for Overleaf
-#'
-#' When kableExtra makes .tex files it adds lines to create a full .tex
-#  document (e.g. \start{document}, and adds packages). This removes all that
-#  stuff to it can be added to Overleaf.
-#'
-#' @param files
-#' A string or vector of strings naming the .tex files to use.
-#' @param all_tex
-#' A binary variable (default is FALSE) where if TRUE applies code to every .tex
-#' file in working directory. Overrides any value in `files`.
-#'
-#' @return
-#' @export
-#'
-#' @examples
-clean_tex_files <- function(files = "", all_tex = FALSE) {
-  if (all_tex) {
-    files = list.files(pattern = ".tex")
-  }
-  for (.file in files) {
-    .tex <- read_lines(.file)
-    .tex <- .tex[grep("begin\\{table\\}", .tex):grep("end\\{table\\}", .tex)]
-    write_lines(.tex, path = .file)
-  }
-}
 
 #' Capitalizes the first letter of every word
 #'

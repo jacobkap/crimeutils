@@ -4,7 +4,7 @@
 # multi_column <- c(" " = 1, "column1" = 2, "column2" = 3)
 
 #make_latex_tables("test", "title", "label", z, "caption", multi_column, "NOTE ")
-#' Title
+#' Creates a .tex file with LaTeX code to create a table from an R data.frame.
 #'
 #' @param file_name
 #' @param table_title
@@ -73,11 +73,11 @@ make_big_ci_brackets <- function(.data) {
   return(.data)
 }
 
-# make_b_to_beta <- function(.data) {
-#   .data <- gsub("^B$", "$\\\\hat{\beta}$", .data)
-#   .data <- gsub("^Se\\(B\\)$", "Se\\($\\\\hat{\beta}$\\)", .data)
-#   return(.data)
-# }
+make_b_to_beta <- function(.data) {
+  .data <- gsub("^B$", "$\\\\hat{\\\\\beta}$", .data)
+  .data <- gsub("^Se\\(B\\)$", "Se\\($\\\\hat{\\\\beta}$\\)", .data)
+  return(.data)
+}
 
 fix_percent <- function(.data) {
   .data <- gsub("%", "\\\\%", .data)
@@ -86,9 +86,7 @@ fix_percent <- function(.data) {
 
 
 get_column_alignments <- function(data) {
-  alignment <- paste0("l", paste0(rep("r",
-                                      times = (ncol(data) - 1)),
-                                  collapse = ""))
+  alignment <- paste0(rep("r", times = ncol(data)), collapse = "")
   return(alignment)
 }
 
@@ -123,13 +121,14 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   for (i in 1:nrow(data)) {
     row_data <- unname(unlist(data[i, ]))
     row_data <- make_big_ci_brackets(row_data)
-  #  row_data <- make_b_to_beta(row_data)
+    row_data <- make_b_to_beta(row_data)
     row_data <- fix_percent(row_data)
     row_data <- paste0(row_data, " &", collapse = " ")
     row_data <- gsub("&$", "\\\\\\\\", row_data)
     writeLines(row_data)
   }
   writeLines("\\end{tabular}")
-  writeLines(paste0("\\caption{", panel_caption, "}"))
+  writeLines("\\vspace{5pt}")
+  writeLines(paste0("\\caption{\\textbf{", panel_caption, "}}"))
 }
 

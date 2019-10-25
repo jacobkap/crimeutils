@@ -7,10 +7,13 @@
 pad_decimals(numbers, digits = NULL)
 }
 \arguments{
-\item{numbers}{A number or vector of numbers to pad.}
+\item{numbers}{A number or vector of numbers.}
 
 \item{digits}{Number of decimal places to pad. If NULL (default), uses the maximum
-number of decimal places in the numbers input.}
+number of decimal places in the numbers input. If digits is less than
+the number of decimal places in the data, rounds the data to the decimal
+place specified. If rounding at a 5, follows R's rules to round to the
+nearest even number.}
 }
 \value{
 The original numbers but with trailing zeros added to the decimal places.

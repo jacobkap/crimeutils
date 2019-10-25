@@ -8,7 +8,18 @@ time_series_data_graph(data, numeric_variable, time_variable,
   group_variable, outlier_std_dev_value = 1.96, file_name)
 }
 \arguments{
-\item{file_name}{}
+\item{data}{A data.frame}
+
+\item{numeric_variable}{A string with the name of the column with numeric data to graph.}
+
+\item{time_variable}{A string with the name of the column that contains the time variable.}
+
+\item{group_variable}{A string with the name of the column with the grouping variable.}
+
+\item{outlier_std_dev_value}{A number that indicates how many standard deviations from the group mean
+an outlier is. Outliers will be colored orange in the data.}
+
+\item{file_name}{A string with the name of the PDF to be made with one page for each graph.}
 }
 \description{
 Create a PDF with one time-series graph for each group in the data.

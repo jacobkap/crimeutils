@@ -8,7 +8,19 @@ scatterplot_data_graph(data, numeric_variable1, numeric_variable2,
   group_variable, file_name)
 }
 \arguments{
-\item{file_name}{}
+\item{data}{A data.frame}
+
+\item{numeric_variable1}{A string with the name of the first column with numeric data to graph.}
+
+\item{numeric_variable2}{A string with the name of the second column with numeric data to graph.}
+
+\item{group_variable}{A string with the name of the column with the grouping variable.}
+
+\item{file_name}{A string with the name of the PDF to be made with one page for each graph.
+Create a PDF with one scatterplot for each group in the data.}
+
+\item{outlier_std_dev_value}{A number that indicates how many standard deviations from the group mean
+an outlier is. Outliers will be colored orange in the data.}
 }
 \description{
 Create a PDF with one scatterplot for each group in the data.
