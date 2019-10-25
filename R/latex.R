@@ -79,7 +79,7 @@ get_column_alignments <- function(data) {
   return(alignment)
 }
 
-make_latex_table_panel <- function(data, panel_caption, muli_column) {
+make_latex_table_panel <- function(data, panel_caption, multi_column) {
   alignment <- get_column_alignments(data)
   writeLines(paste0("\\begin{tabular}{@{\\extracolsep{5pt}}",
                     alignment, "}"))
