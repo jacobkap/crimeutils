@@ -2,7 +2,7 @@
 % Please edit documentation in R/graphs.R
 \name{time_series_data_graph}
 \alias{time_series_data_graph}
-\title{Title}
+\title{Create a PDF with one time-series graph for each group in the data.}
 \usage{
 time_series_data_graph(data, numeric_variable, time_variable,
   group_variable, outlier_std_dev_value = 1.96, file_name)
@@ -11,5 +11,5 @@ time_series_data_graph(data, numeric_variable, time_variable,
 \item{file_name}{}
 }
 \description{
-Title
+Create a PDF with one time-series graph for each group in the data.
 }

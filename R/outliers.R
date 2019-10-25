@@ -26,7 +26,7 @@ indicate_outliers <- function(data,
   unique_groups <- unique(data[[group_variable]])
   for (numeric_variable in numeric_variables) {
 
-    data[, paste0(numeric_variable, "_outlier", outlier_std_dev_value)]      <- 0
+    data[, paste0(numeric_variable, "_outlier", outlier_std_dev_value)] <- 0
     data[, paste0(numeric_variable, "_outlier", outlier_std_dev_value, "_ever")] <- 0
     data[, paste0(numeric_variable, "_outlier", outlier_std_dev_value, "_freq")] <- 0
 
@@ -48,7 +48,8 @@ indicate_outliers <- function(data,
         temp[, paste0(numeric_variable, "_outlier", outlier_std_dev_value)][temp[[numeric_variable]] %in% 0] <- 1
       }
 
-      data[data[, group_variable] %in% current_group, paste0(numeric_variable, "_outlier", outlier_std_dev_value)] <-
+      data[data[, group_variable] %in% current_group, paste0(numeric_variable,
+                                                             "_outlier", outlier_std_dev_value)] <-
         temp[, paste0(numeric_variable, "_outlier", outlier_std_dev_value)]
 
       if (any(temp[, paste0(numeric_variable, "_outlier", outlier_std_dev_value)] == 1)) {

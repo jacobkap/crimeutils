@@ -2,14 +2,20 @@
 % Please edit documentation in R/ucr_constant_reporters.R
 \name{ucr_constant_reporter_oris}
 \alias{ucr_constant_reporter_oris}
-\title{Title}
+\title{Get ORIs that consistently report their data every year.}
 \usage{
-ucr_constant_reporter_oris(data, start_year, end_year,
-  minimum_months_reported)
+ucr_constant_reporter_oris(data, minimum_months_reported)
 }
 \arguments{
-\item{minimum_months_reported}{}
+\item{data}{A data.frame with Uniform Crime Report (UCR) data. Requires at least
+the ORI, year, and number_of_months_reported columns.}
+
+\item{minimum_months_reported}{Integer indicating the minimum number of months requesting to keep in data.}
+}
+\value{
+A vector with the ORIs that report the minimum number of months for every
+year in the data.
 }
 \description{
-Title
+Get ORIs that consistently report their data every year.
 }

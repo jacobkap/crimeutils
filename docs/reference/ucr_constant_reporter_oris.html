@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title — ucr_constant_reporter_oris • crimeutils</title>
+<title>Get ORIs that consistently report their data every year. — ucr_constant_reporter_oris • crimeutils</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Title — ucr_constant_reporter_oris" />
+<meta property="og:title" content="Get ORIs that consistently report their data every year. — ucr_constant_reporter_oris" />
 
-<meta property="og:description" content="Title" />
+<meta property="og:description" content="Get ORIs that consistently report their data every year." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,28 +102,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title</h1>
+    <h1>Get ORIs that consistently report their data every year.</h1>
     <small class="dont-index">Source: <a href='https://github.com/jacobkap/crime/blob/master/R/ucr_constant_reporters.R'><code>R/ucr_constant_reporters.R</code></a></small>
     <div class="hidden name"><code>ucr_constant_reporter_oris.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Title</p>
+    <p>Get ORIs that consistently report their data every year.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ucr_constant_reporter_oris</span>(<span class='no'>data</span>, <span class='no'>start_year</span>, <span class='no'>end_year</span>,
-  <span class='no'>minimum_months_reported</span>)</pre>
+    <pre class="usage"><span class='fu'>ucr_constant_reporter_oris</span>(<span class='no'>data</span>, <span class='no'>minimum_months_reported</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>data</th>
+      <td><p>A data.frame with Uniform Crime Report (UCR) data. Requires at least
+the ORI, year, and number_of_months_reported columns.</p></td>
+    </tr>
+    <tr>
       <th>minimum_months_reported</th>
-      <td></td>
+      <td><p>Integer indicating the minimum number of months requesting to keep in data.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A vector with the ORIs that report the minimum number of months for every
+year in the data.</p>
     
 
   </div>
@@ -131,7 +140,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

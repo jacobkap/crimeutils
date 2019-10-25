@@ -13,5 +13,5 @@ clean_tex_files(files = "", all_tex = FALSE)
 file in working directory. Overrides any value in `files`.}
 }
 \description{
-# When kableExtra makes .tex files it adds lines to create a full .tex
+When kableExtra makes .tex files it adds lines to create a full .tex
 }

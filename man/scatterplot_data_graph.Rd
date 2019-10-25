@@ -2,7 +2,7 @@
 % Please edit documentation in R/graphs.R
 \name{scatterplot_data_graph}
 \alias{scatterplot_data_graph}
-\title{Title}
+\title{Create a PDF with one scatterplot for each group in the data.}
 \usage{
 scatterplot_data_graph(data, numeric_variable1, numeric_variable2,
   group_variable, file_name)
@@ -11,5 +11,5 @@ scatterplot_data_graph(data, numeric_variable1, numeric_variable2,
 \item{file_name}{}
 }
 \description{
-Title
+Create a PDF with one scatterplot for each group in the data.
 }

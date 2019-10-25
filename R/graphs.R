@@ -1,4 +1,4 @@
-#' Title
+#' Create a PDF with one time-series graph for each group in the data.
 #'
 #' @param data
 #' @param numeric_variable
@@ -89,7 +89,7 @@ time_series_data_graph <- function(data,
 
 
 
-#' Title
+#' Create a PDF with one scatterplot for each group in the data.
 #'
 #' @param data
 #' @param numeric_variable1
