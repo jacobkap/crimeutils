@@ -5,10 +5,11 @@
 \title{Title}
 \usage{
 make_latex_tables(file_name, table_title, table_reference_label, data,
-  panel_caption, multi_column = NULL, footnote = "")
+  panel_caption, multi_column = NULL, footnote = "",
+  sideways = FALSE)
 }
 \arguments{
-\item{footnote}{}
+\item{sideways}{}
 }
 \description{
 Title

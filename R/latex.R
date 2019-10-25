@@ -13,6 +13,7 @@
 #' @param panel_caption
 #' @param multi_column
 #' @param footnote
+#' @param sideways
 #'
 #' @return
 #' @export
@@ -24,15 +25,19 @@ make_latex_tables <- function(file_name,
                               data,
                               panel_caption,
                               multi_column = NULL,
-                              footnote = "") {
+                              footnote = "",
+                              sideways = FALSE) {
   if (!grepl(".tex$", file_name)) {
     file_name <- paste0(file_name, ".tex")
   }
   sink(file_name)
 
+  table_direction <- "table"
+  if (sideways) table_direction <- "sidewaystable"
+
 
   writeLines("\\clearpage")
-  writeLines("\\begin{table}[H]")
+  writeLines(paste0("\\begin{", table_direction, "}[H]"))
   writeLines("\\centering")
   writeLines(paste0("\\caption{", table_title, "}"))
   writeLines("\\begin{subtable}[t]{\\linewidth}")
@@ -43,7 +48,11 @@ make_latex_tables <- function(file_name,
     make_latex_table_panel(data, panel_caption, multi_column)
   } else if (is.list(data) && !is.data.frame(data)) {
     for (i in 1:length(data)) {
+      if (i == 1) {
       make_latex_table_panel(data[[i]], names(data)[i], multi_column)
+      } else {
+        make_latex_table_panel(data[[i]], names(data)[i], NULL)
+      }
     }
   }
 
@@ -52,7 +61,7 @@ make_latex_tables <- function(file_name,
   writeLines(paste0("\\floatfoot{", footnote, "}"))
 
   writeLines("\\end{subtable}")
-  writeLines("\\end{table}")
+  writeLines(paste0("\\end{", table_direction, "}"))
 
   sink()
 
