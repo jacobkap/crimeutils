@@ -73,15 +73,14 @@ make_big_ci_brackets <- function(.data) {
   return(.data)
 }
 
-make_b_to_beta <- function(.data) {
-  .data <- gsub("^b$", "$\\hat{\beta}$", .data)
-  .data <- strsplit(x = .data, split = "^\\$")[[1]][2]
-  .data <- paste0("$\\", .data)
-  return(.data)
-}
+# make_b_to_beta <- function(.data) {
+#   .data <- gsub("^B$", "$\\\\hat{\beta}$", .data)
+#   .data <- gsub("^Se\\(B\\)$", "Se\\($\\\\hat{\beta}$\\)", .data)
+#   return(.data)
+# }
 
 fix_percent <- function(.data) {
-  .data <- gsub("%", "\\%", .data)
+  .data <- gsub("%", "\\\\%", .data)
   return(.data)
 }
 
@@ -120,12 +119,13 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   writeLines(headers)
   writeLines("\\midrule")
 
+  data[] <- sapply(data, as.character)
   for (i in 1:nrow(data)) {
-    row_data <- data[i, ]
+    row_data <- unname(unlist(data[i, ]))
     row_data <- make_big_ci_brackets(row_data)
-    row_data <- make_b_to_beta(row_data)
+  #  row_data <- make_b_to_beta(row_data)
     row_data <- fix_percent(row_data)
-    row_data <- paste0(data[i, ], " &", collapse = " ")
+    row_data <- paste0(row_data, " &", collapse = " ")
     row_data <- gsub("&$", "\\\\\\\\", row_data)
     writeLines(row_data)
   }
