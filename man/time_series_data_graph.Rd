@@ -21,6 +21,12 @@ an outlier is. Outliers will be colored orange in the data.}
 
 \item{file_name}{A string with the name of the PDF to be made with one page for each graph.}
 }
+\value{
+A PDF with one page per graph
+}
 \description{
 Create a PDF with one time-series graph for each group in the data.
+}
+\examples{
+\dontrun{}
 }

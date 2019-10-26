@@ -16,3 +16,6 @@ with punctuation replaced with a single underscore.
 \description{
 Makes names lowercase and replaces all punctuation with underscore.
 }
+\examples{
+fix_column_names("BAD.-columnNAME")
+}

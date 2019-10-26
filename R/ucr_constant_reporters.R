@@ -13,6 +13,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{}
 ucr_constant_reporter_oris <- function(data,
                                        minimum_months_reported) {
 

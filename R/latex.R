@@ -6,31 +6,44 @@
 #make_latex_tables("test", "title", "label", z, "caption", multi_column, "NOTE ")
 #' Creates a .tex file with LaTeX code to create a table from an R data.frame.
 #'
-#' @param file_name
-#' @param table_title
-#' @param table_reference_label
 #' @param data
-#' @param panel_caption
+#' A data.frame or a list of data.frames. If a data.frame, the table is created
+#' with the values in that data.frame. If a list of data.frames, the table
+#' gets one panel for each data.frame. If the list is named, will use the names
+#' to create panel labels.
+#' @param file
+#' A string with the name of the file to save the .tex as.
+#' @param caption
+#' (Optional) A string with the caption for the table (i.e. the table title).
+#' @param label
+#' (Optional) A string with the reference for the table - to be used when referencing
+#' the table in the text. If NULL,
 #' @param multi_column
+#' (Optional) A named vector with the names being the names of the multi-column and the
+#' values being the width of the multi-column.
 #' @param footnote
+#' (Optional) A string with text for the footnote of the table.
 #' @param sideways
+#' (Optional) If TRUE, will make a sideways table (useful for large tables), otherwise
+#' (default) will make a normal table.
 #'
 #' @return
+#' Nothing. It will create a .tex file in the current working directory.
 #' @export
 #'
 #' @examples
-make_latex_tables <- function(file_name,
-                              table_title,
-                              table_reference_label,
-                              data,
-                              panel_caption,
+#' \dontrun{}
+make_latex_tables <- function(data,
+                              file,
+                              caption = "",
+                              label = "",
                               multi_column = NULL,
                               footnote = "",
                               sideways = FALSE) {
-  if (!grepl(".tex$", file_name)) {
-    file_name <- paste0(file_name, ".tex")
+  if (!grepl(".tex$", file)) {
+    file <- paste0(file, ".tex")
   }
-  sink(file_name)
+  sink(file)
 
   table_direction <- "table"
   if (sideways) table_direction <- "sidewaystable"
@@ -39,17 +52,17 @@ make_latex_tables <- function(file_name,
   writeLines("\\clearpage")
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
   writeLines("\\centering")
-  writeLines(paste0("\\caption{", table_title, "}"))
+  writeLines(paste0("\\caption{", caption, "}"))
   writeLines("\\begin{subtable}[t]{\\linewidth}")
-  writeLines(paste0("\\label{", table_reference_label, "}"))
+  writeLines(paste0("\\label{", label, "}"))
 
 
   if (is.data.frame(data)) {
-    make_latex_table_panel(data, panel_caption, multi_column)
+    make_latex_table_panel(data, NULL, multi_column)
   } else if (is.list(data) && !is.data.frame(data)) {
     for (i in 1:length(data)) {
       if (i == 1) {
-      make_latex_table_panel(data[[i]], names(data)[i], multi_column)
+        make_latex_table_panel(data[[i]], names(data)[i], multi_column)
       } else {
         make_latex_table_panel(data[[i]], names(data)[i], NULL)
       }

@@ -4,13 +4,36 @@
 \alias{make_latex_tables}
 \title{Creates a .tex file with LaTeX code to create a table from an R data.frame.}
 \usage{
-make_latex_tables(file_name, table_title, table_reference_label, data,
-  panel_caption, multi_column = NULL, footnote = "",
-  sideways = FALSE)
+make_latex_tables(data, file, caption = "", label = "",
+  multi_column = NULL, footnote = "", sideways = FALSE)
 }
 \arguments{
-\item{sideways}{}
+\item{data}{A data.frame or a list of data.frames. If a data.frame, the table is created
+with the values in that data.frame. If a list of data.frames, the table
+gets one panel for each data.frame. If the list is named, will use the names
+to create panel labels.}
+
+\item{file}{A string with the name of the file to save the .tex as.}
+
+\item{caption}{(Optional) A string with the caption for the table (i.e. the table title).}
+
+\item{label}{(Optional) A string with the reference for the table - to be used when referencing
+the table in the text. If NULL,}
+
+\item{multi_column}{(Optional) A named vector with the names being the names of the multi-column and the
+values being the width of the multi-column.}
+
+\item{footnote}{(Optional) A string with text for the footnote of the table.}
+
+\item{sideways}{(Optional) If TRUE, will make a sideways table (useful for large tables), otherwise
+(default) will make a normal table.}
+}
+\value{
+Nothing. It will create a .tex file in the current working directory.
 }
 \description{
 Creates a .tex file with LaTeX code to create a table from an R data.frame.
+}
+\examples{
+\dontrun{}
 }

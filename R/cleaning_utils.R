@@ -14,6 +14,7 @@
 #' @export
 #'
 #' @examples
+#' pad_decimals(c(2, 3.4, 8.808))
 pad_decimals <- function(numbers, digits = NULL) {
   numbers  <- as.character(numbers)
   decimals <- strsplit(numbers, "\\.")
@@ -42,6 +43,7 @@ pad_decimals <- function(numbers, digits = NULL) {
 #' @export
 #'
 #' @examples
+#' fix_column_names("BAD.-columnNAME")
 fix_column_names <- function(.names) {
   .names <- tolower(.names)
   .names <- gsub(" |-|\\/|\\.", "_", .names)
@@ -66,6 +68,7 @@ fix_column_names <- function(.names) {
 #' @export
 #'
 #' @examples
+#' capitalize_words("district of columbia")
 capitalize_words <- function(words, lowercase_of = TRUE) {
   words <- tolower(words)
   words <- strsplit(words, " ")

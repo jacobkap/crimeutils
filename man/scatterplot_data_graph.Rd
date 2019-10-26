@@ -22,6 +22,12 @@ Create a PDF with one scatterplot for each group in the data.}
 \item{outlier_std_dev_value}{A number that indicates how many standard deviations from the group mean
 an outlier is. Outliers will be colored orange in the data.}
 }
+\value{
+A PDF with one page per graph
+}
 \description{
 Create a PDF with one scatterplot for each group in the data.
+}
+\examples{
+\dontrun{}
 }

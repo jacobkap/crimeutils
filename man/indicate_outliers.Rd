@@ -20,6 +20,12 @@ determine if a value is an outlier.}
 
 \item{zero_is_outlier}{If TRUE, reports any zero value as an outlier.}
 }
+\value{
+The initial data.frame with new columns for each numeric variable included with a value of 0 if not an outlier and 1 if that row is an outlier.
+}
 \description{
 Indicate which values are outliers based on the average value.
+}
+\examples{
+\dontrun{}
 }

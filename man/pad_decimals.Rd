@@ -21,3 +21,6 @@ The original numbers but with trailing zeros added to the decimal places.
 \description{
 Pad decimal places with trailing zeros.
 }
+\examples{
+pad_decimals(c(2, 3.4, 8.808))
+}

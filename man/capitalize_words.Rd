@@ -18,3 +18,6 @@ The original string with the first letter of each word capitalized
 \description{
 Capitalizes the first letter of every word
 }
+\examples{
+capitalize_words("district of columbia")
+}

@@ -14,9 +14,11 @@
 #' If TRUE, reports any zero value as an outlier.
 #'
 #' @return
+#' The initial data.frame with new columns for each numeric variable included with a value of 0 if not an outlier and 1 if that row is an outlier.
 #' @export
 #'
 #' @examples
+#' \dontrun{}
 indicate_outliers <- function(data,
                               select_numeric_variables = NULL,
                               group_variable,

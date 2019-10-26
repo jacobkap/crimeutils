@@ -15,9 +15,11 @@
 #' A string with the name of the PDF to be made with one page for each graph.
 #'
 #' @return
+#' A PDF with one page per graph
 #' @export
 #'
 #' @examples
+#' \dontrun{}
 time_series_data_graph <- function(data,
                                    numeric_variable,
                                    time_variable,
@@ -119,9 +121,11 @@ time_series_data_graph <- function(data,
 #' @inheritParams time_series_data_graph
 #'
 #' @return
+#' A PDF with one page per graph
 #' @export
 #'
 #' @examples
+#' \dontrun{}
 scatterplot_data_graph <- function(data,
                                    numeric_variable1,
                                    numeric_variable2,
