@@ -87,8 +87,8 @@ make_big_ci_brackets <- function(.data) {
 }
 
 make_b_to_beta <- function(.data) {
-  .data <- gsub("^B$", "$\\\\hat{\\\\\beta}$", .data)
-  .data <- gsub("^Se\\(B\\)$", "Se\\($\\\\hat{\\\\beta}$\\)", .data)
+  .data <- gsub("^B$", "$\\\\hat{\\\\\\beta}$", .data)
+  .data <- gsub("^Se\\(B\\)$", "Se\\($\\\\hat{\\\\\\beta}$\\)", .data)
   return(.data)
 }
 
