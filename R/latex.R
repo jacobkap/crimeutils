@@ -99,7 +99,8 @@ fix_percent <- function(.data) {
 
 
 get_column_alignments <- function(data) {
-  alignment <- paste0("l", rep("r", times = ncol(data) - 1), collapse = "")
+  alignment <- paste0("l", paste0(rep("r", times = ncol(data) - 1),
+                                  collapse = ""))
   return(alignment)
 }
 
