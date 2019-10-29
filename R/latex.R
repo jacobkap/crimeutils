@@ -99,13 +99,13 @@ fix_percent <- function(.data) {
 
 
 get_column_alignments <- function(data) {
-  alignment <- paste0(rep("r", times = ncol(data)), collapse = "")
+  alignment <- paste0("l", rep("r", times = ncol(data) - 1), collapse = "")
   return(alignment)
 }
 
 make_latex_table_panel <- function(data, panel_caption, multi_column) {
   alignment <- get_column_alignments(data)
-  writeLines(paste0("\\begin{tabular}{{\\textwidth}@{\\extracolsep{5pt}}",
+  writeLines(paste0("\\begin{tabular}{@{\\extracolsep{5pt}}",
                     alignment, "}"))
 
   if (!is.null(multi_column)) {

@@ -16,6 +16,11 @@
 #' @examples
 #' pad_decimals(c(2, 3.4, 8.808))
 pad_decimals <- function(numbers, digits = NULL) {
+
+  if (!is.numeric(numbers)) {
+    stop("The numbers parameter must be numeric.")
+  }
+
   numbers  <- as.character(numbers)
   decimals <- strsplit(numbers, "\\.")
   decimals <- unlist(lapply(decimals, "[", 2))
@@ -34,7 +39,7 @@ pad_decimals <- function(numbers, digits = NULL) {
 
 #' Makes names lowercase and replaces all punctuation with underscore.
 #'
-#' @param names
+#' @param .names
 #' A string or vector of strings.
 #'
 #' @return
@@ -45,6 +50,12 @@ pad_decimals <- function(numbers, digits = NULL) {
 #' @examples
 #' fix_column_names("BAD.-columnNAME")
 fix_column_names <- function(.names) {
+
+  if (!is.character(.names)) {
+    .names <- as.character(.names)
+  }
+
+
   .names <- tolower(.names)
   .names <- gsub(" |-|\\/|\\.", "_", .names)
   .names <- gsub("_+", "_", .names)
@@ -70,6 +81,11 @@ fix_column_names <- function(.names) {
 #' @examples
 #' capitalize_words("district of columbia")
 capitalize_words <- function(words, lowercase_of = TRUE) {
+
+  if (!is.character(words)) {
+    words <- as.character(words)
+  }
+
   words <- tolower(words)
   words <- strsplit(words, " ")
   words <- lapply(words, upper_first_letter)
