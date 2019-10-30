@@ -113,7 +113,7 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
     for (i in 1:length(multi_column)) {
       multi_column_row <- paste0("\\multicolumn{",
                                  unname(multi_column)[i],
-                                 "}{l}{\\textbf{",
+                                 "}{c}{\\textbf{",
                                  names(multi_column[i]),
                                  "}} &")
       if (i == length(multi_column)) {
