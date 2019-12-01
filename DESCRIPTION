@@ -17,7 +17,9 @@ Imports:
     gridExtra,
     ggthemes,
     scales,
-    magrittr
+    magrittr,
+    grDevices,
+    stats
 License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/jacobkap/crime

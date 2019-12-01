@@ -19,7 +19,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{}
 time_series_data_graph <- function(data,
                                    numeric_variable,
                                    time_variable,
@@ -41,7 +40,7 @@ time_series_data_graph <- function(data,
             "outlier"        = "#d95f02")
 
 
-  pdf(file_name,  width = 13, height = 8, onefile = TRUE)
+  grDevices::pdf(file_name,  width = 13, height = 8, onefile = TRUE)
   for (i in 1:length(unique_groups)) {
 
     current_group <- unique_groups[i]
@@ -54,9 +53,9 @@ time_series_data_graph <- function(data,
 
     mean_value <- mean(plot1[, numeric_variable], na.rm = TRUE)
     lower_outlier <- mean_value - (outlier_std_dev_value *
-                                     sd(plot1[, numeric_variable], na.rm = TRUE))
+                                     stats::sd(plot1[, numeric_variable], na.rm = TRUE))
     upper_outlier <- mean_value + (outlier_std_dev_value *
-                                     sd(plot1[, numeric_variable], na.rm = TRUE))
+                                     stats::sd(plot1[, numeric_variable], na.rm = TRUE))
 
     plot1$outlier_zero_checker[plot1[[numeric_variable]] < lower_outlier |
                                  plot1[[numeric_variable]] > upper_outlier ] <- "outlier"
@@ -67,7 +66,8 @@ time_series_data_graph <- function(data,
       plot1 %>%
       ggplot2::ggplot(ggplot2::aes_string(x = time_variable,
                                           y = numeric_variable)) +
-      ggplot2::geom_point(ggplot2::aes(color = outlier_zero_checker), size = 2.5) +
+      ggplot2::geom_point(ggplot2::aes(color = plot1$outlier_zero_checker),
+                          size = 2.5) +
       ggplot2::stat_smooth(method = 'lm', se = FALSE) +
       ggplot2::ggtitle(paste(current_group, numeric_variable),
                        subtitle = paste0("Outlier = mean +- ",
@@ -78,9 +78,9 @@ time_series_data_graph <- function(data,
       ggplot2::scale_y_continuous(labels = scales::dollar) +
       ggplot2::scale_color_manual(values = cols) +
       ggplot2::theme(legend.position = "none",
-            plot.title = element_text(size = 16),
-            axis.title.x = element_text(size = 14),
-            axis.title.y = element_text(size = 14)) +
+            plot.title = ggplot2::element_text(size = 16),
+            axis.title.x = ggplot2::element_text(size = 14),
+            axis.title.y = ggplot2::element_text(size = 14)) +
       ggplot2::geom_hline(yintercept = mean_value,
                           color = "black",
                           linetype = "solid",
@@ -96,36 +96,25 @@ time_series_data_graph <- function(data,
 
     gridExtra::grid.arrange(plot1)
   }
-  dev.off()
+  grDevices::dev.off()
 }
+
 
 
 #' Create a PDF with one scatterplot for each group in the data.
 #'
-#' @param data
-#' A data.frame
-#' @param group_variable
-#' A string with the name of the column with the grouping variable.
-#' @param outlier_std_dev_value
-#' A number that indicates how many standard deviations from the group mean
-#' an outlier is. Outliers will be colored orange in the data.
-#' @param file_name
-#' A string with the name of the PDF to be made with one page for each graph.
-
-#' Create a PDF with one scatterplot for each group in the data.
+#' @inheritParams time_series_data_graph
 #'
 #' @param numeric_variable1
 #' A string with the name of the first column with numeric data to graph.
 #' @param numeric_variable2
 #' A string with the name of the second column with numeric data to graph.
-#' @inheritParams time_series_data_graph
 #'
 #' @return
 #' A PDF with one page per graph
 #' @export
 #'
 #' @examples
-#' \dontrun{}
 scatterplot_data_graph <- function(data,
                                    numeric_variable1,
                                    numeric_variable2,
@@ -142,7 +131,7 @@ scatterplot_data_graph <- function(data,
 
   cols <- c("non_zero_value" = "#000000", "zero_value" = "#1b9e77")
 
-  pdf(file_name,  width = 13, height = 8, onefile = TRUE)
+  grDevices::pdf(file_name,  width = 13, height = 8, onefile = TRUE)
   for (i in 1:length(unique_groups)) {
     current_group <- unique_groups[i]
 
@@ -152,20 +141,20 @@ scatterplot_data_graph <- function(data,
       dplyr::filter(!!as.name(group_variable) %in% current_group) %>%
       ggplot2::ggplot(ggplot2::aes_string(x = numeric_variable1,
                                           y = numeric_variable2)) +
-      ggplot2::geom_point(aes(color = zero_checker), size = 2.5) +
+      ggplot2::geom_point(ggplot2::aes(color = data$zero_checker), size = 2.5) +
       ggplot2::stat_smooth(method = 'lm', se = FALSE) +
       ggplot2::ggtitle(paste(current_group, numeric_variable1,
                              numeric_variable2)) +
       ggplot2::theme_minimal() +
-      scale_y_continuous(labels = dollar) +
-      scale_x_continuous(labels = dollar) +
-      scale_color_manual(values = cols) +
-      theme(legend.position = "none",
-            plot.title = element_text(size = 16),
-            axis.title.x = element_text(size = 14),
-            axis.title.y = element_text(size = 14))
+      ggplot2::scale_y_continuous(labels = scales::dollar) +
+      ggplot2::scale_x_continuous(labels = scales::dollar) +
+      ggplot2::scale_color_manual(values = cols) +
+      ggplot2::theme(legend.position = "none",
+            plot.title = ggplot2::element_text(size = 16),
+            axis.title.x = ggplot2::element_text(size = 14),
+            axis.title.y = ggplot2::element_text(size = 14))
 
-    grid.arrange(plot1)
+    gridExtra::grid.arrange(plot1)
   }
-  dev.off()
+  grDevices::dev.off()
 }

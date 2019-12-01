@@ -13,7 +13,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{}
 ucr_constant_reporter_oris <- function(data,
                                        minimum_months_reported) {
 
@@ -24,16 +23,16 @@ ucr_constant_reporter_oris <- function(data,
   constant_oris <- c()
   data <-
     data %>%
-    dplyr::filter(number_of_months_reported >= minimum_months_reported) %>%
-    dplyr::select(ori,
-                  year,
-                  number_of_months_reported)
+    dplyr::filter(data$number_of_months_reported >= minimum_months_reported) %>%
+    dplyr::select("ori",
+                  "year",
+                  "number_of_months_reported")
 
 
   for (i in unique(data$year)) {
     temp <-
       data %>%
-      dplyr::filter(year %in% i)
+      dplyr::filter(data$year %in% i)
     if (length(constant_oris) == 0) {
       constant_oris <- c(constant_oris, unique(temp$ori))
     } else {

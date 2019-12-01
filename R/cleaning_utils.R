@@ -43,7 +43,7 @@ pad_decimals <- function(numbers, digits = NULL) {
 #' A string or vector of strings.
 #'
 #' @return
-#' The inputted string or vector of strings now lowercased and
+#' The inputted string or vector of strings now lowercase and
 #' with punctuation replaced with a single underscore.
 #' @export
 #'

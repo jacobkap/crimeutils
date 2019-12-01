@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Indicate which values are outliers based on the average value. — indicate_outliers • crimeutils</title>
+<title>Creates new columns to indicate which values are outliers based on the average value. — indicate_outliers • crimeutils</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Indicate which values are outliers based on the average value. — indicate_outliers" />
-<meta property="og:description" content="Indicate which values are outliers based on the average value." />
+<meta property="og:title" content="Creates new columns to indicate which values are outliers based on the average value. — indicate_outliers" />
+<meta property="og:description" content="Creates new columns to indicate which values are outliers based on the average value." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,17 +108,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Indicate which values are outliers based on the average value.</h1>
+    <h1>Creates new columns to indicate which values are outliers based on the average value.</h1>
     <small class="dont-index">Source: <a href='https://github.com/jacobkap/crime/blob/master/R/outliers.R'><code>R/outliers.R</code></a></small>
     <div class="hidden name"><code>indicate_outliers.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Indicate which values are outliers based on the average value.</p>
+    <p>Creates new columns to indicate which values are outliers based on the average value.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>indicate_outliers</span>(<span class='no'>data</span>, <span class='kw'>select_numeric_variables</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>group_variable</span>,
-  <span class='kw'>outlier_std_dev_value</span> <span class='kw'>=</span> <span class='fl'>1.96</span>, <span class='kw'>zero_is_outlier</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>indicate_outliers</span>(<span class='no'>data</span>, <span class='kw'>select_columns</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>group_variable</span>,
+  <span class='kw'>std_dev_value</span> <span class='kw'>=</span> <span class='fl'>1.96</span>, <span class='kw'>zero_is_outlier</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,7 +128,7 @@
       <td><p>A data.frame</p></td>
     </tr>
     <tr>
-      <th>select_numeric_variables</th>
+      <th>select_columns</th>
       <td><p>A string or vector of strings with the name(s) of the numeric columns to check
 for outliers. If NULL (default), will use all numeric columns in the data.</p></td>
     </tr>
@@ -137,22 +137,26 @@ for outliers. If NULL (default), will use all numeric columns in the data.</p></
       <td><p>A string with the name of the column with the grouping variable.</p></td>
     </tr>
     <tr>
-      <th>outlier_std_dev_value</th>
+      <th>std_dev_value</th>
       <td><p>A number indicating how many standard deviations away from the mean to
 determine if a value is an outlier.</p></td>
     </tr>
     <tr>
       <th>zero_is_outlier</th>
-      <td><p>If TRUE, reports any zero value as an outlier.</p></td>
+      <td><p>If TRUE (not default), reports any zero value as an outlier.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The initial data.frame with new columns for each numeric variable included with a value of 0 if not an outlier and 1 if that row is an outlier.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>

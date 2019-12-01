@@ -7,10 +7,10 @@
 fix_column_names(.names)
 }
 \arguments{
-\item{names}{A string or vector of strings.}
+\item{.names}{A string or vector of strings.}
 }
 \value{
-The inputted string or vector of strings now lowercased and
+The inputted string or vector of strings now lowercase and
 with punctuation replaced with a single underscore.
 }
 \description{

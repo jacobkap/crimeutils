@@ -2,30 +2,27 @@
 % Please edit documentation in R/outliers.R
 \name{indicate_outliers}
 \alias{indicate_outliers}
-\title{Indicate which values are outliers based on the average value.}
+\title{Creates new columns to indicate which values are outliers based on the average value.}
 \usage{
-indicate_outliers(data, select_numeric_variables = NULL, group_variable,
-  outlier_std_dev_value = 1.96, zero_is_outlier = FALSE)
+indicate_outliers(data, select_columns = NULL, group_variable,
+  std_dev_value = 1.96, zero_is_outlier = FALSE)
 }
 \arguments{
 \item{data}{A data.frame}
 
-\item{select_numeric_variables}{A string or vector of strings with the name(s) of the numeric columns to check
+\item{select_columns}{A string or vector of strings with the name(s) of the numeric columns to check
 for outliers. If NULL (default), will use all numeric columns in the data.}
 
 \item{group_variable}{A string with the name of the column with the grouping variable.}
 
-\item{outlier_std_dev_value}{A number indicating how many standard deviations away from the mean to
+\item{std_dev_value}{A number indicating how many standard deviations away from the mean to
 determine if a value is an outlier.}
 
-\item{zero_is_outlier}{If TRUE, reports any zero value as an outlier.}
+\item{zero_is_outlier}{If TRUE (not default), reports any zero value as an outlier.}
 }
 \value{
 The initial data.frame with new columns for each numeric variable included with a value of 0 if not an outlier and 1 if that row is an outlier.
 }
 \description{
-Indicate which values are outliers based on the average value.
-}
-\examples{
-\dontrun{}
+Creates new columns to indicate which values are outliers based on the average value.
 }

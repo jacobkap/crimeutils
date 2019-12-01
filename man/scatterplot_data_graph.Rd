@@ -16,18 +16,11 @@ scatterplot_data_graph(data, numeric_variable1, numeric_variable2,
 
 \item{group_variable}{A string with the name of the column with the grouping variable.}
 
-\item{file_name}{A string with the name of the PDF to be made with one page for each graph.
-Create a PDF with one scatterplot for each group in the data.}
-
-\item{outlier_std_dev_value}{A number that indicates how many standard deviations from the group mean
-an outlier is. Outliers will be colored orange in the data.}
+\item{file_name}{A string with the name of the PDF to be made with one page for each graph.}
 }
 \value{
 A PDF with one page per graph
 }
 \description{
 Create a PDF with one scatterplot for each group in the data.
-}
-\examples{
-\dontrun{}
 }

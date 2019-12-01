@@ -117,25 +117,58 @@
     <p>Creates a .tex file with LaTeX code to create a table from an R data.frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_latex_tables</span>(<span class='no'>file_name</span>, <span class='no'>table_title</span>, <span class='no'>table_reference_label</span>, <span class='no'>data</span>,
-  <span class='no'>panel_caption</span>, <span class='kw'>multi_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footnote</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>sideways</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>make_latex_tables</span>(<span class='no'>data</span>, <span class='no'>file</span>, <span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>multi_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>footnote</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>sideways</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>data</th>
+      <td><p>A data.frame or a list of data.frames. If a data.frame, the table is created
+with the values in that data.frame. If a list of data.frames, the table
+gets one panel for each data.frame. If the list is named, will use the names
+to create panel labels.</p></td>
+    </tr>
+    <tr>
+      <th>file</th>
+      <td><p>A string with the name of the file to save the .tex as.</p></td>
+    </tr>
+    <tr>
+      <th>caption</th>
+      <td><p>(Optional) A string with the caption for the table (i.e. the table title).</p></td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td><p>(Optional) A string with the reference for the table - to be used when referencing
+the table in the text. If NULL,</p></td>
+    </tr>
+    <tr>
+      <th>multi_column</th>
+      <td><p>(Optional) A named vector with the names being the names of the multi-column and the
+values being the width of the multi-column.</p></td>
+    </tr>
+    <tr>
+      <th>footnote</th>
+      <td><p>(Optional) A string with text for the footnote of the table.</p></td>
+    </tr>
+    <tr>
       <th>sideways</th>
-      <td></td>
+      <td><p>(Optional) If TRUE, will make a sideways table (useful for large tables), otherwise
+(default) will make a normal table.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Nothing. It will create a .tex file in the current working directory.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>

@@ -34,6 +34,3 @@ Nothing. It will create a .tex file in the current working directory.
 \description{
 Creates a .tex file with LaTeX code to create a table from an R data.frame.
 }
-\examples{
-\dontrun{}
-}

@@ -1,9 +1,3 @@
-# z <- mtcars[1:6, 1:6]
-# z$mpg <- rownames(z)
-# names(z)[1] <- ""
-# multi_column <- c(" " = 1, "column1" = 2, "column2" = 3)
-
-#make_latex_tables("test", "title", "label", z, "caption", multi_column, "NOTE ")
 #' Creates a .tex file with LaTeX code to create a table from an R data.frame.
 #'
 #' @param data
@@ -32,7 +26,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{}
 make_latex_tables <- function(data,
                               file,
                               caption = "",
@@ -126,6 +119,7 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   writeLines("\\toprule")
 
   headers <- paste0("\\thead{", names(data), "} &", collapse = " ")
+  headers <- fix_percent(headers)
   headers <- gsub("&$", "\\\\\\\\", headers)
 
   writeLines(headers)

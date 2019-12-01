@@ -6,11 +6,12 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/jacobkap/crime.svg?branch=master)](https://travis-ci.org/jacobkap/crime)
+status](https://travis-ci.org/jacobkap/crimeutils.svg?branch=master)](https://travis-ci.org/jacobkap/crimeutils)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jacobkap/crime?branch=master&svg=true)](https://ci.appveyor.com/project/jacobkap/crime)
+status](https://ci.appveyor.com/api/projects/status/github/jacobkap/crimeutils?branch=master&svg=true)](https://ci.appveyor.com/project/jacobkap/crimeutils)
 [![Codecov test
-coverage](https://codecov.io/gh/jacobkap/crime/branch/master/graph/badge.svg)](https://codecov.io/gh/jacobkap/crime?branch=master)
+coverage](https://codecov.io/gh/jacobkap/crimeutils/branch/master/graph/badge.svg)](https://codecov.io/gh/jacobkap/crimeutils?branch=master)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/crimeutils?color=blue)](https://cran.r-project.org/package=crimeutils)
 <!-- badges: end -->
 
 The goal of crimeutils is to …
@@ -28,7 +29,7 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jacobkap/crime")
+devtools::install_github("jacobkap/crimeutils")
 ```
 
 ## Example

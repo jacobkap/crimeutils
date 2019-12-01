@@ -27,6 +27,3 @@ A PDF with one page per graph
 \description{
 Create a PDF with one time-series graph for each group in the data.
 }
-\examples{
-\dontrun{}
-}

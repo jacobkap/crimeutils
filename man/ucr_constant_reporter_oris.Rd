@@ -19,6 +19,3 @@ year in the data.
 \description{
 Get ORIs that consistently report their data every year.
 }
-\examples{
-\dontrun{}
-}
