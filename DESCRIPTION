@@ -24,7 +24,7 @@ License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/jacobkap/crime
 BugReports: https://github.com/jacobkap/crime/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: 
     spelling,
     testthat (>= 2.1.0),

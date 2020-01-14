@@ -56,7 +56,29 @@ test_that("Capitalize words works", {
 
 })
 
+test_that("Fix make state abbreviations works", {
+  expect_true(is.na(make_state_abb("hello_world")))
+  expect_equal(make_state_abb(c("CALIFORNIA", "UTAH")), c("CA", "UT"))
+  expect_equal(make_state_abb(c("CALIFORNIA",
+                                "UTAH",
+                                2,
+                                NA,
+                                "hello",
+                                "PENNSYLVANIA",
+                                "pennsylvania",
+                                "ppennsylvania",
+                                "PeNNsylvaNIA")), c("CA",
+                                                    "UT",
+                                                   NA,
+                                                   NA,
+                                                   NA,
+                                                   "PA",
+                                                   "PA",
+                                                   NA,
+                                                   "PA"))
 
+  expect_true(all(is.na(make_state_abb(1:5))))
+})
 
 
 test_that("Fix column names works", {

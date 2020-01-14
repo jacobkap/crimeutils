@@ -4,8 +4,13 @@
 \alias{indicate_outliers}
 \title{Creates new columns to indicate which values are outliers based on the average value.}
 \usage{
-indicate_outliers(data, select_columns = NULL, group_variable,
-  std_dev_value = 1.96, zero_is_outlier = FALSE)
+indicate_outliers(
+  data,
+  select_columns = NULL,
+  group_variable,
+  std_dev_value = 1.96,
+  zero_is_outlier = FALSE
+)
 }
 \arguments{
 \item{data}{A data.frame}

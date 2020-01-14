@@ -4,8 +4,15 @@
 \alias{make_latex_tables}
 \title{Creates a .tex file with LaTeX code to create a table from an R data.frame.}
 \usage{
-make_latex_tables(data, file, caption = "", label = "",
-  multi_column = NULL, footnote = "", sideways = FALSE)
+make_latex_tables(
+  data,
+  file,
+  caption = "",
+  label = "",
+  multi_column = NULL,
+  footnote = "",
+  sideways = FALSE
+)
 }
 \arguments{
 \item{data}{A data.frame or a list of data.frames. If a data.frame, the table is created

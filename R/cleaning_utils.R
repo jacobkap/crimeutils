@@ -35,6 +35,26 @@ pad_decimals <- function(numbers, digits = NULL) {
   return(numbers)
 }
 
+#' Returns abbreviations of state name input.
+#'
+#' @param state
+#' A vector of strings with the names of US states.
+#'
+#' @return
+#' A vector of strings with the abbreviations of the inputted state names.
+#' @export
+#'
+#' @examples
+#' make_state_abb("california")
+make_state_abb <- function(state) {
+  state_abb <- datasets::state.abb[match(tolower(state),
+                                         tolower(datasets::state.name))]
+  state_abb[tolower(state) == "canal zone"]           <- "CZ"
+  state_abb[tolower(state) == "district of columbia"] <- "DC"
+  state_abb[tolower(state) == "guam"]                 <- "GU"
+  state_abb[tolower(state) == "puerto rico"]          <- "PR"
+  return(state_abb)
+}
 
 
 #' Makes names lowercase and replaces all punctuation with underscore.
@@ -57,9 +77,9 @@ fix_column_names <- function(.names) {
 
 
   .names <- tolower(.names)
-  .names <- gsub(" |-|\\/|\\.", "_", .names)
+  .names <- gsub(" |[[:punct:]]", "_", .names)
   .names <- gsub("_+", "_", .names)
-  .names <- gsub("_$", "", .names)
+  .names <- gsub("_$|^_", "", .names)
   return(.names)
 }
 

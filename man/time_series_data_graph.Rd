@@ -4,8 +4,14 @@
 \alias{time_series_data_graph}
 \title{Create a PDF with one time-series graph for each group in the data.}
 \usage{
-time_series_data_graph(data, numeric_variable, time_variable,
-  group_variable, outlier_std_dev_value = 1.96, file_name)
+time_series_data_graph(
+  data,
+  numeric_variable,
+  time_variable,
+  group_variable,
+  outlier_std_dev_value = 1.96,
+  file_name
+)
 }
 \arguments{
 \item{data}{A data.frame}

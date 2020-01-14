@@ -4,8 +4,13 @@
 \alias{scatterplot_data_graph}
 \title{Create a PDF with one scatterplot for each group in the data.}
 \usage{
-scatterplot_data_graph(data, numeric_variable1, numeric_variable2,
-  group_variable, file_name)
+scatterplot_data_graph(
+  data,
+  numeric_variable1,
+  numeric_variable2,
+  group_variable,
+  file_name
+)
 }
 \arguments{
 \item{data}{A data.frame}
