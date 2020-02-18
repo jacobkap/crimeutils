@@ -9,6 +9,11 @@ test_that("Pad decimals works", {
   expect_equal(pad_decimals(2.11, 1), 2.1)
   expect_equal(pad_decimals(2.11, 0), 2)
 
+  expect_equal(pad_decimals(2, 2), 2.00)
+  expect_equal(pad_decimals(2, 1), 2.0)
+  expect_equal(pad_decimals(2, 5), 2.00000)
+  expect_equal(pad_decimals(c(2, 3.11), 2), c(2.00, 3.11))
+
 
   expect_equal(pad_decimals(2.11, 2), 2.11)
   expect_equal(pad_decimals(2.11, 3), 2.110)
@@ -45,6 +50,9 @@ test_that("Capitalize words works", {
   expect_equal(capitalize_words(c("hello darkness MY", "old fRiend")),
                c("Hello Darkness My", "Old Friend"))
 
+
+  expect_equal(capitalize_words("hello-world"), "Hello-World")
+  expect_equal(capitalize_words("hello'world"), "Hello'World")
 
   expect_equal(upper_first_letter("hello world"), "Hello world")
   expect_equal(upper_first_letter("hELLo woRLD"), "HELLo woRLD")

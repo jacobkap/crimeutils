@@ -110,6 +110,17 @@ capitalize_words <- function(words, lowercase_of = TRUE) {
   words <- strsplit(words, " ")
   words <- lapply(words, upper_first_letter)
   words <- unlist(lapply(words, paste, collapse = " "))
+
+
+  words <- strsplit(words, "-")
+  words <- lapply(words, upper_first_letter)
+  words <- unlist(lapply(words, paste, collapse = "-"))
+
+
+  words <- strsplit(words, "'")
+  words <- lapply(words, upper_first_letter)
+  words <- unlist(lapply(words, paste, collapse = "'"))
+
   if (lowercase_of) {
     words <- gsub(" Of ", " of ", words)
   }
