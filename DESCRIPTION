@@ -19,7 +19,9 @@ Imports:
     scales,
     magrittr,
     grDevices,
-    stats
+    stats,
+    data.table,
+    lubridate
 License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/jacobkap/crime
