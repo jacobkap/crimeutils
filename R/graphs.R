@@ -78,9 +78,9 @@ time_series_data_graph <- function(data,
       ggplot2::scale_y_continuous(labels = scales::dollar) +
       ggplot2::scale_color_manual(values = cols) +
       ggplot2::theme(legend.position = "none",
-            plot.title = ggplot2::element_text(size = 16),
-            axis.title.x = ggplot2::element_text(size = 14),
-            axis.title.y = ggplot2::element_text(size = 14)) +
+                     plot.title = ggplot2::element_text(size = 16),
+                     axis.title.x = ggplot2::element_text(size = 14),
+                     axis.title.y = ggplot2::element_text(size = 14)) +
       ggplot2::geom_hline(yintercept = mean_value,
                           color = "black",
                           linetype = "solid",
@@ -131,7 +131,7 @@ scatterplot_data_graph <- function(data,
 
   cols <- c("non_zero_value" = "#000000", "zero_value" = "#1b9e77")
 
-  grDevices::pdf(file_name,  width = 13, height = 8, onefile = TRUE)
+  grDevices::pdf(file_name, width = 13, height = 8, onefile = TRUE)
   for (i in 1:length(unique_groups)) {
     current_group <- unique_groups[i]
 
@@ -150,11 +150,17 @@ scatterplot_data_graph <- function(data,
       ggplot2::scale_x_continuous(labels = scales::dollar) +
       ggplot2::scale_color_manual(values = cols) +
       ggplot2::theme(legend.position = "none",
-            plot.title = ggplot2::element_text(size = 16),
-            axis.title.x = ggplot2::element_text(size = 14),
-            axis.title.y = ggplot2::element_text(size = 14))
+                     plot.title = ggplot2::element_text(size = 16),
+                     axis.title.x = ggplot2::element_text(size = 14),
+                     axis.title.y = ggplot2::element_text(size = 14))
 
     gridExtra::grid.arrange(plot1)
   }
   grDevices::dev.off()
 }
+
+
+
+
+
+

@@ -87,11 +87,3 @@ test_that("Fix make state abbreviations works", {
 
   expect_true(all(is.na(make_state_abb(1:5))))
 })
-
-
-test_that("Fix column names works", {
-  expect_equal(fix_column_names("hello_world"), "hello_world")
-  expect_equal(fix_column_names("HELLO._.WORLD"), "hello_world")
-
-  expect_equal(fix_column_names(1:5), as.character(1:5))
-})

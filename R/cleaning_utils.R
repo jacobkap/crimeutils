@@ -57,35 +57,6 @@ make_state_abb <- function(state) {
 }
 
 
-#' Makes names lowercase and replaces all punctuation with underscore.
-#'
-#' @param .names
-#' A string or vector of strings.
-#'
-#' @return
-#' The inputted string or vector of strings now lowercase and
-#' with punctuation replaced with a single underscore.
-#' @export
-#'
-#' @examples
-#' fix_column_names("BAD.-columnNAME")
-fix_column_names <- function(.names) {
-
-  if (!is.character(.names)) {
-    .names <- as.character(.names)
-  }
-
-
-  .names <- tolower(.names)
-  .names <- gsub(" |[[:punct:]]", "_", .names)
-  .names <- gsub("_+", "_", .names)
-  .names <- gsub("_$|^_", "", .names)
-  return(.names)
-}
-
-
-
-
 #' Capitalizes the first letter of every word
 #'
 #' @param words
@@ -132,4 +103,12 @@ upper_first_letter <- function(word) {
   other_letters <- substring(word, first = 2)
   word <- paste0(first_letter, other_letters)
   return(word)
+}
+
+
+# For some reason a nunch of the datasets end certain columns with '_x" so this
+# just removes it to be cleaner (personal choice, not really important)
+drop_underscore_x_from_name <- function(x) {
+  x <- gsub("_x$", "", x)
+  return(x)
 }
