@@ -49,15 +49,15 @@ scale_color_crim <- function(...) {
 }
 
 
-# ggplot(mtcars, aes(x = mpg, y = hp, color = as.character(cyl))) +
-#   geom_line() +
-#   ggtitle("Title") +
-#   xlab("X-axis Label") +
-#   ylab("Y-axis Label") +
-#   labs(colour="Legend Title") +
-#   theme_crim() +
-#   scale_color_crim() +
-#   scale_x_continuous(expand = c(0, 0))
+ggplot(mtcars, aes(x = mpg, y = hp, color = as.character(cyl))) +
+  geom_line() +
+  ggtitle("Title") +
+  xlab("X-axis Label") +
+  ylab("Y-axis Label") +
+  labs(colour="Legend Title") +
+  theme_crim() +
+  scale_color_crim() +
+  scale_x_continuous(expand = c(0, 0))
 
 
 #' Title
@@ -68,8 +68,8 @@ scale_color_crim <- function(...) {
 #' @examples
 theme_crim <- function() {
   ggplot2::theme(legend.position   = "bottom",
-                 legend.text       = ggplot2::element_text(size = 15),
-                 legend.title      = ggplot2::element_text(size = 14),
+                 legend.text       = ggplot2::element_text(size = 16),
+                 legend.title      = ggplot2::element_text(size = 18),
                  legend.box.margin = ggplot2::margin(-13, 0, 0, 0),
                  rect              = ggplot2::element_rect(colour = "black",
                                                            fill = "white"),
@@ -92,9 +92,9 @@ theme_crim <- function() {
                                                            face = "bold"),
                  axis.text         = ggplot2::element_text(size = 16,
                                                            color = "black"),
-                 axis.title        = ggplot2::element_text(size = 19,
+                 axis.title        = ggplot2::element_text(size = 22,
                                                            face = "bold"),
-                 axis.title.x      = ggplot2::element_text(vjust =  1.1),
-                 axis.title.y      = ggplot2::element_text(vjust = 1.5),
+                 axis.title.x      = ggplot2::element_text(vjust =  0.85),
+                 axis.title.y      = ggplot2::element_text(vjust = 2.15),
                  axis.ticks.length = ggplot2::unit(.13, "cm"))
 }
