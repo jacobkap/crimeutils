@@ -49,15 +49,15 @@ scale_color_crim <- function(...) {
 }
 
 
-ggplot(mtcars, aes(x = mpg, y = hp, color = as.character(cyl))) +
-  geom_line() +
-  ggtitle("Title") +
-  xlab("X-axis Label") +
-  ylab("Y-axis Label") +
-  labs(colour="Legend Title") +
-  theme_crim() +
-  scale_color_crim() +
-  scale_x_continuous(expand = c(0, 0))
+# ggplot(mtcars, aes(x = mpg, y = hp, color = as.character(cyl))) +
+#   geom_line() +
+#   ggtitle("Title") +
+#   xlab("X-axis Label") +
+#   ylab("Y-axis Label") +
+#   labs(colour="Legend Title") +
+#   theme_crim() +
+#   scale_color_crim() +
+#   scale_x_continuous(expand = c(0, 0))
 
 
 #' Title
