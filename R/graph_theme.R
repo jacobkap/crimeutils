@@ -48,16 +48,16 @@ scale_color_crim <- function(...) {
                                                      "#ff7f00")))
 }
 
-#
-# ggplot(mtcars, aes(x = mpg, y = hp, color = as.character(cyl))) +
-#   geom_line() +
-#   ggtitle("Title") +
-#   xlab("X-axis Label") +
-#   ylab("Y-axis Label") +
-#   labs(colour="Legend Title") +
-#   theme_crim() +
-#   scale_color_crim() +
-#   scale_x_continuous(expand = c(0, 0))
+
+ggplot(mtcars, aes(x = mpg, y = hp, color = as.character(cyl))) +
+  geom_line() +
+  ggtitle("Title") +
+  xlab("X-axis Label") +
+  ylab("Y-axis Label") +
+  labs(colour="Legend Title") +
+  theme_crim() +
+  scale_color_crim() +
+  scale_x_continuous(expand = c(0, 0))
 
 
 #' Title
@@ -81,11 +81,11 @@ theme_crim <- function() {
                  panel.grid.minor  = ggplot2::element_blank(),
                  text              = ggplot2::element_text(size = 15,
                                                            family = "serif"),
-                 plot.background   = ggplot2::element_rect(fill="gray96",
+                 plot.background   = ggplot2::element_rect(fill="white",
                                                            colour=NA),
-                 legend.background = ggplot2::element_rect(fill="transparent",
+                 legend.background = ggplot2::element_rect(fill="white",
                                                            colour=NA),
-                 legend.key        = ggplot2::element_rect(fill="transparent",
+                 legend.key        = ggplot2::element_rect(fill="white",
                                                            colour=NA),
                  plot.title        = ggplot2::element_text(size = 24,
                                                            hjust = 0.5,
