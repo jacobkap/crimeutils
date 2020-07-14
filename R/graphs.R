@@ -162,5 +162,56 @@ scatterplot_data_graph <- function(data,
 
 
 
+make_stat_count_plots <- function(data, column, count = TRUE, title, ylab, xlab) {
+  p <-
+    data %>%
+    ggplot(aes_string(x = column)) +
+    theme_crim() +
+    ylab(ylab) +
+    xlab(xlab) +
+    ggtitle(title)
+
+  if (count) {
+    p <-
+      p +
+      stat_count(aes(y = (..count..)/sum(..count..))) +
+      scale_y_continuous(label = percent)
+  } else {
+    p <-
+      p +
+      stat_count() +
+      scale_y_continuous(label = comma)
+  }
+  return(p)
+}
+
+make_barplots <- function(data, column, count = TRUE, title, ylab) {
+
+
+  data$temp <- factor(data[, column],
+                      levels = names(sort(table(data[, column]), decreasing = FALSE)))
+
+  p <-
+    data %>%
+    ggplot(aes(x = temp)) +
+    theme_crim() +
+    coord_flip() +
+    ylab(ylab) +
+    xlab("") +
+    ggtitle(title)
+
+  if (count) {
+    p <-
+      p +
+      geom_bar(aes(y = (..count..)/sum(..count..))) +
+      scale_y_continuous(label = percent)
+  } else {
+    p <-
+      p +
+      geom_bar() +
+      scale_y_continuous(label = comma)
+  }
+  return(p)
+}
 
 

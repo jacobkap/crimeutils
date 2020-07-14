@@ -48,7 +48,7 @@ scale_color_crim <- function(...) {
                                                      "#ff7f00")))
 }
 
-#
+
 # ggplot(mtcars, aes(x = mpg, y = hp, color = as.character(cyl))) +
 #   geom_line() +
 #   ggtitle("Title") +
@@ -95,6 +95,6 @@ theme_crim <- function() {
                  axis.title        = ggplot2::element_text(size = 22,
                                                            face = "bold"),
                  axis.title.x      = ggplot2::element_text(vjust =  0.85),
-                 axis.title.y      = ggplot2::element_text(vjust = 2.15),
+                 axis.title.y      = ggplot2::element_text(vjust = 1.7),
                  axis.ticks.length = ggplot2::unit(.13, "cm"))
 }
