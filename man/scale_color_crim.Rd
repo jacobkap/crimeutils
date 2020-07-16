@@ -2,16 +2,21 @@
 % Please edit documentation in R/graph_theme.R
 \name{scale_color_crim}
 \alias{scale_color_crim}
-\title{Title}
+\title{A set of colorblind friendly colors for graphs.}
 \usage{
 scale_color_crim(...)
 }
 \arguments{
-\item{...}{}
+\item{...}{Arguments passed to discrete_scale()}
 }
 \value{
 
 }
 \description{
-Title
+A set of colorblind friendly colors for graphs.
+}
+\examples{
+ggplot2::ggplot(mtcars, ggplot2::aes(x = mpg, y = hp, color = as.character(cyl))) +
+  ggplot2::geom_point(size = 2) +
+  scale_color_crim()
 }

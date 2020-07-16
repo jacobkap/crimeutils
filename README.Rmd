@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# crimeutils
+# Overview
 
 <!-- badges: start -->
   [![Travis build status](https://travis-ci.org/jacobkap/crimeutils.svg?branch=master)](https://travis-ci.org/jacobkap/crimeutils)
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![](http://cranlogs.r-pkg.org/badges/grand-total/crimeutils?color=blue)](https://cran.r-project.org/package=crimeutils)
 <!-- badges: end -->
 
-The goal of crimeutils is to ...
+The goal of crimeutils is to provide a set of helper functions to make common data tasks in criminology research - clean, explore, analyze, visualize - a bit easier.
 
 ## Installation
 
@@ -37,27 +37,12 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("jacobkap/crimeutils")
 ```
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+
 
 ```{r example}
 library(crimeutils)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

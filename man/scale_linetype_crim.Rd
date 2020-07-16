@@ -2,16 +2,22 @@
 % Please edit documentation in R/graph_theme.R
 \name{scale_linetype_crim}
 \alias{scale_linetype_crim}
-\title{Title}
+\title{A set of linetypes}
 \usage{
 scale_linetype_crim(...)
 }
 \arguments{
-\item{...}{}
+\item{...}{Arguments passed to discrete_scale()}
 }
 \value{
 
 }
 \description{
-Title
+A set of linetypes
+}
+\examples{
+ggplot2::ggplot(mtcars, ggplot2::aes(x = mpg, y = hp, linetype = as.character(cyl))) +
+  ggplot2::geom_line(size = 1) +
+  scale_linetype_crim() +
+  theme_crim()
 }

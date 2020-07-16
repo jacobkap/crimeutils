@@ -1,28 +1,35 @@
 
-#' Title
+#' A set of linetypes
 #'
 #' @param ...
+#' Arguments passed to discrete_scale()
 #'
 #' @return
 #' @export
 #'
 #' @examples
- scale_linetype_crim <- function(...) {
-  return(ggplot2::scale_linetype_manual(..., values = c("solid",
-                                                        "dotted",
-                                                        "longdash",
-                                                        "twodash",
-                                                        "dashed")))
+#' ggplot2::ggplot(mtcars, ggplot2::aes(x = mpg, y = hp, linetype = as.character(cyl))) +
+#'   ggplot2::geom_line(size = 1) +
+#'   scale_linetype_crim() +
+#'   theme_crim()
+scale_linetype_crim <- function(...) {
+  return(ggplot2::scale_linetype_manual(..., values = c(1,3, 5, 2, 4, 6)))
+
 }
 
-#' Title
+#' A set of colorblind friendly fill colors for graphs.
 #'
 #' @param ...
+#' Arguments passed to discrete_scale()
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' ggplot2::ggplot(mtcars, ggplot2::aes(x = cyl, fill = as.character(cyl))) +
+#'  ggplot2::geom_bar() +
+#'   scale_fill_crim()
+
 scale_fill_crim <- function(...) {
   return(ggplot2::scale_fill_manual(..., values = c('#990000',
                                                     '#011f5b',
@@ -32,14 +39,18 @@ scale_fill_crim <- function(...) {
 }
 
 
-#' Title
+#' A set of colorblind friendly colors for graphs.
 #'
 #' @param ...
+#' Arguments passed to discrete_scale()
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' ggplot2::ggplot(mtcars, ggplot2::aes(x = mpg, y = hp, color = as.character(cyl))) +
+#'   ggplot2::geom_point(size = 2) +
+#'   scale_color_crim()
 scale_color_crim <- function(...) {
   return(ggplot2::scale_color_manual(..., values = c('#990000',
                                                      '#011f5b',
@@ -60,12 +71,15 @@ scale_color_crim <- function(...) {
 #   scale_x_continuous(expand = c(0, 0))
 
 
-#' Title
+#' A minimalistic theme designed for graphics in academic research
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' ggplot2::ggplot(mtcars) +
+#' ggplot2::geom_point(ggplot2::aes(x = wt, y = mpg)) +
+#' theme_crim()
 theme_crim <- function() {
   ggplot2::theme(legend.position   = "bottom",
                  legend.text       = ggplot2::element_text(size = 16),
@@ -87,6 +101,7 @@ theme_crim <- function() {
                                                            colour=NA),
                  legend.key        = ggplot2::element_rect(fill="white",
                                                            colour=NA),
+                 legend.key.size   = ggplot2::unit(1, "cm"),
                  plot.title        = ggplot2::element_text(size = 24,
                                                            hjust = 0.5,
                                                            face = "bold"),
@@ -94,7 +109,7 @@ theme_crim <- function() {
                                                            color = "black"),
                  axis.title        = ggplot2::element_text(size = 22,
                                                            face = "bold"),
-                 axis.title.x      = ggplot2::element_text(vjust =  0.85),
+                 axis.title.x      = ggplot2::element_text(vjust =  1.5),
                  axis.title.y      = ggplot2::element_text(vjust = 1.7),
                  axis.ticks.length = ggplot2::unit(.13, "cm"))
 }

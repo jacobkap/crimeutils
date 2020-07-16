@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • crimeutils</title>
+<title>Make a nice-looking barplot. — make_barplots • crimeutils</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Make a nice-looking barplot. — make_barplots" />
+<meta property="og:description" content="Make a nice-looking barplot." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,126 +109,49 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Make a nice-looking barplot.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jacobkap/crime/blob/master/R/graphs.R'><code>R/graphs.R</code></a></small>
+    <div class="hidden name"><code>make_barplots.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Make a nice-looking barplot.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>make_barplots</span>(<span class='no'>data</span>, <span class='no'>column</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="capitalize_words.html">capitalize_words()</a></code> </p>
-        </td>
-        <td><p>Capitalizes the first letter of every word</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="indicate_outliers.html">indicate_outliers()</a></code> </p>
-        </td>
-        <td><p>Creates new columns to indicate which values are outliers based on the average value.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_barplots.html">make_barplots()</a></code> </p>
-        </td>
-        <td><p>Make a nice-looking barplot.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_desc_stats_table.html">make_desc_stats_table()</a></code> </p>
-        </td>
-        <td><p>Create a descriptive statistics table from numeric variables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_latex_tables.html">make_latex_tables()</a></code> </p>
-        </td>
-        <td><p>Creates a .tex file with LaTeX code to create a table from an R data.frame.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_state_abb.html">make_state_abb()</a></code> </p>
-        </td>
-        <td><p>Returns abbreviations of state name input.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_stat_count_plots.html">make_stat_count_plots()</a></code> </p>
-        </td>
-        <td><p>Make a nice-looking stat_count (similar to barplot) plot.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pad_decimals.html">pad_decimals()</a></code> </p>
-        </td>
-        <td><p>Pad decimal places with trailing zeros.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scale_color_crim.html">scale_color_crim()</a></code> </p>
-        </td>
-        <td><p>A set of colorblind friendly colors for graphs.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scale_fill_crim.html">scale_fill_crim()</a></code> </p>
-        </td>
-        <td><p>A set of colorblind friendly fill colors for graphs.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scale_linetype_crim.html">scale_linetype_crim()</a></code> </p>
-        </td>
-        <td><p>A set of linetypes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scatterplot_data_graph.html">scatterplot_data_graph()</a></code> </p>
-        </td>
-        <td><p>Create a PDF with one scatterplot for each group in the data.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_crim.html">theme_crim()</a></code> </p>
-        </td>
-        <td><p>A minimalistic theme designed for graphics in academic research</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="time_series_data_graph.html">time_series_data_graph()</a></code> </p>
-        </td>
-        <td><p>Create a PDF with one time-series graph for each group in the data.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ucr_constant_reporter_oris.html">ucr_constant_reporter_oris()</a></code> </p>
-        </td>
-        <td><p>Get ORIs that consistently report their data every year.</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>column</th>
+      <td><p>A string with the name of the column you want to make the plot from.</p></td>
+    </tr>
+    <tr>
+      <th>count</th>
+      <td><p>A boolean (default TRUE) indicating if you want the barplot to show a count
+of the column values or a percent.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>A string with the text you want as the title.</p></td>
+    </tr>
+    <tr>
+      <th>ylab</th>
+      <td><p>A string with the text you want as the y-axis label.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A barplot object.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>make_barplots</span>(<span class='no'>mtcars</span>, <span class='st'>"cyl"</span>)</div><div class='img'><img src='make_barplots-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>make_barplots</span>(<span class='no'>mtcars</span>, <span class='st'>"cyl"</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"hello"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"YLAB Label"</span>)</div><div class='img'><img src='make_barplots-2.png' alt='' width='700' height='433' /></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

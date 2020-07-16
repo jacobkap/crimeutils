@@ -17,6 +17,7 @@ Imports:
     gridExtra,
     scales,
     magrittr,
+    gt,
     grDevices,
     stats,
     data.table,
@@ -26,7 +27,7 @@ License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/jacobkap/crime
 BugReports: https://github.com/jacobkap/crime/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     spelling,
     testthat (>= 2.1.0),

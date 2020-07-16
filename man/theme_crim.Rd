@@ -2,7 +2,7 @@
 % Please edit documentation in R/graph_theme.R
 \name{theme_crim}
 \alias{theme_crim}
-\title{Title}
+\title{A minimalistic theme designed for graphics in academic research}
 \usage{
 theme_crim()
 }
@@ -10,5 +10,10 @@ theme_crim()
 
 }
 \description{
-Title
+A minimalistic theme designed for graphics in academic research
+}
+\examples{
+ggplot2::ggplot(mtcars) +
+ggplot2::geom_point(ggplot2::aes(x = wt, y = mpg)) +
+theme_crim()
 }

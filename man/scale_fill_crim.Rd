@@ -2,16 +2,21 @@
 % Please edit documentation in R/graph_theme.R
 \name{scale_fill_crim}
 \alias{scale_fill_crim}
-\title{Title}
+\title{A set of colorblind friendly fill colors for graphs.}
 \usage{
 scale_fill_crim(...)
 }
 \arguments{
-\item{...}{}
+\item{...}{Arguments passed to discrete_scale()}
 }
 \value{
 
 }
 \description{
-Title
+A set of colorblind friendly fill colors for graphs.
+}
+\examples{
+ggplot2::ggplot(mtcars, ggplot2::aes(x = cyl, fill = as.character(cyl))) +
+ ggplot2::geom_bar() +
+  scale_fill_crim()
 }

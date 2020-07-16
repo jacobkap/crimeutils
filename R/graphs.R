@@ -162,30 +162,72 @@ scatterplot_data_graph <- function(data,
 
 
 
-make_stat_count_plots <- function(data, column, count = TRUE, title, ylab, xlab) {
+#' Make a nice-looking stat_count (similar to barplot) plot.
+#' @inheritParams make_barplots
+#' @param xlab
+#' A string with the text you want as the x-axis label.
+#' @return
+#' A stat_count object
+#' @export
+#'
+#' @examples
+#' make_stat_count_plots(mtcars, "mpg")
+#'
+#' make_stat_count_plots(mtcars, "mpg", count = FALSE, title = "hello", ylab = "YLAB Label")
+make_stat_count_plots <- function(data,
+                                  column,
+                                  count = TRUE,
+                                  title = NULL,
+                                  ylab = NULL,
+                                  xlab = NULL) {
   p <-
     data %>%
-    ggplot(aes_string(x = column)) +
+    ggplot2::ggplot(ggplot2::aes_string(x = column)) +
     theme_crim() +
-    ylab(ylab) +
-    xlab(xlab) +
-    ggtitle(title)
+    ggplot2::ylab(ylab) +
+    ggplot2::xlab(xlab) +
+    ggplot2::ggtitle(title)
 
   if (count) {
     p <-
       p +
-      stat_count(aes(y = (..count..)/sum(..count..))) +
-      scale_y_continuous(label = percent)
+      ggplot2::stat_count() +
+      ggplot2::scale_y_continuous(label = scales::comma)
   } else {
     p <-
       p +
-      stat_count() +
-      scale_y_continuous(label = comma)
+      ggplot2::stat_count(ggplot2::aes(y = (..count..)/sum(..count..))) +
+      ggplot2::scale_y_continuous(label = scales::percent)
   }
   return(p)
 }
 
-make_barplots <- function(data, column, count = TRUE, title, ylab) {
+#' Make a nice-looking barplot.
+#'
+#' @param data
+#' @param column
+#' A string with the name of the column you want to make the plot from.
+#' @param count
+#' A boolean (default TRUE) indicating if you want the barplot to show a count
+#' of the column values or a percent.
+#' @param title
+#' A string with the text you want as the title.
+#' @param ylab
+#' A string with the text you want as the y-axis label.
+#'
+#' @return
+#' A barplot object.
+#' @export
+#'
+#' @examples
+#' make_barplots(mtcars, "cyl")
+#'
+#' make_barplots(mtcars, "cyl", count = FALSE, title = "hello", ylab = "YLAB Label")
+make_barplots <- function(data,
+                          column,
+                          count = TRUE,
+                          title = NULL,
+                          ylab = NULL) {
 
 
   data$temp <- factor(data[, column],
@@ -193,23 +235,23 @@ make_barplots <- function(data, column, count = TRUE, title, ylab) {
 
   p <-
     data %>%
-    ggplot(aes(x = temp)) +
+    ggplot2::ggplot(ggplot2::aes(x = temp)) +
     theme_crim() +
-    coord_flip() +
-    ylab(ylab) +
-    xlab("") +
-    ggtitle(title)
+    ggplot2::coord_flip() +
+    ggplot2::ylab(ylab) +
+    ggplot2::xlab("") +
+    ggplot2::ggtitle(title)
 
   if (count) {
     p <-
       p +
-      geom_bar(aes(y = (..count..)/sum(..count..))) +
-      scale_y_continuous(label = percent)
+      ggplot2::geom_bar() +
+      ggplot2::scale_y_continuous(label = scales::comma)
   } else {
-    p <-
-      p +
-      geom_bar() +
-      scale_y_continuous(label = comma)
+  p <-
+    p +
+    ggplot2::geom_bar(ggplot2::aes(y = (..count..)/sum(..count..))) +
+    ggplot2::scale_y_continuous(label = scales::percent)
   }
   return(p)
 }
