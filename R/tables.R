@@ -1,7 +1,7 @@
 # mtcars$mpg[1] <- NA
 #mtcars$mpg[2] <- 10000
 
-  make_desc_stats_table(mtcars, c("wt", "mpg", "disp"))
+#  make_desc_stats_table(mtcars, c("wt", "mpg", "disp"))
 
 #' Create a descriptive statistics table from numeric variables
 #'
