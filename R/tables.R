@@ -1,4 +1,5 @@
-#make_desc_stats_table(mtcars, c("mpg", "disp", "wt"))
+# mtcars$mpg[1] <- NA
+#  make_desc_stats_table(mtcars, c("mpg", "disp", "wt"))
 
 #' Create a descriptive statistics table from numeric variables
 #'
@@ -31,38 +32,39 @@
 #' decimals = 4, title = "hello", subtitle = "world")
 make_desc_stats_table <- function(data,
                                   columns,
-                                  output = c("min", "median", "mean", "sd", "max", "N", "sum"),
+                                  output = c("min", "median", "mean", "sd", "max", "sum", "NAs"),
                                   decimals = 2,
                                   title = NULL,
                                   subtitle = NULL,
                                   footnote = NULL) {
 
-  print(output)
 
   if (!is.numeric(decimals) || decimals < 0) {
     stop("decimals must be a positive integer")
   }
   decimals <- round(decimals)
-  if (!all(output %in% c("min", "median", "mean", "sd", "max", "N", "sum"))) {
-    stop("Please choose one or more of the following values for the output parameter: 'min', 'median', 'mean', 'sd', 'max', 'N', or 'sum'.")
+  if (!all(output %in% c("min", "median", "mean", "sd", "max", "N", "sum", "NAs"))) {
+    stop("Please choose one or more of the following values for the output parameter: 'min', 'median', 'mean', 'sd', 'max', 'N', 'sum', or 'NAs'.")
   }
 
 
-  summarize_types <- list("min"    = "min",
-                          "median" = "median",
-                          "mean"   = "mean",
-                          "sd"     = "sd",
-                          "max"    = "max",
-                          "N"      = "length",
-                          "sum"    = "sum")
+  summarize_types <- list("min"    = ~ min(.x, na.rm = TRUE),
+                          "median" = ~ median(.x, na.rm = TRUE),
+                          "mean"   = ~ mean(.x, na.rm = TRUE),
+                          "sd"     = ~ sd(.x, na.rm = TRUE),
+                          "max"    = ~ max(.x, na.rm = TRUE),
+                          "N"      = length,
+                          "sum"    = ~ sum(.x, na.rm = TRUE),
+                          "NAs"    = ~ sum(is.na(.x)))
   # Keeps only output values the user wants.
   summarize_types <- summarize_types[names(summarize_types) %in% output]
-  # Put the values in the order as inputted (if not following the default)
+  # Put the values in the order as inputted (if not, follows the default)
   summarize_types = summarize_types[output]
   names(summarize_types) <- paste0("zzz", names(summarize_types))
   summarize_types_no_z <- gsub("zzz", "", summarize_types)
 
-  temp <- data %>%
+  temp <-
+    data %>%
     dplyr::select(dplyr::all_of(columns)) %>%
     dplyr::summarise_all(summarize_types)
 
@@ -73,8 +75,11 @@ make_desc_stats_table <- function(data,
   temp$variable <- gsub("_zzz.*", "", temp$variable)
 
   temp <- tidyr::spread(temp, key = summarize_type, value = t.temp.)
+  temp <- temp[, order(c("variable", output), decreasing = TRUE)]
   temp$variable <- capitalize_words(temp$variable)
   names(temp) <- capitalize_words(names(temp))
+  names(temp) <- gsub("Nas", "NAs", names(temp))
+  names(temp) <- gsub("Sd", "Std. Dev.", names(temp))
 
   names(temp)[sapply(temp, is.numeric)]
 
