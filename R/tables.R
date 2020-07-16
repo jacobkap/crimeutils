@@ -1,7 +1,8 @@
 # mtcars$mpg[1] <- NA
 #mtcars$mpg[2] <- 10000
 
-#  make_desc_stats_table(mtcars, c("wt", "mpg", "disp"))
+#  make_desc_stats_table(mtcars, c("wt", "disp", "mpg"))
+#  make_desc_stats_table(mtcars, c("mpg", "disp", "wt"))
 
 #' Create a descriptive statistics table from numeric variables
 #'
@@ -81,7 +82,7 @@ make_desc_stats_table <- function(data,
   temp <- tidyr::spread(temp, key = summarize_type, value = t.temp.)
   # Reorder columns and rows
   temp <- temp[, order(c("variable", output), decreasing = TRUE)]
-  temp <- temp %>% dplyr::arrange(columns)
+  temp <- temp[order(match(temp$variable, columns)), ]
   temp$variable <- capitalize_words(temp$variable)
   names(temp) <- capitalize_words(names(temp))
   names(temp) <- gsub("Nas", "NAs", names(temp))
