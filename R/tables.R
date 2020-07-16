@@ -25,13 +25,13 @@
 #' @export
 #'
 #' @examples
-#' make_desc_stats_table(mtcars, columns = c("mpg", "disp", "wt"))
+#' make_desc_stats_table(mtcars, columns = c("mpg", "disp", "wt", "cyl"))
 #'
 #' make_desc_stats_table(mtcars, c("mpg", "disp", "wt"), output = c("mean", "min"),
 #' decimals = 4, title = "hello", subtitle = "world")
 make_desc_stats_table <- function(data,
                                   columns,
-                                  output = c("min", "median", "mean", "sd", "max", "N"),
+                                  output = c("min", "median", "mean", "sd", "max", "N", "sum"),
                                   decimals = 2,
                                   title = NULL,
                                   subtitle = NULL,
@@ -43,8 +43,8 @@ make_desc_stats_table <- function(data,
     stop("decimals must be a positive integer")
   }
   decimals <- round(decimals)
-  if (!all(output %in% c("min", "median", "mean", "sd", "max", "N"))) {
-    stop("Please choose one or more of the following values for the output parameter: 'min', 'median', 'mean', 'sd', 'max' or 'N'.")
+  if (!all(output %in% c("min", "median", "mean", "sd", "max", "N", "sum"))) {
+    stop("Please choose one or more of the following values for the output parameter: 'min', 'median', 'mean', 'sd', 'max', 'N', or 'sum'.")
   }
 
 
@@ -53,7 +53,8 @@ make_desc_stats_table <- function(data,
                           "mean"   = "mean",
                           "sd"     = "sd",
                           "max"    = "max",
-                          "N"      = "length")
+                          "N"      = "length",
+                          "sum"    = "sum")
   # Keeps only output values the user wants.
   summarize_types <- summarize_types[names(summarize_types) %in% output]
   # Put the values in the order as inputted (if not following the default)
