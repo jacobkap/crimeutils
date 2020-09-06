@@ -5,6 +5,7 @@
 #' Arguments passed to discrete_scale()
 #'
 #' @return
+#' The ggplot graph with linetypes set.
 #' @export
 #'
 #' @examples
@@ -23,6 +24,7 @@ scale_linetype_crim <- function(...) {
 #' Arguments passed to discrete_scale()
 #'
 #' @return
+#' The gggplot graph with fills set.
 #' @export
 #'
 #' @examples
@@ -45,6 +47,7 @@ scale_fill_crim <- function(...) {
 #' Arguments passed to discrete_scale()
 #'
 #' @return
+#' The gggplot graph with colors set.
 #' @export
 #'
 #' @examples
@@ -71,9 +74,10 @@ scale_color_crim <- function(...) {
 #   scale_x_continuous(expand = c(0, 0))
 
 
-#' A minimalistic theme designed for graphics in academic research
+#' A minimalist theme designed for graphics in academic research
 #'
 #' @return
+#' The graph with the theme changed.
 #' @export
 #'
 #' @examples

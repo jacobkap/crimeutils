@@ -14,7 +14,7 @@ time_series_data_graph(
 )
 }
 \arguments{
-\item{data}{A data.frame}
+\item{data}{A data.frame with the data you want to graph.}
 
 \item{numeric_variable}{A string with the name of the column with numeric data to graph.}
 

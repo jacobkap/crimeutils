@@ -1,7 +1,7 @@
 #' Create a PDF with one time-series graph for each group in the data.
 #'
 #' @param data
-#' A data.frame
+#' A data.frame with the data you want to graph.
 #' @param numeric_variable
 #' A string with the name of the column with numeric data to graph.
 #' @param time_variable
@@ -196,7 +196,7 @@ make_stat_count_plots <- function(data,
   } else {
     p <-
       p +
-      ggplot2::stat_count(ggplot2::aes(y = (..count..)/sum(..count..))) +
+      ggplot2::stat_count(ggplot2::aes_string(y = "(..count..)/sum(..count..)")) +
       ggplot2::scale_y_continuous(label = scales::percent)
   }
   return(p)
@@ -205,6 +205,7 @@ make_stat_count_plots <- function(data,
 #' Make a nice-looking barplot.
 #'
 #' @param data
+#' A data.frame with the data you want to graph.
 #' @param column
 #' A string with the name of the column you want to make the plot from.
 #' @param count
@@ -235,7 +236,7 @@ make_barplots <- function(data,
 
   p <-
     data %>%
-    ggplot2::ggplot(ggplot2::aes(x = temp)) +
+    ggplot2::ggplot(ggplot2::aes_string(x = "temp")) +
     theme_crim() +
     ggplot2::coord_flip() +
     ggplot2::ylab(ylab) +
@@ -250,7 +251,7 @@ make_barplots <- function(data,
   } else {
   p <-
     p +
-    ggplot2::geom_bar(ggplot2::aes(y = (..count..)/sum(..count..))) +
+    ggplot2::geom_bar(ggplot2::aes_string(y = "(..count..)/sum(..count..)")) +
     ggplot2::scale_y_continuous(label = scales::percent)
   }
   return(p)

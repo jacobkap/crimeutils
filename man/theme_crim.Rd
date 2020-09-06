@@ -2,15 +2,15 @@
 % Please edit documentation in R/graph_theme.R
 \name{theme_crim}
 \alias{theme_crim}
-\title{A minimalistic theme designed for graphics in academic research}
+\title{A minimalist theme designed for graphics in academic research}
 \usage{
 theme_crim()
 }
 \value{
-
+The graph with the theme changed.
 }
 \description{
-A minimalistic theme designed for graphics in academic research
+A minimalist theme designed for graphics in academic research
 }
 \examples{
 ggplot2::ggplot(mtcars) +

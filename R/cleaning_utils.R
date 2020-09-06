@@ -106,7 +106,7 @@ upper_first_letter <- function(word) {
 }
 
 
-# For some reason a nunch of the datasets end certain columns with '_x" so this
+# For some reason a bunch of the datasets end certain columns with '_x" so this
 # just removes it to be cleaner (personal choice, not really important)
 drop_underscore_x_from_name <- function(x) {
   x <- gsub("_x$", "", x)

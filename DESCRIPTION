@@ -7,8 +7,7 @@ Authors@R: person("Jacob", "Kaplan",
     comment = c(ORCID = "0000-0002-0601-0387"))
 Description: A collection of functions that make it easier to understand crime (or other)
     data, and assist others in understanding it. The package helps you read data 
-    from various sources, cleans it, fixes column names, and graph or map the
-    data. 
+    from various sources, cleans it, fixes column names, and graph the data. 
 Depends:
     R (>= 2.10)
 Imports:
@@ -19,6 +18,7 @@ Imports:
     magrittr,
     gt,
     grDevices,
+    tidyr,
     stats,
     data.table,
     lubridate,

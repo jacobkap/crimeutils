@@ -7,6 +7,8 @@
 make_barplots(data, column, count = TRUE, title = NULL, ylab = NULL)
 }
 \arguments{
+\item{data}{A data.frame with the data you want to graph.}
+
 \item{column}{A string with the name of the column you want to make the plot from.}
 
 \item{count}{A boolean (default TRUE) indicating if you want the barplot to show a count

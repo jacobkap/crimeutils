@@ -13,7 +13,7 @@ scatterplot_data_graph(
 )
 }
 \arguments{
-\item{data}{A data.frame}
+\item{data}{A data.frame with the data you want to graph.}
 
 \item{numeric_variable1}{A string with the name of the first column with numeric data to graph.}
 

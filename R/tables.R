@@ -1,9 +1,3 @@
-# mtcars$mpg[1] <- NA
-#mtcars$mpg[2] <- 10000
-
-#  make_desc_stats_table(mtcars, c("wt", "disp", "mpg"))
-#  make_desc_stats_table(mtcars, c("mpg", "disp", "wt"))
-
 #' Create a descriptive statistics table from numeric variables
 #'
 #' @param data
@@ -26,6 +20,8 @@
 #' A string with the text you want as the footnote.
 #'
 #' @return
+#' A data.frame with the data that generates the table, which is outputted
+#' in the Viewer tab.
 #' @export
 #'
 #' @examples
@@ -79,7 +75,7 @@ make_desc_stats_table <- function(data,
   temp$summarize_type <- gsub(".*_zzz", "", temp$variable)
   temp$variable <- gsub("_zzz.*", "", temp$variable)
 
-  temp <- tidyr::spread(temp, key = summarize_type, value = t.temp.)
+  temp <- tidyr::spread(temp, key = "summarize_type", value = "t.temp.")
   # Reorder columns and rows
   temp <- temp[, order(c("variable", output), decreasing = TRUE)]
   temp <- temp[order(match(temp$variable, columns)), ]
@@ -98,5 +94,5 @@ make_desc_stats_table <- function(data,
                    subtitle = subtitle) %>%
     gt::tab_source_note(source_note = footnote)
 
-
+  return(temp)
 }

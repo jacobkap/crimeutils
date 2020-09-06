@@ -12,6 +12,8 @@ status](https://ci.appveyor.com/api/projects/status/github/jacobkap/crimeutils?b
 [![Codecov test
 coverage](https://codecov.io/gh/jacobkap/crimeutils/branch/master/graph/badge.svg)](https://codecov.io/gh/jacobkap/crimeutils?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/crimeutils?color=blue)](https://cran.r-project.org/package=crimeutils)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 The goal of crimeutils is to provide a set of helper functions to make

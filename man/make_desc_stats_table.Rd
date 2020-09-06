@@ -7,7 +7,7 @@
 make_desc_stats_table(
   data,
   columns,
-  output = c("min", "median", "mean", "sd", "max", "N"),
+  output = c("min", "median", "mean", "sd", "max", "sum", "NAs"),
   decimals = 2,
   title = NULL,
   subtitle = NULL,
@@ -34,13 +34,14 @@ the table will present the columns.}
 \item{footnote}{A string with the text you want as the footnote.}
 }
 \value{
-
+A data.frame with the data that generates the table, which is outputted
+in the Viewer tab.
 }
 \description{
 Create a descriptive statistics table from numeric variables
 }
 \examples{
-make_desc_stats_table(mtcars, columns = c("mpg", "disp", "wt"))
+make_desc_stats_table(mtcars, columns = c("mpg", "disp", "wt", "cyl"))
 
 make_desc_stats_table(mtcars, c("mpg", "disp", "wt"), output = c("mean", "min"),
 decimals = 4, title = "hello", subtitle = "world")

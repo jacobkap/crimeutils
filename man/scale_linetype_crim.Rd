@@ -10,7 +10,7 @@ scale_linetype_crim(...)
 \item{...}{Arguments passed to discrete_scale()}
 }
 \value{
-
+The ggplot graph with linetypes set.
 }
 \description{
 A set of linetypes
