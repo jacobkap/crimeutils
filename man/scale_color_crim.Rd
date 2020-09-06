@@ -10,7 +10,7 @@ scale_color_crim(...)
 \item{...}{Arguments passed to discrete_scale()}
 }
 \value{
-The gggplot graph with colors set.
+The ggplot graph with colors set.
 }
 \description{
 A set of colorblind friendly colors for graphs.

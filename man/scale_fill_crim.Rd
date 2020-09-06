@@ -10,7 +10,7 @@ scale_fill_crim(...)
 \item{...}{Arguments passed to discrete_scale()}
 }
 \value{
-The gggplot graph with fills set.
+The ggplot graph with fills set.
 }
 \description{
 A set of colorblind friendly fill colors for graphs.

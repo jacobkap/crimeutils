@@ -24,7 +24,7 @@ scale_linetype_crim <- function(...) {
 #' Arguments passed to discrete_scale()
 #'
 #' @return
-#' The gggplot graph with fills set.
+#' The ggplot graph with fills set.
 #' @export
 #'
 #' @examples
@@ -47,7 +47,7 @@ scale_fill_crim <- function(...) {
 #' Arguments passed to discrete_scale()
 #'
 #' @return
-#' The gggplot graph with colors set.
+#' The ggplot graph with colors set.
 #' @export
 #'
 #' @examples
