@@ -14,3 +14,8 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+A comment from Uwe Ligges on the last submission says "Is there some reference about the method you can add in the Description
+field in the form Authors (year) <doi:.....>?"
+
+These functions are based on my own experience and methods of working with crime data. So there is not any reference or citation to include in the Description.
