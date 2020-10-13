@@ -1,6 +1,6 @@
 Package: crimeutils
 Title: A Comprehensive Set of Functions to Clean, Analyze, and Present Crime Data
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: person("Jacob", "Kaplan",
     email = "jkkaplan6@gmail.com",
     role = c("aut", "cre"),
