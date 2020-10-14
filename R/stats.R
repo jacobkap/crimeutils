@@ -1,10 +1,11 @@
-#' Make a graph of coefficient values and 95% confidence interval for regression
+#' Make a graph of coefficient values and 95 percent confidence interval for regression.
 #'
-#' @inheritParams make_regression_table
+#'
 #' @param model
+#' A `lm` object made from making a model using `lm()`.
 #' @param coefficients
-#' A string or vector of strings with the coefficent names. Wil then make the graph
-#' only with those coefficients
+#' A string or vector of strings with the coefficient names. Will then make the graph
+#' only with those coefficients.
 #'
 #' @return
 #' Outputs a `ggplot2` graph
@@ -12,9 +13,7 @@
 #'
 #' @examples
 #' make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
-#'
 #' make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
-#'
 #' make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))
 make_regression_graph <- function(model, coefficients = NULL) {
   if (!(any(is(model) %in% "lm"))) {

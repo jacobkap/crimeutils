@@ -2,26 +2,24 @@
 % Please edit documentation in R/stats.R
 \name{make_regression_graph}
 \alias{make_regression_graph}
-\title{Make a graph of coefficient values and 95% confidence interval for regression}
+\title{Make a graph of coefficient values and 95 percent confidence interval for regression.}
 \usage{
 make_regression_graph(model, coefficients = NULL)
 }
 \arguments{
 \item{model}{A `lm` object made from making a model using `lm()`.}
 
-\item{coefficients}{A string or vector of strings with the coefficent names. Wil then make the graph
-only with those coefficients}
+\item{coefficients}{A string or vector of strings with the coefficient names. Will then make the graph
+only with those coefficients.}
 }
 \value{
 Outputs a `ggplot2` graph
 }
 \description{
-Make a graph of coefficient values and 95% confidence interval for regression
+Make a graph of coefficient values and 95 percent confidence interval for regression.
 }
 \examples{
 make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
-
 make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
-
 make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))
 }

@@ -166,30 +166,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="make_regression_graph.html">make_regression_graph</a></code> </p>
+          <p><code><a href="make_regression_graph.html">make_regression_graph()</a></code> </p>
         </td>
-        <td><p>Make a graph of coefficient values and 95<!-- % confidence interval for regression} -->
-
-make_regression_graph(model, coefficients = NULL)
-
-
-modelA `lm` object made from making a model using `lm()`.
-
-coefficientsA string or vector of strings with the coefficent names. Wil then make the graph
-only with those coefficients
-
-
-Outputs a `ggplot2` graph
-
-
-Make a graph of coefficient values and 95<!-- % confidence interval for regression -->
-
-
-make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
-
-make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
-
-make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))</p></td>
+        <td><p>Make a graph of coefficient values and 95 percent confidence interval for regression.</p></td>
       </tr><tr>
         
         <td>
