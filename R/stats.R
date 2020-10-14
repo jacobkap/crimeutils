@@ -1,3 +1,58 @@
+#' Make a graph of coefficient values and 95% confidence interval for regression
+#'
+#' @inheritParams make_regression_table
+#' @param model
+#' @param coefficients
+#' A string or vector of strings with the coefficent names. Wil then make the graph
+#' only with those coefficients
+#'
+#' @return
+#' Outputs a `ggplot2` graph
+#' @export
+#'
+#' @examples
+#' make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
+#'
+#' make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
+#'
+#' make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))
+make_regression_graph <- function(model, coefficients = NULL) {
+  if (!(any(is(model) %in% "lm"))) {
+    stop("Input 'model' most be a 'lm' type made using the lm() function.")
+  }
+
+
+
+  data <- make_regression_table(model)
+  if (!is.null(coefficients) & !all(coefficients %in% data$variable)) {
+    stop("coefficients must be a string or vector of strings of coefficients.")
+  }
+  # Drops the intercept
+  data <- data[-1, ]
+  if (!is.null(coefficients)) {
+    data <- data[data$variable %in% coefficients, ]
+  }
+
+
+  data$Significance <- "Not Significant"
+  data$Significance[data$p_value < 0.05 & data$p_value > 0.01] <- "p<0.05"
+  data$Significance[data$p_value <= 0.01] <- "p<0.01"
+
+
+  ggplot2::ggplot(data, ggplot2::aes(x = variable , y = estimate, color = Significance)) +
+    ggplot2::geom_errorbar(ggplot2::aes(ymin=confidence_interval_lower_95 ,
+                                        ymax=confidence_interval_upper_95),
+                           width=.15, size = 1.02) +
+    ggplot2::geom_point(size = 2.7) +
+    ggplot2::coord_flip() +
+    ggplot2::ylab("Estimate with 95% Confidence Intervals") +
+    ggplot2::xlab("Variable") +
+    crimeutils::theme_crim() +
+    ggplot2::theme(legend.title = ggplot2::element_blank()) +
+    ggplot2::scale_color_manual(values = c("#1b9e77", "#d95f02", "#7570b3"))
+
+}
+
 
 
 #' Turns regression results in a data.frame for easy conversion to a table
