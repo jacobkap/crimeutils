@@ -16,7 +16,7 @@ coverage](https://codecov.io/gh/jacobkap/crimeutils/branch/master/graph/badge.sv
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-The goal of crimeutils is to provide a set of helper functions to make
+The goal of `crimeutils` is to provide a set of helper functions to make
 common data tasks in criminology research - clean, explore, analyze,
 visualize - a bit easier.
 

@@ -6,7 +6,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • crimeutils</title>
+<title>Make a graph of coefficient values and 95
+
+make_regression_graph(model, coefficients = NULL)
+
+
+modelA `lm` object made from making a model using `lm()`.
+
+coefficientsA string or vector of strings with the coefficent names. Wil then make the graph
+only with those coefficients
+
+
+Outputs a `ggplot2` graph
+
+
+Make a graph of coefficient values and 95
+
+
+make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
+
+make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
+
+make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars)) — make_regression_graph • crimeutils</title>
 
 
 <!-- jquery -->
@@ -39,7 +60,28 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Make a graph of coefficient values and 95
+
+make_regression_graph(model, coefficients = NULL)
+
+
+modelA `lm` object made from making a model using `lm()`.
+
+coefficientsA string or vector of strings with the coefficent names. Wil then make the graph
+only with those coefficients
+
+
+Outputs a `ggplot2` graph
+
+
+Make a graph of coefficient values and 95
+
+
+make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
+
+make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
+
+make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars)) — make_regression_graph" />
 
 
 
@@ -58,7 +100,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,67 +150,9 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
-    </div>
-
-    <table class="ref-index">
-
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="capitalize_words.html">capitalize_words()</a></code> </p>
-        </td>
-        <td><p>Capitalizes the first letter of every word</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="indicate_outliers.html">indicate_outliers()</a></code> </p>
-        </td>
-        <td><p>Creates new columns to indicate which values are outliers based on the average value.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_barplots.html">make_barplots()</a></code> </p>
-        </td>
-        <td><p>Make a nice-looking barplot.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_desc_stats_table.html">make_desc_stats_table()</a></code> </p>
-        </td>
-        <td><p>Create a descriptive statistics table from numeric variables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_latex_tables.html">make_latex_tables()</a></code> </p>
-        </td>
-        <td><p>Creates a .tex file with LaTeX code to create a table from an R data.frame.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_regression_graph.html">make_regression_graph</a></code> </p>
-        </td>
-        <td><p>Make a graph of coefficient values and 95<!-- % confidence interval for regression} -->
+    <h1>Make a graph of coefficient values and 95<!-- % confidence interval for regression} -->
 
 make_regression_graph(model, coefficients = NULL)
 
@@ -189,78 +173,18 @@ make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
 
 make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
 
-make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_regression_table.html">make_regression_table()</a></code> </p>
-        </td>
-        <td><p>Turns regression results in a data.frame for easy conversion to a table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_state_abb.html">make_state_abb()</a></code> </p>
-        </td>
-        <td><p>Returns abbreviations of state name input.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_stat_count_plots.html">make_stat_count_plots()</a></code> </p>
-        </td>
-        <td><p>Make a nice-looking stat_count (similar to barplot) plot.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pad_decimals.html">pad_decimals()</a></code> </p>
-        </td>
-        <td><p>Pad decimal places with trailing zeros.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scale_color_crim.html">scale_color_crim()</a></code> </p>
-        </td>
-        <td><p>A set of colorblind friendly colors for graphs.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scale_fill_crim.html">scale_fill_crim()</a></code> </p>
-        </td>
-        <td><p>A set of colorblind friendly fill colors for graphs.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scale_linetype_crim.html">scale_linetype_crim()</a></code> </p>
-        </td>
-        <td><p>A set of linetypes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scatterplot_data_graph.html">scatterplot_data_graph()</a></code> </p>
-        </td>
-        <td><p>Create a PDF with one scatterplot for each group in the data.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_crim.html">theme_crim()</a></code> </p>
-        </td>
-        <td><p>A minimalist theme designed for graphics in academic research</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="time_series_data_graph.html">time_series_data_graph()</a></code> </p>
-        </td>
-        <td><p>Create a PDF with one time-series graph for each group in the data.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ucr_constant_reporter_oris.html">ucr_constant_reporter_oris()</a></code> </p>
-        </td>
-        <td><p>Get ORIs that consistently report their data every year.</p></td>
-      </tr>
-    </tbody>
-    </table>
-  </div>
+make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jacobkap/crimeutils/blob/master/R/stats.R'><code>R/stats.R</code></a></small>
+    <div class="hidden name"><code>make_regression_graph.Rd</code></div>
+    </div>
 
+    <div class="ref-description">
+    </div>
+
+
+
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
