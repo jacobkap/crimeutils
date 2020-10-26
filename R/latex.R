@@ -46,7 +46,7 @@ make_latex_tables <- function(data,
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
   writeLines("\\centering")
   writeLines(paste0("\\caption{", caption, "}"))
-  writeLines("\\begin{subtable}[t]{\\linewidth}")
+  writeLines("\\begin{subtable}[c]{.6\\linewidth}")
   writeLines(paste0("\\label{", label, "}"))
 
 
@@ -63,7 +63,7 @@ make_latex_tables <- function(data,
   }
 
   # End table
-  writeLines("\\vspace{-6mm}")
+ # writeLines("\\vspace{-6mm}")
   writeLines(paste0("\\floatfoot{", footnote, "}"))
 
   writeLines("\\end{subtable}")
@@ -99,7 +99,7 @@ get_column_alignments <- function(data) {
 
 make_latex_table_panel <- function(data, panel_caption, multi_column) {
   alignment <- get_column_alignments(data)
-  writeLines(paste0("\\begin{tabular}{@{\\extracolsep{5pt}}",
+  writeLines(paste0("\\begin{tabular}{@{\\extracolsep{6pt}}",
                     alignment, "}"))
 
   if (!is.null(multi_column)) {
