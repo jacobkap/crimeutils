@@ -13,10 +13,11 @@
 #'
 #' @examples
 #' make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
-#' make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
+#' make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars),
+#' coefficients = c("cyl", "disp"))
 #' make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))
 make_regression_graph <- function(model, coefficients = NULL) {
-  if (!(any(is(model) %in% "lm"))) {
+  if (!(any(methods::is(model) %in% "lm"))) {
     stop("Input 'model' most be a 'lm' type made using the lm() function.")
   }
 
@@ -38,9 +39,9 @@ make_regression_graph <- function(model, coefficients = NULL) {
   data$Significance[data$p_value <= 0.01] <- "p<0.01"
 
 
-  ggplot2::ggplot(data, ggplot2::aes(x = variable , y = estimate, color = Significance)) +
-    ggplot2::geom_errorbar(ggplot2::aes(ymin=confidence_interval_lower_95 ,
-                                        ymax=confidence_interval_upper_95),
+  ggplot2::ggplot(data, ggplot2::aes_string(x = "variable" , y = "estimate", color = "Significance")) +
+    ggplot2::geom_errorbar(ggplot2::aes_string(ymin = 'confidence_interval_lower_95' ,
+                                               ymax = 'confidence_interval_upper_95'),
                            width=.15, size = 1.02) +
     ggplot2::geom_point(size = 2.7) +
     ggplot2::coord_flip() +
@@ -73,7 +74,7 @@ make_regression_graph <- function(model, coefficients = NULL) {
 #' make_regression_table(lm(mpg ~ cyl, data = mtcars))
 #' make_regression_table(lm(mpg ~ cyl, data = mtcars), coefficients_only = FALSE)
 make_regression_table <- function(model, coefficients_only = TRUE) {
-  if (!(any(is(model) %in% "lm"))) {
+  if (!(any(methods::is(model) %in% "lm"))) {
     stop("Input 'model' most be a 'lm' type made using the lm() function.")
   }
 
@@ -84,14 +85,14 @@ make_regression_table <- function(model, coefficients_only = TRUE) {
   coefficients$variable <- rownames(coefficients)
   coefficients <-
     coefficients %>%
-    dplyr::rename(estimate = Estimate,
-                  standard_error  = Std..Error,
-                  t_value         = t.value,
-                  p_value         = Pr...t..) %>%
-    dplyr::select(variable,
+    dplyr::rename(estimate        = "Estimate",
+                  standard_error  = "Std..Error",
+                  t_value         = "t.value",
+                  p_value         = "Pr...t..") %>%
+    dplyr::select("variable",
                   dplyr::everything())
 
-  confidence_intervals <- confint(model)
+  confidence_intervals <- stats::confint(model)
   coefficients$confidence_interval_lower_95 <- confidence_intervals[, 1]
   coefficients$confidence_interval_upper_95 <- confidence_intervals[, 2]
   rownames(coefficients) <- 1:nrow(coefficients)
@@ -103,10 +104,10 @@ make_regression_table <- function(model, coefficients_only = TRUE) {
   suppressWarnings(final <- data.frame(r_squared           = summary(model)$r.squared,
                                        adjusted_r_squared  = summary(model)$adj.r.squared,
                                        f_statistic         = summary(model)$fstatistic["value"],
-                                       f_statistic_p_value =  pf(summary(model)$fstatistic[1],
-                                                                 summary(model)$fstatistic[2],
-                                                                 summary(model)$fstatistic[3],
-                                                                 lower.tail=FALSE),
+                                       f_statistic_p_value =  stats::pf(summary(model)$fstatistic[1],
+                                                                        summary(model)$fstatistic[2],
+                                                                        summary(model)$fstatistic[3],
+                                                                        lower.tail=FALSE),
                                        degrees_of_freedom  = summary(model)$fstatistic["dendf"]))
 
   final <- dplyr::bind_cols(coefficients, final)

@@ -20,6 +20,7 @@ Make a graph of coefficient values and 95 percent confidence interval for regres
 }
 \examples{
 make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars))
-make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars), coefficients = c("cyl", "disp"))
+make_regression_graph(model = lm(mpg ~ cyl + disp + hp + drat, data = mtcars),
+coefficients = c("cyl", "disp"))
 make_regression_graph(model = lm(mpg ~ cyl + disp, data = mtcars))
 }

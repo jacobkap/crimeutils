@@ -22,7 +22,8 @@ Imports:
     stats,
     data.table,
     lubridate,
-    janitor
+    janitor,
+    methods
 License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/jacobkap/crimeutils/

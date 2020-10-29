@@ -39,7 +39,10 @@ make_latex_tables <- function(data,
   sink(file)
 
   table_direction <- "table"
-  if (sideways) table_direction <- "sidewaystable"
+  if (sideways)  {
+    table_direction <- "sidewaystable"
+    message("Please include '\\usepackage{rotating}' at the start of your LaTeX file for sideways table to work.")
+  }
 
 
   writeLines("\\clearpage")
@@ -63,7 +66,7 @@ make_latex_tables <- function(data,
   }
 
   # End table
- # writeLines("\\vspace{-6mm}")
+  # writeLines("\\vspace{-6mm}")
   writeLines(paste0("\\floatfoot{", footnote, "}"))
 
   writeLines("\\end{subtable}")
@@ -106,9 +109,12 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
     for (i in 1:length(multi_column)) {
       multi_column_row <- paste0("\\multicolumn{",
                                  unname(multi_column)[i],
-                                 "}{c}{\\textbf{",
+                                 "}{r}{\\textbf{",
                                  names(multi_column[i]),
                                  "}} &")
+      # Replace first {r} to {l} so it aligns to the left for the very first column,
+      # This this column is usually the category of the row so tends to be left-aligned.
+      multi_column_row <- sub("\\{r\\}", "\\{l\\}", multi_column_row)
       if (i == length(multi_column)) {
         multi_column_row <- gsub("&$", "\\\\\\\\", multi_column_row)
       }
@@ -119,6 +125,8 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   writeLines("\\toprule")
 
   headers <- paste0("\\thead{", names(data), "} &", collapse = " ")
+  # Makes the first column name to be left-aigned.
+  headers <- sub("thead", "thead\\[l\\]", headers)
   headers <- fix_percent(headers)
   headers <- gsub("&$", "\\\\\\\\", headers)
 

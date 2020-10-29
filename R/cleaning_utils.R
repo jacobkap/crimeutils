@@ -10,7 +10,7 @@
 #' nearest even number.
 #'
 #' @return
-#' The original numbers but with trailing zeros added to the decimal places.
+#' The original numbers, now as strings with trailing zeros added to the decimal places.
 #' @export
 #'
 #' @examples
@@ -30,7 +30,7 @@ pad_decimals <- function(numbers, digits = NULL) {
   }
   numbers <- as.numeric(numbers)
   numbers <- sprintf(paste("%.", digits, "f", sep = ""), numbers)
-  numbers <- as.numeric(numbers)
+  numbers[numbers == "NA"] <- NA
 
   return(numbers)
 }

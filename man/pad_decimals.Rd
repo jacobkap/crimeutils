@@ -16,7 +16,7 @@ place specified. If rounding at a 5, follows R's rules to round to the
 nearest even number.}
 }
 \value{
-The original numbers but with trailing zeros added to the decimal places.
+The original numbers, now as strings with trailing zeros added to the decimal places.
 }
 \description{
 Pad decimal places with trailing zeros.
