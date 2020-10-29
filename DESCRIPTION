@@ -20,9 +20,6 @@ Imports:
     grDevices,
     tidyr,
     stats,
-    data.table,
-    lubridate,
-    janitor,
     methods
 License: MIT + file LICENSE
 LazyData: TRUE
