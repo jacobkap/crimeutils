@@ -2,7 +2,7 @@
 
 * local Windows install, R 4.0.2
 * Ubuntu 16.04.6 (on travis-ci), R 4.0.2
-* AppVeyor, R 4.0.2
+* AppVeyor, R 4.0.3
 * win-builder (devel and release)
 * Rhub
     + Windows Server 2008 R2 SP1, R-devel, 32/64 bit
@@ -11,11 +11,9 @@
     
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
-* This is a new release.
 
-A comment from Uwe Ligges on the last submission says "Is there some reference about the method you can add in the Description
-field in the form Authors (year) <doi:.....>?"
+## Reverse dependencies
 
-These functions are based on my own experience and methods of working with crime data. So there is not any reference or citation to include in the Description.
+There are zero reverse dependencies. 
