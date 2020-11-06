@@ -230,7 +230,7 @@ make_barplots <- function(data,
                           title = NULL,
                           ylab = NULL) {
 
-
+  data <- data.frame(data)
   data$temp <- factor(data[, column],
                       levels = names(sort(table(data[, column]), decreasing = FALSE)))
 

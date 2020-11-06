@@ -1,4 +1,10 @@
-# crime 0.2.0
+# crimeutils 0.2.1
+
+* Fix issue in `make_barplots()` when using a tibble where the plot would show only 
+a NA column instead of the actual categories. Fixes this by converting the
+data to a data.frame.
+
+# crimeutils 0.2.0
 
 * Adds a function to that returns a data.frame from a regression model
 so it's easier to turn into tables for publication. Also adds a function
@@ -8,6 +14,6 @@ for all coefficients.
 * Fixed bug in `pad_decimals()` that incorrectly dropped the padding when converting back to a number. Now
 returns data as strings.
 
-# crime 0.1.0
+# crimeutils 0.1.0
 
 * Added a `NEWS.md` file to track changes to the package.

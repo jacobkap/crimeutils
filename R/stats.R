@@ -114,3 +114,8 @@ make_regression_table <- function(model, coefficients_only = TRUE) {
   rownames(final) <- 1:nrow(final)
   return(final)
 }
+
+
+make_percentile <- function() {
+
+}
