@@ -1,3 +1,7 @@
+# crimeutils 0.2.2
+
+* Minor bug fixes.
+
 # crimeutils 0.2.1
 
 * Fix issue in `make_barplots()` when using a tibble where the plot would show only 
