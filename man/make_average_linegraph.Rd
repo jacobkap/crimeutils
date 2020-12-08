@@ -31,5 +31,5 @@ Create a line graph with 95\% confidence interval bars
 data = data.frame(x = sample(15:25, size = 200, replace = TRUE),
 y = sample(1:100, size = 200, replace = TRUE))
 make_average_linegraph(data, "x", "y")
-make_average_linegraph(data, "x", "y", confidence_interval_error_bars  = TRUE)
+make_average_linegraph(data, "x", "y", confidence_interval_error_bars  = FALSE)
 }

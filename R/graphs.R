@@ -275,17 +275,17 @@ make_barplots <- function(data,
 #' data = data.frame(x = sample(15:25, size = 200, replace = TRUE),
 #' y = sample(1:100, size = 200, replace = TRUE))
 #' make_average_linegraph(data, "x", "y")
-#' make_average_linegraph(data, "x", "y", confidence_interval_error_bars  = TRUE)
+#' make_average_linegraph(data, "x", "y", confidence_interval_error_bars  = FALSE)
 make_average_linegraph <- function(data,
                                    x_col,
                                    y_col,
                                    confidence_interval_error_bars  = TRUE) {
   data <- data.frame(data)
-
+  data_grouped <- data %>%
+    dplyr::group_by_at(x_col) %>%
+    dplyr::summarize_at(.vars = y_col, .funs = mean)
   if (confidence_interval_error_bars) {
-    data_grouped <- data %>%
-      dplyr::group_by_at(x_col) %>%
-      dplyr::summarize_at(.vars = y_col, .funs = mean)
+
     data_grouped$lower_bound <- NA
     data_grouped$upper_bound <- NA
     for (i in 1:nrow(data_grouped)) {
@@ -303,11 +303,11 @@ make_average_linegraph <- function(data,
 
   if (confidence_interval_error_bars) {
     p <- ggplot2::ggplot(data_grouped, ggplot2::aes_string(x = x_col, y = y_col)) +
-      ggplot2::geom_line(size = 1.15) +
-      ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound), size = 1.15)
+      ggplot2::geom_line(size = 1.05) +
+      ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound), size = 1.05)
   } else {
-    p <- ggplot2::ggplot(data, ggplot2::aes_string(x = x_col, y = y_col)) +
-      ggplot2::geom_line(size = 1.15)
+    p <- ggplot2::ggplot(data_grouped, ggplot2::aes_string(x = x_col, y = y_col)) +
+      ggplot2::geom_line(size = 1.05)
   }
 
   return(p)
