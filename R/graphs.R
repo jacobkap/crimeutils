@@ -303,11 +303,11 @@ make_average_linegraph <- function(data,
 
   if (confidence_interval_error_bars) {
     p <- ggplot2::ggplot(data_grouped, ggplot2::aes_string(x = x_col, y = y_col)) +
-      ggplot2::geom_line() +
-      ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound))
+      ggplot2::geom_line(size = 1.15) +
+      ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound), size = 1.15)
   } else {
     p <- ggplot2::ggplot(data, ggplot2::aes_string(x = x_col, y = y_col)) +
-      ggplot2::geom_line()
+      ggplot2::geom_line(size = 1.15)
   }
 
   return(p)
