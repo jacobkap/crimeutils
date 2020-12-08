@@ -1,6 +1,8 @@
 # crimeutils 0.2.2
 
 * Minor bug fixes.
+* Fixes typo in make_average_linegraph and error when using tibbles rather than
+data.frames.
 
 # crimeutils 0.2.1
 

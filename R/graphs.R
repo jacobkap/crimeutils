@@ -247,12 +247,12 @@ make_barplots <- function(data,
     p <-
       p +
       ggplot2::geom_bar() +
-      ggplot2::scale_y_continuous(label = scales::comma)
+      ggplot2::scale_y_continuous(label = scales::comma, expand = c(0, 0.1))
   } else {
     p <-
       p +
       ggplot2::geom_bar(ggplot2::aes_string(y = "(..count..)/sum(..count..)")) +
-      ggplot2::scale_y_continuous(label = scales::percent)
+      ggplot2::scale_y_continuous(label = scales::percent, expand = c(0, .1))
   }
   return(p)
 }
@@ -260,10 +260,14 @@ make_barplots <- function(data,
 #' Create a line graph with 95\% confidence interval bars
 #'
 #' @param data
+#' A data.frame with the data you want to graph
 #' @param x_col
+#' A string with the name of the x-axis column
 #' @param y_col
-#' @param confident_interval_error_bars
-#'
+#' A string with the name of the y-axis column
+#' @param confidence_interval_error_bars
+#' A boolean (default TRUE) for whether to include 95\% confidence intervals
+#' or not.
 #' @return
 #' @export
 #'
@@ -271,14 +275,14 @@ make_barplots <- function(data,
 #' data = data.frame(x = sample(15:25, size = 200, replace = TRUE),
 #' y = sample(1:100, size = 200, replace = TRUE))
 #' make_average_linegraph(data, "x", "y")
-#' make_average_linegraph(data, "x", "y", confident_interval_error_bars = TRUE)
+#' make_average_linegraph(data, "x", "y", confidence_interval_error_bars  = TRUE)
 make_average_linegraph <- function(data,
                                    x_col,
                                    y_col,
-                                   confident_interval_error_bars = FALSE) {
+                                   confidence_interval_error_bars  = TRUE) {
+  data <- data.frame(data)
 
-
-  if (confident_interval_error_bars) {
+  if (confidence_interval_error_bars) {
     data_grouped <- data %>%
       dplyr::group_by_at(x_col) %>%
       dplyr::summarize_at(.vars = y_col, .funs = mean)
@@ -297,7 +301,7 @@ make_average_linegraph <- function(data,
 
 
 
-  if (confident_interval_error_bars) {
+  if (confidence_interval_error_bars) {
     p <- ggplot2::ggplot(data_grouped, ggplot2::aes_string(x = x_col, y = y_col)) +
       ggplot2::geom_line() +
       ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound))

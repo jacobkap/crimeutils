@@ -95,7 +95,7 @@ theme_crim <- function() {
                  panel.border      = ggplot2::element_blank(),
                  axis.line         = ggplot2::element_line(colour = "black",
                                                            size = ggplot2::rel(1)),
-                 panel.grid.major  = ggplot2::element_line(colour = "grey"),
+                 panel.grid.major  = ggplot2::element_line(colour = "grey", size = 1.02),
                  panel.grid.minor  = ggplot2::element_line(colour = "grey"),
                  text              = ggplot2::element_text(size = 15,
                                                            family = "serif"),

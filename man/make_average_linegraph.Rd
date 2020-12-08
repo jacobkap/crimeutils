@@ -8,11 +8,18 @@ make_average_linegraph(
   data,
   x_col,
   y_col,
-  confident_interval_error_bars = FALSE
+  confidence_interval_error_bars = TRUE
 )
 }
 \arguments{
-\item{confident_interval_error_bars}{}
+\item{data}{A data.frame with the data you want to graph}
+
+\item{x_col}{A string with the name of the x-axis column}
+
+\item{y_col}{A string with the name of the y-axis column}
+
+\item{confidence_interval_error_bars}{A boolean (default TRUE) for whether to include 95\% confidence intervals
+or not.}
 }
 \value{
 
@@ -24,5 +31,5 @@ Create a line graph with 95\% confidence interval bars
 data = data.frame(x = sample(15:25, size = 200, replace = TRUE),
 y = sample(1:100, size = 200, replace = TRUE))
 make_average_linegraph(data, "x", "y")
-make_average_linegraph(data, "x", "y", confident_interval_error_bars = TRUE)
+make_average_linegraph(data, "x", "y", confidence_interval_error_bars  = TRUE)
 }

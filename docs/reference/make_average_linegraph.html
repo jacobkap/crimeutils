@@ -124,15 +124,28 @@
   <span class='va'>data</span>,
   <span class='va'>x_col</span>,
   <span class='va'>y_col</span>,
-  confident_interval_error_bars <span class='op'>=</span> <span class='cn'>FALSE</span>
+  confidence_interval_error_bars <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>confident_interval_error_bars</th>
-      <td></td>
+      <th>data</th>
+      <td><p>A data.frame with the data you want to graph</p></td>
+    </tr>
+    <tr>
+      <th>x_col</th>
+      <td><p>A string with the name of the x-axis column</p></td>
+    </tr>
+    <tr>
+      <th>y_col</th>
+      <td><p>A string with the name of the y-axis column</p></td>
+    </tr>
+    <tr>
+      <th>confidence_interval_error_bars</th>
+      <td><p>A boolean (default TRUE) for whether to include 95% confidence intervals
+or not.</p></td>
     </tr>
     </table>
 
@@ -143,9 +156,10 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>:</span><span class='fl'>25</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>:</span><span class='fl'>25</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>make_average_linegraph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>
-</div><div class='img'><img src='make_average_linegraph-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_linegraph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, confident_interval_error_bars <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='make_average_linegraph-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_linegraph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, confidence_interval_error_bars  <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='make_average_linegraph-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
