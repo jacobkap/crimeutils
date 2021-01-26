@@ -107,7 +107,7 @@ make_regression_table <- function(model, coefficients_only = TRUE) {
                                        f_statistic_p_value =  stats::pf(summary(model)$fstatistic[1],
                                                                         summary(model)$fstatistic[2],
                                                                         summary(model)$fstatistic[3],
-                                                                        lower.tail=FALSE),
+                                                                        lower.tail = FALSE),
                                        degrees_of_freedom  = summary(model)$fstatistic["dendf"]))
 
   final <- dplyr::bind_cols(coefficients, final)

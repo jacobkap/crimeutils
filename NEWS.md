@@ -3,6 +3,7 @@
 * Minor bug fixes.
 * Fixes typo in make_average_linegraph and error when using tibbles rather than
 data.frames.
+* Changes capitalize_words so it doesn't capitalize the letter after an apostrophe.
 
 # crimeutils 0.2.1
 

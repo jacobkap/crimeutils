@@ -192,12 +192,12 @@ make_stat_count_plots <- function(data,
     p <-
       p +
       ggplot2::stat_count() +
-      ggplot2::scale_y_continuous(label = scales::comma)
+      ggplot2::scale_y_continuous(labels.default() = scales::comma)
   } else {
     p <-
       p +
       ggplot2::stat_count(ggplot2::aes_string(y = "(..count..)/sum(..count..)")) +
-      ggplot2::scale_y_continuous(label = scales::percent)
+      ggplot2::scale_y_continuous(labels = scales::percent)
   }
   return(p)
 }
@@ -247,12 +247,12 @@ make_barplots <- function(data,
     p <-
       p +
       ggplot2::geom_bar() +
-      ggplot2::scale_y_continuous(label = scales::comma, expand = c(0, 0.1))
+      ggplot2::scale_y_continuous(labels = scales::comma, expand = c(0, 0.1))
   } else {
     p <-
       p +
       ggplot2::geom_bar(ggplot2::aes_string(y = "(..count..)/sum(..count..)")) +
-      ggplot2::scale_y_continuous(label = scales::percent, expand = c(0, .1))
+      ggplot2::scale_y_continuous(labels = scales::percent, expand = c(0, .1))
   }
   return(p)
 }

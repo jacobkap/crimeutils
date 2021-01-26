@@ -43,6 +43,9 @@ test_that("Pad decimals works", {
 
 test_that("Capitalize words works", {
   expect_equal(capitalize_words("hello world"), "Hello World")
+
+  expect_equal(capitalize_words("hello'world"), "Hello'world")
+
   expect_equal(capitalize_words("hello-world"), "Hello-World")
   expect_equal(capitalize_words("hello/world"), "Hello/World")
   expect_equal(capitalize_words("hello#world"), "Hello#World")
@@ -60,7 +63,6 @@ test_that("Capitalize words works", {
 
 
   expect_equal(capitalize_words("hello-world"), "Hello-World")
-  expect_equal(capitalize_words("hello'world"), "Hello'World")
 
   expect_equal(upper_first_letter("hello world"), "Hello world")
   expect_equal(upper_first_letter("hELLo woRLD"), "HELLo woRLD")

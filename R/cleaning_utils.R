@@ -80,7 +80,7 @@ capitalize_words <- function(words, lowercase_of = TRUE) {
   words <- tolower(words)
 
 
-  for (i in c(" ", "-", "#", "$", "%", "&", '\\(', ")", "-", "_", "=", "'", "/", "@")) {
+  for (i in c(" ", "-", "#", "$", "%", "&", '\\(', ")", "-", "_", "=", "/", "@")) {
     words <- strsplit(words, i)
     words <- lapply(words, upper_first_letter)
     words <- unlist(lapply(words, paste, collapse = i))
