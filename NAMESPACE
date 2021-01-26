@@ -3,7 +3,7 @@
 export("%>%")
 export(capitalize_words)
 export(indicate_outliers)
-export(make_average_linegraph)
+export(make_average_graph)
 export(make_barplots)
 export(make_desc_stats_table)
 export(make_latex_tables)

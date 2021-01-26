@@ -4,6 +4,9 @@
 * Fixes typo in make_average_linegraph and error when using tibbles rather than
 data.frames.
 * Changes capitalize_words so it doesn't capitalize the letter after an apostrophe.
+* Changes `make_average_linegraph()` to `make_average_graph()` which can now also 
+  return a barplot. This function now can include 95% confidence intervals for 
+  both linegraphs and barplots.
 
 # crimeutils 0.2.1
 

@@ -268,18 +268,29 @@ make_barplots <- function(data,
 #' @param confidence_interval_error_bars
 #' A boolean (default TRUE) for whether to include 95\% confidence intervals
 #' or not.
+#' @param type
+#' A string for whether it should make a linegraph ("line", default) or a bargraph ("bar")
 #' @return
+#' A ggplot object. Also prints the graph to the Plots panel.
 #' @export
 #'
 #' @examples
 #' data = data.frame(x = sample(15:25, size = 200, replace = TRUE),
 #' y = sample(1:100, size = 200, replace = TRUE))
-#' make_average_linegraph(data, "x", "y")
-#' make_average_linegraph(data, "x", "y", confidence_interval_error_bars  = FALSE)
-make_average_linegraph <- function(data,
-                                   x_col,
-                                   y_col,
-                                   confidence_interval_error_bars  = TRUE) {
+#' make_average_graph(data, "x", "y")
+#' make_average_graph(data, "x", "y", confidence_interval_error_bars  = FALSE)
+#' make_average_graph(data, "x", "y", type = "bar")
+#' make_average_graph(data, "x", "y", confidence_interval_error_bars  = FALSE, type = "bar")
+make_average_graph <- function(data,
+                               x_col,
+                               y_col,
+                               confidence_interval_error_bars  = TRUE,
+                               type = c("line", "bar")) {
+
+  if (all(type == c("line", "bar"))) {
+    type = "line"
+  }
+
   data <- data.frame(data)
   data_grouped <- data %>%
     dplyr::group_by_at(x_col) %>%
@@ -291,8 +302,8 @@ make_average_linegraph <- function(data,
     for (i in 1:nrow(data_grouped)) {
       temp <- data[data[, x_col] %in% data_grouped[i, x_col], ]
       temp <- temp[, y_col]
-      lower_bound <- mean(temp) - (1.96 * (stats::sd(temp)/ sqrt(length(temp))))
-      upper_bound <- mean(temp) + (1.96 * (stats::sd(temp)/ sqrt(length(temp))))
+      lower_bound <- mean(temp) - (1.96 * (stats::sd(temp) / sqrt(length(temp))))
+      upper_bound <- mean(temp) + (1.96 * (stats::sd(temp) / sqrt(length(temp))))
 
       data_grouped$lower_bound[i] <- lower_bound
       data_grouped$upper_bound[i] <- upper_bound
@@ -300,14 +311,18 @@ make_average_linegraph <- function(data,
   }
 
 
-
-  if (confidence_interval_error_bars) {
-    p <- ggplot2::ggplot(data_grouped, ggplot2::aes_string(x = x_col, y = y_col)) +
-      ggplot2::geom_line(size = 1.05) +
-      ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound), size = 1.05)
-  } else {
+  if (type == "line") {
     p <- ggplot2::ggplot(data_grouped, ggplot2::aes_string(x = x_col, y = y_col)) +
       ggplot2::geom_line(size = 1.05)
+  } else if (type == "bar") {
+    p <- ggplot2::ggplot(data_grouped, ggplot2::aes_string(x = x_col, y = y_col)) +
+      ggplot2::geom_col(size = 1.05)
+  }
+
+
+
+  if (confidence_interval_error_bars) {
+    p <- p + ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound), size = 1.05)
   }
 
   return(p)
