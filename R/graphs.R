@@ -295,6 +295,7 @@ make_average_graph <- function(data,
   data_grouped <- data %>%
     dplyr::group_by_at(x_col) %>%
     dplyr::summarize_at(.vars = y_col, .funs = mean)
+  data_grouped <- as.data.frame(data_grouped)
   if (confidence_interval_error_bars) {
 
     data_grouped$lower_bound <- NA
@@ -322,7 +323,9 @@ make_average_graph <- function(data,
 
 
   if (confidence_interval_error_bars) {
-    p <- p + ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound, ymax = upper_bound), size = 1.05)
+    p <- p + ggplot2::geom_errorbar(ggplot2::aes(ymin = lower_bound,
+                                                 ymax = upper_bound),
+                                    size = 1.05)
   }
 
   return(p)
