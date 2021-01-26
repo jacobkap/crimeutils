@@ -192,7 +192,7 @@ make_stat_count_plots <- function(data,
     p <-
       p +
       ggplot2::stat_count() +
-      ggplot2::scale_y_continuous(labels.default() = scales::comma)
+      ggplot2::scale_y_continuous(labels = scales::comma)
   } else {
     p <-
       p +
