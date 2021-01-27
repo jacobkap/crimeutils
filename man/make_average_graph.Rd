@@ -9,6 +9,7 @@ make_average_graph(
   x_col,
   y_col,
   confidence_interval_error_bars = TRUE,
+  mean_line = TRUE,
   type = c("line", "bar")
 )
 }
@@ -21,6 +22,8 @@ make_average_graph(
 
 \item{confidence_interval_error_bars}{A boolean (default TRUE) for whether to include 95\% confidence intervals
 or not.}
+
+\item{mean_line}{If TRUE (default) willadd a dashed line with the overall mean.}
 
 \item{type}{A string for whether it should make a linegraph ("line", default) or a bargraph ("bar")}
 }
@@ -35,6 +38,6 @@ data = data.frame(x = sample(15:25, size = 200, replace = TRUE),
 y = sample(1:100, size = 200, replace = TRUE))
 make_average_graph(data, "x", "y")
 make_average_graph(data, "x", "y", confidence_interval_error_bars  = FALSE)
-make_average_graph(data, "x", "y", type = "bar")
+make_average_graph(data, "x", "y", type = "bar", mean_line = FALSE)
 make_average_graph(data, "x", "y", confidence_interval_error_bars  = FALSE, type = "bar")
 }

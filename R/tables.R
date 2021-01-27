@@ -67,7 +67,7 @@ make_desc_stats_table <- function(data,
     dplyr::select(dplyr::all_of(columns)) %>%
     dplyr::summarise_all(summarize_types) %>%
     dplyr::mutate_all(round, digits = decimals) %>%
-    dplyr::mutate_all(prettyNum, format="f", big.mark=",")
+    dplyr::mutate_all(prettyNum, format = "f", big.mark = ",")
 
   temp <- data.frame(t(temp))
   temp$variable <- rownames(temp)
@@ -84,10 +84,7 @@ make_desc_stats_table <- function(data,
   names(temp) <- gsub("Nas", "NAs", names(temp))
   names(temp) <- gsub("Sd", "Std. Dev.", names(temp))
 
-
-
-  temp %>%
-    gt::gt() %>%
+  gt::gt(temp) %>%
     gt::fmt_number(dplyr::one_of(summarize_types_no_z),
                    decimals = decimals) %>%
     gt::tab_header(title = title,
@@ -95,4 +92,125 @@ make_desc_stats_table <- function(data,
     gt::tab_source_note(source_note = footnote)
 
   return(temp)
+}
+
+
+#' Make a table showing the number (n) and percent of the population (e.g. \% of nrow())
+#' for each value in a variable(s).
+#'
+#' @param data
+#' A data.frame with the data you want to make the table from.
+#' @param columns
+#' A string or vector of strings with the column names to make the N and \% from.
+#'
+#' @return
+#' A data.frame with one row for each value in the inputted variable(s) and columns
+#' showing the N and \% for that value.
+#' @export
+#'
+#' @examples
+#' make_n_and_percent_table(mtcars, c("cyl", "gear"))
+make_n_and_percent_table <- function(data, columns) {
+  final <- data.frame()
+  for (column in columns) {
+    temp <- data %>%
+      dplyr::group_by_at(column) %>%
+      dplyr::summarise(n = dplyr::n(),
+                       .groups = 'drop') %>%
+      dplyr::mutate(freq = n / sum(n) * 100,
+                    freq = crimeutils::pad_decimals(freq, 2),
+                    n = prettyNum(n,big.mark = ","),
+                    variable = "") %>%
+      dplyr::select(variable,
+                    dplyr::everything())
+
+    if (is.factor(data[, column])) {
+      temp <-
+        temp %>%
+        dplyr::arrange(column)
+    } else {
+      temp <-
+        temp %>%
+        dplyr::mutate(temp_n = readr::parse_number(n)) %>%
+        dplyr::arrange(dplyr::desc(temp_n)) %>%
+        dplyr::select(-temp_n)
+    }
+
+    names(temp)[2] <- "Description"
+    temp$variable[1] <- column
+    final <- final %>% dplyr::bind_rows(temp)
+  }
+
+  final$variable <- crimeutils::capitalize_words(final$variable)
+  names(final) <- c("Variable", "Description", "N", "Percent")
+  final <- data.frame(final)
+  return(final)
+}
+
+
+#' Get mean and standard deviation of variables by group
+#'
+#' @param data
+#' A data.frame with the data you want to make the table from.
+#' @param group_column
+#' A string with the name of the variable you are grouping by
+#' @param columns
+#' A string or vector of strings for the variables you want to get the mean
+#' and standard deviation for.
+#' @param total_row
+#' A boolean (default TRUE) for whether to include a row a the bottom for the
+#' overall mean and standard deviation (i.e. not by group).
+#'
+#' @return
+#' A data.frame with the first column showing the category grouped by. Then
+#' one column for each variable you want the mean and standard deviation for.
+#' Will give the mean and standard deviation as a single string with the
+#' standard deviation in parentheses.
+#' @export
+#'
+#' @examples
+#'make_mean_std_dev_by_group_table(mtcars, "gear", c("mpg", "disp"))
+make_mean_std_dev_by_group_table <- function(data,
+                                             group_column,
+                                             columns,
+                                             total_row = TRUE) {
+  final <- data.frame()
+  for (col in columns) {
+    temp <- data %>%
+      dplyr::group_by_at(group_column) %>%
+      dplyr::summarize(mean = mean(get(col)),
+                       sd       = stats::sd(get(col)),
+                       .groups  = 'drop') %>%
+      dplyr::mutate_if(is.numeric, round, 2) %>%
+      dplyr::mutate_if(is.numeric, crimeutils::pad_decimals, 2) %>%
+      dplyr::mutate(temp = paste0(mean, " (", sd, ")")) %>%
+      dplyr::select(-mean,
+                    -sd)
+    names(temp)[2] <- col
+
+    if (total_row) {
+      data$dummy <- 1
+      total <- data %>%
+        dplyr::group_by(dummy) %>%
+        dplyr::summarize(mean     = mean(get(col)),
+                         sd       = stats::sd(get(col)),
+                         .groups  = 'drop') %>%
+        dplyr::mutate_if(is.numeric, round, 2) %>%
+        dplyr::mutate_if(is.numeric, crimeutils::pad_decimals, 2) %>%
+        dplyr::mutate(temp = paste0(mean, " (", sd, ")")) %>%
+        dplyr::select(-mean,
+                      -sd)
+      names(total) <- c(group_column, col)
+      total[1, 1] <- "Total"
+      temp <- dplyr::bind_rows(temp, total)
+    }
+
+    if (nrow(final) == 0) {
+      final <- temp
+    } else {
+      final <- dplyr::left_join(final, temp, by = group_column)
+    }
+  }
+  final <- data.frame(final)
+  return(final)
 }

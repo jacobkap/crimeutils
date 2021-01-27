@@ -268,6 +268,8 @@ make_barplots <- function(data,
 #' @param confidence_interval_error_bars
 #' A boolean (default TRUE) for whether to include 95\% confidence intervals
 #' or not.
+#' @param mean_line
+#' If TRUE (default) willadd a dashed line with the overall mean.
 #' @param type
 #' A string for whether it should make a linegraph ("line", default) or a bargraph ("bar")
 #' @return
@@ -279,12 +281,13 @@ make_barplots <- function(data,
 #' y = sample(1:100, size = 200, replace = TRUE))
 #' make_average_graph(data, "x", "y")
 #' make_average_graph(data, "x", "y", confidence_interval_error_bars  = FALSE)
-#' make_average_graph(data, "x", "y", type = "bar")
+#' make_average_graph(data, "x", "y", type = "bar", mean_line = FALSE)
 #' make_average_graph(data, "x", "y", confidence_interval_error_bars  = FALSE, type = "bar")
 make_average_graph <- function(data,
                                x_col,
                                y_col,
                                confidence_interval_error_bars  = TRUE,
+                               mean_line = TRUE,
                                type = c("line", "bar")) {
 
   if (all(type == c("line", "bar"))) {
@@ -320,6 +323,11 @@ make_average_graph <- function(data,
       ggplot2::geom_col(size = 1.05)
   }
 
+  if (mean_line) {
+    p <- p + ggplot2::geom_hline(yintercept = mean(data[, y_col]),
+                                 size = 1,
+                                 linetype = 'dashed')
+  }
 
 
   if (confidence_interval_error_bars) {
