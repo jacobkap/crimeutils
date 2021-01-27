@@ -23,10 +23,10 @@ ucr_constant_reporter_oris <- function(data,
   constant_oris <- c()
   data <-
     data %>%
-    dplyr::filter(data$number_of_months_reported >= minimum_months_reported) %>%
+    dplyr::filter(data$number_of_months_missing <= minimum_months_reported) %>%
     dplyr::select("ori",
                   "year",
-                  "number_of_months_reported")
+                  "number_of_months_missing")
 
 
   for (i in unique(data$year)) {

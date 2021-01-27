@@ -115,6 +115,10 @@ time_series_data_graph <- function(data,
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' scatterplot_data_graph(mtcars, numeric_variable1 = "mpg", numeric_variable2 = "disp",
+#' group_variable = "gear", file_name = "test.pdf")
+#' }
 scatterplot_data_graph <- function(data,
                                    numeric_variable1,
                                    numeric_variable2,

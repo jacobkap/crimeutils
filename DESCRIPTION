@@ -21,7 +21,8 @@ Imports:
     grDevices,
     tidyr,
     stats,
-    methods
+    methods,
+    rlang
 License: MIT + file LICENSE
 LazyData: TRUE
 URL: https://github.com/jacobkap/crimeutils/

@@ -110,6 +110,7 @@ make_desc_stats_table <- function(data,
 #'
 #' @examples
 #' make_n_and_percent_table(mtcars, c("cyl", "gear"))
+#' @importFrom rlang .data
 make_n_and_percent_table <- function(data, columns) {
   final <- data.frame()
   for (column in columns) {
@@ -117,11 +118,11 @@ make_n_and_percent_table <- function(data, columns) {
       dplyr::group_by_at(column) %>%
       dplyr::summarise(n = dplyr::n(),
                        .groups = 'drop') %>%
-      dplyr::mutate(freq = n / sum(n) * 100,
-                    freq = crimeutils::pad_decimals(freq, 2),
-                    n = prettyNum(n,big.mark = ","),
+      dplyr::mutate(freq = .data$n / sum(.data$n) * 100,
+                    freq = crimeutils::pad_decimals(.data$freq, 2),
+                    n = prettyNum(.data$n, big.mark = ","),
                     variable = "") %>%
-      dplyr::select(variable,
+      dplyr::select(.data$variable,
                     dplyr::everything())
 
     if (is.factor(data[, column])) {
@@ -131,9 +132,7 @@ make_n_and_percent_table <- function(data, columns) {
     } else {
       temp <-
         temp %>%
-        dplyr::mutate(temp_n = readr::parse_number(n)) %>%
-        dplyr::arrange(dplyr::desc(temp_n)) %>%
-        dplyr::select(-temp_n)
+        dplyr::arrange(dplyr::desc(readr::parse_number(.data$n)))
     }
 
     names(temp)[2] <- "Description"
@@ -178,28 +177,28 @@ make_mean_std_dev_by_group_table <- function(data,
   for (col in columns) {
     temp <- data %>%
       dplyr::group_by_at(group_column) %>%
-      dplyr::summarize(mean = mean(get(col)),
-                       sd       = stats::sd(get(col)),
+      dplyr::summarize(temp_mean     = mean(get(col)),
+                       temp_sd       = stats::sd(get(col)),
                        .groups  = 'drop') %>%
       dplyr::mutate_if(is.numeric, round, 2) %>%
       dplyr::mutate_if(is.numeric, crimeutils::pad_decimals, 2) %>%
-      dplyr::mutate(temp = paste0(mean, " (", sd, ")")) %>%
-      dplyr::select(-mean,
-                    -sd)
+      dplyr::mutate(temp = paste0(.data$temp_mean, " (", .data$temp_sd, ")")) %>%
+      dplyr::select(-.data$temp_mean,
+                    -.data$temp_sd)
     names(temp)[2] <- col
 
     if (total_row) {
       data$dummy <- 1
       total <- data %>%
-        dplyr::group_by(dummy) %>%
-        dplyr::summarize(mean     = mean(get(col)),
-                         sd       = stats::sd(get(col)),
+        dplyr::group_by_at("dummy") %>%
+        dplyr::summarize(temp_mean     = mean(get(col)),
+                         temp_sd       = stats::sd(get(col)),
                          .groups  = 'drop') %>%
         dplyr::mutate_if(is.numeric, round, 2) %>%
         dplyr::mutate_if(is.numeric, crimeutils::pad_decimals, 2) %>%
-        dplyr::mutate(temp = paste0(mean, " (", sd, ")")) %>%
-        dplyr::select(-mean,
-                      -sd)
+        dplyr::mutate(temp = paste0(.data$temp_mean, " (", .data$temp_sd, ")")) %>%
+        dplyr::select(-.data$temp_mean,
+                      -.data$temp_sd)
       names(total) <- c(group_column, col)
       total[1, 1] <- "Total"
       temp <- dplyr::bind_rows(temp, total)

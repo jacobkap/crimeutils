@@ -18,6 +18,8 @@
 #' @export
 #'
 #' @examples
+#' indicate_outliers(mtcars, "drat", group_variable = "am")
+#' indicate_outliers(mtcars, "drat", group_variable = "am", zero_is_outlier = TRUE)
 indicate_outliers <- function(data,
                               select_columns = NULL,
                               group_variable,

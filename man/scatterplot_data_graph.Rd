@@ -29,3 +29,9 @@ A PDF with one page per graph
 \description{
 Create a PDF with one scatterplot for each group in the data.
 }
+\examples{
+\dontrun{
+scatterplot_data_graph(mtcars, numeric_variable1 = "mpg", numeric_variable2 = "disp",
+group_variable = "gear", file_name = "test.pdf")
+}
+}

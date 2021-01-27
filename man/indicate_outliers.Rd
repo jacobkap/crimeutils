@@ -31,3 +31,7 @@ The initial data.frame with new columns for each numeric variable included with 
 \description{
 Creates new columns to indicate which values are outliers based on the average value.
 }
+\examples{
+indicate_outliers(mtcars, "drat", group_variable = "am")
+indicate_outliers(mtcars, "drat", group_variable = "am", zero_is_outlier = TRUE)
+}

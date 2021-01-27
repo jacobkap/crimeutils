@@ -26,6 +26,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' make_latex_tables(mtcars, file =  "text.tex", caption = "This is a description of the table",
+#' label = "internal_table_label", footnote = "Here is some info you should know to read this table")
+#' }
   make_latex_tables <- function(data,
                               file,
                               caption = "",
