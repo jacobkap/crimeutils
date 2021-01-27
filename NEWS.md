@@ -1,4 +1,4 @@
-# crimeutils 0.2.2
+# crimeutils 0.3.0
 
 * Minor bug fixes.
 * Fixes typo in make_average_linegraph and error when using tibbles rather than
@@ -7,6 +7,9 @@ data.frames.
 * Changes `make_average_linegraph()` to `make_average_graph()` which can now also 
   return a barplot. This function now can include 95% confidence intervals for 
   both linegraphs and barplots.
+* Add functions `make_mean_std_dev_by_group_table()` and `make_n_and_percent_table()`
+  functions for easy descriptive stats tables. 
+* Make LaTeX table rows have more space in between them.
 
 # crimeutils 0.2.1
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Turns regression results in a data.frame for easy conversion to a table — make_regression_table • crimeutils</title>
+<title>Create a line graph with 95% confidence interval bars — make_average_graph • crimeutils</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Turns regression results in a data.frame for easy conversion to a table — make_regression_table" />
-<meta property="og:description" content="Turns regression results in a data.frame for easy conversion to a table" />
+<meta property="og:title" content="Create a line graph with 95% confidence interval bars — make_average_graph" />
+<meta property="og:description" content="Create a line graph with 95% confidence interval bars" />
 
 
 
@@ -111,56 +111,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Turns regression results in a data.frame for easy conversion to a table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jacobkap/crimeutils/blob/master/R/stats.R'><code>R/stats.R</code></a></small>
-    <div class="hidden name"><code>make_regression_table.Rd</code></div>
+    <h1>Create a line graph with 95% confidence interval bars</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jacobkap/crimeutils/blob/master/R/graphs.R'><code>R/graphs.R</code></a></small>
+    <div class="hidden name"><code>make_average_graph.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Turns regression results in a data.frame for easy conversion to a table</p>
+    <p>Create a line graph with 95% confidence interval bars</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_regression_table</span><span class='op'>(</span><span class='va'>model</span>, coefficients_only <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>make_average_graph</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>x_col</span>,
+  <span class='va'>y_col</span>,
+  confidence_interval_error_bars <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  mean_line <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"line"</span>, <span class='st'>"bar"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>model</th>
-      <td><p>A `lm` object made from making a model using `lm()`.</p></td>
+      <th>data</th>
+      <td><p>A data.frame with the data you want to graph</p></td>
     </tr>
     <tr>
-      <th>coefficients_only</th>
-      <td><p>If TRUE (default), returns only the coefficients,standard error, t-value,
-p-value, and confidence intervals. Else also returns the r-squared,
-the adjusted r-squared,f-stat, p-value for the f-stat, and the degrees
-of freedom.</p></td>
+      <th>x_col</th>
+      <td><p>A string with the name of the x-axis column</p></td>
+    </tr>
+    <tr>
+      <th>y_col</th>
+      <td><p>A string with the name of the y-axis column</p></td>
+    </tr>
+    <tr>
+      <th>confidence_interval_error_bars</th>
+      <td><p>A boolean (default TRUE) for whether to include 95% confidence intervals
+or not.</p></td>
+    </tr>
+    <tr>
+      <th>mean_line</th>
+      <td><p>If TRUE (default) willadd a dashed line with the overall mean.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>A string for whether it should make a linegraph ("line", default) or a bargraph ("bar")</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with the regression results</p>
+    <p>A ggplot object. Also prints the graph to the Plots panel.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>make_regression_table</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;      variable estimate standard_error   t_value      p_value
-#&gt; 1 (Intercept) 37.88458      2.0738436 18.267808 8.369155e-18
-#&gt; 2         cyl -2.87579      0.3224089 -8.919699 6.112687e-10
-#&gt;   confidence_interval_lower_95 confidence_interval_upper_95
-#&gt; 1                    33.649223                    42.119930
-#&gt; 2                    -3.534237                    -2.217343</div><div class='input'><span class='fu'>make_regression_table</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>, coefficients_only <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>New names:</span>
-#&gt; <span class='message'>* value -&gt; value...1</span>
-#&gt; <span class='message'>* value -&gt; value...2</span></div><div class='output co'>#&gt;      variable estimate standard_error   t_value      p_value
-#&gt; 1 (Intercept) 37.88458      2.0738436 18.267808 8.369155e-18
-#&gt; 2         cyl -2.87579      0.3224089 -8.919699 6.112687e-10
-#&gt;   confidence_interval_lower_95 confidence_interval_upper_95 r_squared
-#&gt; 1                    33.649223                    42.119930   0.72618
-#&gt; 2                    -3.534237                    -2.217343   0.72618
-#&gt;   adjusted_r_squared f_statistic f_statistic_p_value degrees_of_freedom
-#&gt; 1          0.7170527    79.56103        6.112687e-10                 30
-#&gt; 2          0.7170527    79.56103        6.112687e-10                 30</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>:</span><span class='fl'>25</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>
+</div><div class='img'><img src='make_average_graph-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, confidence_interval_error_bars  <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='make_average_graph-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, type <span class='op'>=</span> <span class='st'>"bar"</span>, mean_line <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='make_average_graph-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, confidence_interval_error_bars  <span class='op'>=</span> <span class='cn'>FALSE</span>, type <span class='op'>=</span> <span class='st'>"bar"</span><span class='op'>)</span>
+</div><div class='img'><img src='make_average_graph-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

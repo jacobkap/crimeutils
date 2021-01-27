@@ -26,7 +26,7 @@
 #' @export
 #'
 #' @examples
-make_latex_tables <- function(data,
+  make_latex_tables <- function(data,
                               file,
                               caption = "",
                               label = "",
@@ -47,6 +47,7 @@ make_latex_tables <- function(data,
 
   writeLines("\\clearpage")
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
+  writeLines("\renewcommand{\arraystretch}{1.15}")
   writeLines("\\centering")
   writeLines(paste0("\\caption{", caption, "}"))
   writeLines("\\begin{subtable}[c]{.6\\linewidth}")
