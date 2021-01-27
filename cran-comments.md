@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Windows install, R 4.0.2
-* Ubuntu 16.04.6 (on travis-ci), R 4.0.2
+* local Windows install, R 4.0.3
+* Ubuntu 16.04.6 (on travis-ci), R 4.0.3
 * AppVeyor, R 4.0.3
 * win-builder (devel and release)
 * Rhub
