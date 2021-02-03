@@ -13,7 +13,7 @@ status](https://ci.appveyor.com/api/projects/status/github/jacobkap/crimeutils?b
 coverage](https://codecov.io/gh/jacobkap/crimeutils/branch/master/graph/badge.svg)](https://codecov.io/gh/jacobkap/crimeutils?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/crimeutils?color=blue)](https://cran.r-project.org/package=crimeutils)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/crimeutils)](https://CRAN.R-project.org/package=crimeutils)
 <!-- badges: end -->
