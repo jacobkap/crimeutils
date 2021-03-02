@@ -239,7 +239,8 @@ make_mean_median_mode_table_by_group <- function(data,
     dplyr::group_by_at(group_column) %>%
     dplyr::summarize(mean     = mean(get(data_column ), na.rm = TRUE),
                      median   = stats::median(get(data_column ), na.rm = TRUE),
-                     mode     = get_mode(get(data_column), return_string = TRUE,
+                     mode     = get_mode(get(data_column),
+                                         return_numeric = FALSE,
                                          remove_NA = FALSE),
                      .groups  = 'drop') %>%
     dplyr::mutate_at(2:4, round, 2) %>%
@@ -251,7 +252,8 @@ make_mean_median_mode_table_by_group <- function(data,
       dplyr::group_by_at("dummy") %>%
       dplyr::summarize(mean     = mean(get(data_column ), na.rm = TRUE),
                        median   = stats::median(get(data_column ), na.rm = TRUE),
-                       mode     = get_mode(get(data_column), return_numeric = FALSE,
+                       mode     = get_mode(get(data_column),
+                                           return_numeric = FALSE,
                                            remove_NA = FALSE),
                        .groups  = 'drop') %>%
       dplyr::mutate_if(is.numeric, round, 2) %>%
