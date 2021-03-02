@@ -242,8 +242,8 @@ make_mean_median_mode_table_by_group <- function(data,
                      mode     = get_mode(get(data_column), return_string = TRUE,
                                          remove_NA = FALSE),
                      .groups  = 'drop') %>%
-    dplyr::mutate_if(is.numeric, round, 2) %>%
-    dplyr::mutate_if(is.numeric, crimeutils::pad_decimals, 2)
+    dplyr::mutate_at(2:4, round, 2) %>%
+    dplyr::mutate_at(2:4, crimeutils::pad_decimals, 2)
 
   if (total_row) {
     data$dummy <- 1
@@ -251,7 +251,7 @@ make_mean_median_mode_table_by_group <- function(data,
       dplyr::group_by_at("dummy") %>%
       dplyr::summarize(mean     = mean(get(data_column ), na.rm = TRUE),
                        median   = stats::median(get(data_column ), na.rm = TRUE),
-                       mode     = get_mode(get(data_column), return_string = TRUE,
+                       mode     = get_mode(get(data_column), return_numeric = FALSE,
                                            remove_NA = FALSE),
                        .groups  = 'drop') %>%
       dplyr::mutate_if(is.numeric, round, 2) %>%
@@ -277,7 +277,7 @@ make_mean_median_mode_table_by_group <- function(data,
   return(temp)
 }
 
-get_mode <- function(values, remove_NA = TRUE, return_string = FALSE) {
+get_mode <- function(values, remove_NA = TRUE, return_numeric = FALSE) {
   if (remove_NA) {
     values <- values[!is.na(values)]
   }
@@ -292,10 +292,9 @@ get_mode <- function(values, remove_NA = TRUE, return_string = FALSE) {
     final <- names(final)
     final <- as.numeric(final)
     final <- sort(final, na.last = TRUE)
-    if (return_string) {
-      if (length(final) > 1) {
-        final <- paste0(final, collapse = ", ")
-      }
+    if (!return_numeric) {
+      final <- paste0(final, collapse = ", ")
+
     }
     return(final)
   }
