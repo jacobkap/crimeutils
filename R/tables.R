@@ -275,7 +275,6 @@ make_mean_median_mode_table_by_group <- function(data,
     if (length(mode_values) > 1) {
       mode_values <- as.numeric(mode_values)
       mode_values <- round(mode_values, 2)
-      mode_values <- crimeutils::pad_decimals(mode_values, 2)
       mode_values <- paste0(mode_values, collapse = ", ")
       temp$mode[i] <- mode_values
     }
