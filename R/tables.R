@@ -243,8 +243,9 @@ make_mean_median_mode_table_by_group <- function(data,
                                          return_numeric = FALSE,
                                          remove_NA = FALSE),
                      .groups  = 'drop') %>%
-    dplyr::mutate_at(2:3, round, 2) %>%
-    dplyr::mutate_at(2:3, crimeutils::pad_decimals, 2)
+    dplyr::mutate(mean   = round(mean, 2),
+                  median = round(median, 2),
+                  mean   = crimeutils::pad_decimals(mean, 2))
 
   if (total_row) {
     data$dummy <- 1
@@ -256,8 +257,9 @@ make_mean_median_mode_table_by_group <- function(data,
                                            return_numeric = FALSE,
                                            remove_NA = FALSE),
                        .groups  = 'drop') %>%
-      dplyr::mutate_at(2:3, round, 2) %>%
-      dplyr::mutate_at(2:3, crimeutils::pad_decimals, 2)
+      dplyr::mutate(mean   = round(mean, 2),
+                    median = round(median, 2),
+                    mean   = crimeutils::pad_decimals(mean, 2))
     total <- data.frame(total)
     total[1, 1] <- "Total"
     names(total)[1] <- group_column
