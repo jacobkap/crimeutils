@@ -258,8 +258,11 @@ make_mean_median_mode_table_by_group <- function(data,
                        .groups  = 'drop') %>%
       dplyr::mutate_at(2:3, round, 2) %>%
       dplyr::mutate_at(2:3, crimeutils::pad_decimals, 2)
+    total <- data.frame(total)
     total[1, 1] <- "Total"
     names(total)[1] <- group_column
+    temp <- data.frame(temp)
+    temp[, 1] <- as.character(temp[, 1])
     temp <- dplyr::bind_rows(temp, total)
   }
   temp$mode[is.na(temp$mode)] <- "-"
@@ -275,6 +278,7 @@ make_mean_median_mode_table_by_group <- function(data,
       temp$mode[i] <- mode_values
     }
   }
+
 
   return(temp)
 }
