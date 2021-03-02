@@ -213,3 +213,90 @@ make_mean_std_dev_by_group_table <- function(data,
   final <- data.frame(final)
   return(final)
 }
+
+
+#' Create a table showing the mean, median, and mode of a certain column
+#'
+#' @inheritParams make_mean_std_dev_by_group_table
+#'
+#' @param data_column
+#' A string for the variable you want to get the  mean, median, and mode from,
+#' Variable should be numeric.
+#'
+#' @return
+#' A data.frame with the first column showing the category grouped by. Then one
+#' column for the mean, one column for the median, and one column for the mode.
+#' @export
+#'
+#' @examples
+#' make_mean_median_mode_table_by_group(data, "gear", "mpg")
+make_mean_median_mode_table_by_group <- function(data,
+                                                 group_column,
+                                                 data_column,
+                                                 total_row = TRUE) {
+
+  temp <- data %>%
+    dplyr::group_by_at(group_column) %>%
+    dplyr::summarize(mean     = mean(get(data_column ), na.rm = TRUE),
+                     median   = stats::median(get(data_column ), na.rm = TRUE),
+                     mode     = get_mode(get(data_column), return_string = TRUE,
+                                         remove_NA = FALSE),
+                     .groups  = 'drop') %>%
+    dplyr::mutate_if(is.numeric, round, 2) %>%
+    dplyr::mutate_if(is.numeric, crimeutils::pad_decimals, 2)
+
+  if (total_row) {
+    data$dummy <- 1
+    total <- data %>%
+      dplyr::group_by_at("dummy") %>%
+      dplyr::summarize(mean     = mean(get(data_column ), na.rm = TRUE),
+                       median   = stats::median(get(data_column ), na.rm = TRUE),
+                       mode     = get_mode(get(data_column), return_string = TRUE,
+                                           remove_NA = FALSE),
+                       .groups  = 'drop') %>%
+      dplyr::mutate_if(is.numeric, round, 2) %>%
+      dplyr::mutate_if(is.numeric, crimeutils::pad_decimals, 2)
+    total[1, 1] <- "Total"
+    names(total)[1] <- group_column
+    temp <- dplyr::bind_rows(temp, total)
+  }
+  temp$mode[is.na(temp$mode)] <- "-"
+
+  for (i in 1:nrow(temp)) {
+    mode_values <- temp$mode[i]
+    mode_values <- strsplit(mode_values, ", ")[[1]]
+    if (length(mode_values) > 1) {
+      mode_values <- as.numeric(mode_values)
+      mode_values <- round(mode_values, 2)
+      mode_values <- crimeutils::pad_decimals(mode_values, 2)
+      mode_values <- paste0(mode_values, collapse = ", ")
+      temp$mode[i] <- mode_values
+    }
+  }
+
+  return(temp)
+}
+
+get_mode <- function(values, remove_NA = TRUE, return_string = FALSE) {
+  if (remove_NA) {
+    values <- values[!is.na(values)]
+  }
+  tabled_results <- sort(table(values, useNA = "ifany"), decreasing = TRUE)
+  most_times_repeated <- tabled_results[1]
+  most_times_repeated <- unname(most_times_repeated)
+
+  if (most_times_repeated == 1) {
+    return(NA)
+  } else {
+    final <- tabled_results[unname(tabled_results) %in% most_times_repeated]
+    final <- names(final)
+    final <- as.numeric(final)
+    final <- sort(final, na.last = TRUE)
+    if (return_string) {
+      if (length(final) > 1) {
+        final <- paste0(final, collapse = ", ")
+      }
+    }
+    return(final)
+  }
+}

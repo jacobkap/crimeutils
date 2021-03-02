@@ -1,3 +1,9 @@
+# crimeutils 0.4.0
+
+* Minor fixes to the LaTeX table function
+* Adds function `make_mean_median_mode_table_by_group()` to make a table 
+  with columns showing the mean, median, and mode of a numeric value.
+
 # crimeutils 0.3.0
 
 * Minor bug fixes.

@@ -51,9 +51,7 @@
 
   writeLines("\\clearpage")
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
-  writeLines("\renewcommand{\arraystretch}{1.15}")
   writeLines("\\centering")
-  writeLines(paste0("\\caption{", caption, "}"))
   writeLines("\\begin{subtable}[c]{.6\\linewidth}")
   writeLines(paste0("\\label{", label, "}"))
 
@@ -75,6 +73,7 @@
   writeLines(paste0("\\floatfoot{", footnote, "}"))
 
   writeLines("\\end{subtable}")
+  writeLines(paste0("\\caption{", caption, "}"))
   writeLines(paste0("\\end{", table_direction, "}"))
 
   sink()
@@ -95,6 +94,7 @@ make_b_to_beta <- function(.data) {
 
 fix_percent <- function(.data) {
   .data <- gsub("%", "\\\\%", .data)
+  .data <- gsub("#", "\\\\#", .data)
   return(.data)
 }
 

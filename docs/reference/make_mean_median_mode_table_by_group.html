@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a line graph with 95% confidence interval bars — make_average_graph • crimeutils</title>
+<title>Create a table showing the mean, median, and mode of a certain column — make_mean_median_mode_table_by_group • crimeutils</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Create a line graph with 95% confidence interval bars — make_average_graph" />
-<meta property="og:description" content="Create a line graph with 95% confidence interval bars" />
+<meta property="og:title" content="Create a table showing the mean, median, and mode of a certain column — make_mean_median_mode_table_by_group" />
+<meta property="og:description" content="Create a table showing the mean, median, and mode of a certain column" />
 
 
 
@@ -111,22 +111,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a line graph with 95% confidence interval bars</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jacobkap/crimeutils/blob/master/R/graphs.R'><code>R/graphs.R</code></a></small>
-    <div class="hidden name"><code>make_average_graph.Rd</code></div>
+    <h1>Create a table showing the mean, median, and mode of a certain column</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jacobkap/crimeutils/blob/master/R/tables.R'><code>R/tables.R</code></a></small>
+    <div class="hidden name"><code>make_mean_median_mode_table_by_group.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a line graph with 95% confidence interval bars</p>
+    <p>Create a table showing the mean, median, and mode of a certain column</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_average_graph</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>make_mean_median_mode_table_by_group</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  <span class='va'>x_col</span>,
-  <span class='va'>y_col</span>,
-  confidence_interval_error_bars <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  mean_line <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"line"</span>, <span class='st'>"bar"</span><span class='op'>)</span>
+  <span class='va'>group_column</span>,
+  <span class='va'>data_column</span>,
+  total_row <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -134,43 +132,32 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>A data.frame with the data you want to graph</p></td>
+      <td><p>A data.frame with the data you want to make the table from.</p></td>
     </tr>
     <tr>
-      <th>x_col</th>
-      <td><p>A string with the name of the x-axis column</p></td>
+      <th>group_column</th>
+      <td><p>A string with the name of the variable you are grouping by</p></td>
     </tr>
     <tr>
-      <th>y_col</th>
-      <td><p>A string with the name of the y-axis column</p></td>
+      <th>data_column</th>
+      <td><p>A string for the variable you want to get the  mean, median, and mode from,
+Variable should be numeric.</p></td>
     </tr>
     <tr>
-      <th>confidence_interval_error_bars</th>
-      <td><p>A boolean (default TRUE) for whether to include 95% confidence intervals
-or not.</p></td>
-    </tr>
-    <tr>
-      <th>mean_line</th>
-      <td><p>If TRUE (default) willadd a dashed line with the overall mean.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>A string for whether it should make a linegraph ("line", default) or a bargraph ("bar")</p></td>
+      <th>total_row</th>
+      <td><p>A boolean (default TRUE) for whether to include a row a the bottom for the
+overall mean and standard deviation (i.e. not by group).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A ggplot object. Also prints the graph to the Plots panel.</p>
+    <p>A data.frame with the first column showing the category grouped by. Then one
+column for the mean, one column for the median, and one column for the mode.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>:</span><span class='fl'>25</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
-y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, size <span class='op'>=</span> <span class='fl'>200</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>
-</div><div class='img'><img src='make_average_graph-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, confidence_interval_error_bars  <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='img'><img src='make_average_graph-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, type <span class='op'>=</span> <span class='st'>"bar"</span>, mean_line <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='img'><img src='make_average_graph-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>make_average_graph</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"x"</span>, <span class='st'>"y"</span>, confidence_interval_error_bars  <span class='op'>=</span> <span class='cn'>FALSE</span>, type <span class='op'>=</span> <span class='st'>"bar"</span><span class='op'>)</span>
-</div><div class='img'><img src='make_average_graph-4.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>make_mean_median_mode_table_by_group</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"gear"</span>, <span class='st'>"mpg"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("tbl_vars"): no applicable method for 'tbl_vars' applied to an object of class "function"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
