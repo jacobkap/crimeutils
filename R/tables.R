@@ -301,7 +301,6 @@ get_mode <- function(values, remove_NA = TRUE, return_numeric = FALSE) {
     final <- sort(final, na.last = TRUE)
     if (!return_numeric) {
       final <- paste0(final, collapse = ", ")
-
     }
     return(final)
   }

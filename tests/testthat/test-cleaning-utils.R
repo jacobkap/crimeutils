@@ -63,6 +63,9 @@ test_that("Capitalize words works", {
 
 
   expect_equal(capitalize_words("hello-world"), "Hello-World")
+  expect_equal(capitalize_words("(hello-world)"), "(Hello-World)")
+  expect_equal(capitalize_words("(helloworld)"), "(Helloworld)")
+  expect_equal(capitalize_words("(hello world)"), "(Hello World)")
 
   expect_equal(upper_first_letter("hello world"), "Hello world")
   expect_equal(upper_first_letter("hELLo woRLD"), "HELLo woRLD")
@@ -100,9 +103,12 @@ test_that("Fix make state abbreviations works", {
 
 test_that("Get Mode works properly", {
   expect_true(is.na(get_mode(1:5)))
-  expect_equal(get_mode(c(1, 1, 2, 3, 4)), 1)
-  expect_equal(get_mode(c(1, 1:5, NA, NA, NA)), 1)
-  expect_true(is.na(get_mode(c(1, 1:5, NA, NA, NA), remove_NA = FALSE)))
-  expect_equal(get_mode(c(1, 1, 2, 2, 4, 5)), c(1, 2))
-  expect_equal(get_mode(c(1, 1, 3, 3, 2, 2, 5, 6)), c(1, 2, 3))
+  expect_equal(get_mode(c(1, 1, 2, 3, 4)), "1")
+  expect_equal(get_mode(c(1, 1, 2, 3, 4), return_numeric = TRUE), 1)
+  expect_equal(get_mode(c(1, 1:5, NA, NA, NA), return_numeric = TRUE), 1)
+  expect_equal(get_mode(c(1, 1:5, NA, NA, NA)), "1")
+  expect_equal(get_mode(c(1, 1:5, NA, NA, NA), remove_NA = FALSE), "NA")
+  expect_equal(get_mode(c(1, 1, 2, 2, 4, 5), return_numeric = TRUE), c(1, 2))
+  expect_equal(get_mode(c(1, 1, 2, 2, 4, 5)), "1, 2")
+  expect_equal(get_mode(c(1, 1, 3, 3, 2, 2, 5, 6)), "1, 2, 3")
 })
