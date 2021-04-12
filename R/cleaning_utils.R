@@ -77,8 +77,10 @@ capitalize_words <- function(words, lowercase_of = TRUE) {
     words <- as.character(words)
   }
 
-  words <- tolower(words)
-  temp <- words
+  original <- words
+  words    <- unique(words)
+  words    <- tolower(words)
+  temp     <- words
 
   for (i in c(" ", "-", "#", "$", "%", "&", '\\(', "-", "_", "=", "/", "@", ")")) {
     words <- strsplit(words, i)
@@ -97,7 +99,10 @@ capitalize_words <- function(words, lowercase_of = TRUE) {
   if (lowercase_of) {
     words <- gsub(" Of ", " of ", words)
   }
-  return(words)
+
+  original <- words[match(tolower(original), tolower(words))]
+
+  return(original)
 }
 
 upper_first_letter <- function(word) {

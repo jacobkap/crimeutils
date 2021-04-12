@@ -3,6 +3,7 @@
 * Minor fixes to the LaTeX table function
 * Adds function `make_mean_median_mode_table_by_group()` to make a table 
   with columns showing the mean, median, and mode of a numeric value.
+* Improve speed to `capitalize_words()` function.
 
 # crimeutils 0.3.0
 

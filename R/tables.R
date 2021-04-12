@@ -229,7 +229,7 @@ make_mean_std_dev_by_group_table <- function(data,
 #' @export
 #'
 #' @examples
-#' make_mean_median_mode_table_by_group(data, "gear", "mpg")
+#' make_mean_median_mode_table_by_group(mtcars, "gear", "mpg")
 make_mean_median_mode_table_by_group <- function(data,
                                                  group_column,
                                                  data_column,

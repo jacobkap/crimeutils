@@ -30,5 +30,5 @@ column for the mean, one column for the median, and one column for the mode.
 Create a table showing the mean, median, and mode of a certain column
 }
 \examples{
-make_mean_median_mode_table_by_group(data, "gear", "mpg")
+make_mean_median_mode_table_by_group(mtcars, "gear", "mpg")
 }
