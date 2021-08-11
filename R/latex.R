@@ -49,7 +49,6 @@
   }
 
 
-  writeLines("\\clearpage")
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
   writeLines("\\centering")
   writeLines("\\begin{subtable}[c]{.6\\linewidth}")
@@ -70,7 +69,10 @@
 
   # End table
   # writeLines("\\vspace{-6mm}")
+  writeLines("\bottomrule")
+  if (footnote != "") {
   writeLines(paste0("\\floatfoot{", footnote, "}"))
+  }
 
   writeLines("\\end{subtable}")
   writeLines(paste0("\\caption{", caption, "}"))
