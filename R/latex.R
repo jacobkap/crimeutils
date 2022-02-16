@@ -51,7 +51,7 @@
 
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
   writeLines("\\centering")
-  writeLines("\\begin{subtable}[c]{.6\\linewidth}")
+  writeLines("\\begin{subtable}[c]{1.0\\linewidth}")
   writeLines(paste0("\\label{", label, "}"))
 
 
@@ -68,14 +68,15 @@
   }
 
   # End table
-  # writeLines("\\vspace{-6mm}")
-  writeLines("\bottomrule")
+  writeLines("\\bottomrule")
   if (footnote != "") {
   writeLines(paste0("\\floatfoot{", footnote, "}"))
   }
 
   writeLines("\\end{subtable}")
+  if (caption != "") {
   writeLines(paste0("\\caption{", caption, "}"))
+  }
   writeLines(paste0("\\end{", table_direction, "}"))
 
   sink()
