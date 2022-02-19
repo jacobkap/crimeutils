@@ -30,7 +30,7 @@
 #' make_latex_tables(mtcars, file =  "text.tex", caption = "This is a description of the table",
 #' label = "internal_table_label", footnote = "Here is some info you should know to read this table")
 #' }
-  make_latex_tables <- function(data,
+make_latex_tables <- function(data,
                               file,
                               caption = "",
                               label = "",
@@ -70,12 +70,13 @@
   # End table
   writeLines("\\bottomrule")
   if (footnote != "") {
-  writeLines(paste0("\\floatfoot{", footnote, "}"))
+    writeLines(paste0("\\floatfoot{", footnote, "}"))
   }
 
   writeLines("\\end{subtable}")
   if (caption != "") {
-  writeLines(paste0("\\caption{", caption, "}"))
+    caption <- fix_percent(caption)
+    writeLines(paste0("\\caption{", caption, "}"))
   }
   writeLines(paste0("\\end{", table_direction, "}"))
 
@@ -103,8 +104,15 @@ fix_percent <- function(.data) {
 
 
 get_column_alignments <- function(data) {
-  alignment <- paste0("l", paste0(rep("r", times = ncol(data) - 1),
-                                  collapse = ""))
+
+  alignment <- "l"
+  for (i in 2:ncol(data)) {
+    if (is.character(data[, i])) {
+      alignment <- paste0(alignment, "l", collapse = "")
+    } else {
+      alignment <- paste0(alignment, "r", collapse = "")
+    }
+  }
   return(alignment)
 }
 
