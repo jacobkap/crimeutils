@@ -122,7 +122,7 @@ get_column_alignments <- function(data) {
 
 make_latex_table_panel <- function(data, panel_caption, multi_column) {
   alignment <- get_column_alignments(data)
-  writeLines(paste0("\\begin{tabular}{@{\\extracolsep{6pt}}",
+  writeLines(paste0("\\begin{tabular}{@{\\extracolsep{4pt}}",
                     alignment, "}"))
 
   if (!is.null(multi_column)) {
@@ -144,20 +144,25 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
 
   writeLines("\\toprule")
 
-
-  headers <- paste0(" \\thead[l]{", names(data)[1], "} &", collapse = " ")
+  col_name <- names(data)[1]
+  col_name <- gsub("([A-z]{10} ([A-z]{10})", "\\1\\\\ \\2", col_name)
+  headers <- paste0(" \\thead[l]{", col_name, "} &", collapse = " ")
   for (i in 2:ncol(data)) {
+    col_name <- names(data)[i]
+    col_name <- gsub("([A-z]{10} ([A-z]{10})", "\\1\\\\ \\2", col_name)
     col_values <- stringr::str_extract_all(data[, i, drop = TRUE], stringr::boundary("character"))
     col_values <- unlist(col_values)
     col_values <- unique(col_values)
     if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~"))) {
-      headers <-  paste0(headers, " \\thead[r]{", names(data)[i], "} &", collapse = " ")
+      headers <-  paste0(headers, " \\thead[r]{", col_name, "} &", collapse = " ")
     } else {
-      headers <-  paste0(headers, " \\thead[l]{", names(data)[i], "} &", collapse = " ")
+      headers <-  paste0(headers, " \\thead[l]{", col_name, "} &", collapse = " ")
     }
   }
   headers <- fix_percent(headers)
   headers <- gsub("&$", "\\\\\\\\", headers)
+
+
 
   writeLines(headers)
   writeLines("\\midrule")
