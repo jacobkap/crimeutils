@@ -175,7 +175,7 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   writeLines("\\end{tabular}")
   writeLines("\\vspace{5pt}")
   if (!is.null(panel_caption)) {
-  writeLines(paste0("\\caption{\\textbf{", panel_caption, "}}"))
+  writeLines(paste0("\\caption{\\textbf{", fix_percent(panel_caption), "}}"))
   }
 }
 
