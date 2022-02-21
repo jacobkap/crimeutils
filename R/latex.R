@@ -51,7 +51,7 @@ make_latex_tables <- function(data,
 
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
   writeLines("\\centering")
-  writeLines("\\begin{subtable}[c]{1.0\\linewidth}")
+  writeLines("\\begin{subtable}[c]{1.1\\linewidth}")
   writeLines(paste0("\\label{", label, "}"))
 
 
@@ -98,6 +98,7 @@ make_b_to_beta <- function(.data) {
 
 fix_percent <- function(.data) {
   .data <- gsub("%", "\\\\%", .data)
+  .data <- gsub("\\$", "\\\\$", .data)
   .data <- gsub("#", "\\\\#", .data)
   return(.data)
 }
@@ -140,9 +141,15 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
 
   writeLines("\\toprule")
 
-  headers <- paste0("\\thead{", names(data), "} &", collapse = " ")
-  # Makes the first column name to be left-aigned.
-  headers <- sub("thead", "thead\\[l\\]", headers)
+
+  headers <- paste0("\\thead[l]{", names(data)[1], "} &", collapse = " ")
+  for (i in 2:ncol(data)) {
+    if (is.character(data[, i])) {
+      headers <-  paste0(headers, "\\thead[l]{", names(data)[i], "} &", collapse = " ")
+    } else {
+      headers <-  paste0(headers, "\\thead[r]{", names(data)[i], "} &", collapse = " ")
+    }
+  }
   headers <- fix_percent(headers)
   headers <- gsub("&$", "\\\\\\\\", headers)
 
@@ -161,6 +168,8 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   }
   writeLines("\\end{tabular}")
   writeLines("\\vspace{5pt}")
+  if (!is.null(panel_caption)) {
   writeLines(paste0("\\caption{\\textbf{", panel_caption, "}}"))
+  }
 }
 
