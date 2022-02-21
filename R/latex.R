@@ -145,11 +145,11 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   writeLines("\\toprule")
 
   col_name <- names(data)[1]
-  col_name <- gsub("([A-z]{10}) ([A-z]{10})", "\\1\\\\ \\2", col_name)
+  col_name <- gsub("([A-z]{9}).? ([A-z]{9})", "\\1\\\\ \\2", col_name)
   headers <- paste0(" \\thead[l]{", col_name, "} &", collapse = " ")
   for (i in 2:ncol(data)) {
     col_name <- names(data)[i]
-    col_name <- gsub("([A-z]{10}) ([A-z]{10})", "\\1\\\\ \\2", col_name)
+    col_name <- gsub("([A-z]{9}).? ([A-z]{9})", "\\1\\\\ \\2", col_name)
     col_values <- stringr::str_extract_all(data[, i, drop = TRUE], stringr::boundary("character"))
     col_values <- unlist(col_values)
     col_values <- unique(col_values)
