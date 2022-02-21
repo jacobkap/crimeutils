@@ -145,15 +145,15 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
   writeLines("\\toprule")
 
 
-  headers <- paste0("\\thead[l]{", names(data)[1], "} &", collapse = " ")
+  headers <- paste0(" \\thead[l]{", names(data)[1], "} &", collapse = " ")
   for (i in 2:ncol(data)) {
     col_values <- stringr::str_extract_all(data[, i, drop = TRUE], stringr::boundary("character"))
     col_values <- unlist(col_values)
     col_values <- unique(col_values)
     if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~"))) {
-      headers <-  paste0(headers, "\\thead[r]{", names(data)[i], "} &", collapse = " ")
+      headers <-  paste0(headers, " \\thead[r]{", names(data)[i], "} &", collapse = " ")
     } else {
-      headers <-  paste0(headers, "\\thead[l]{", names(data)[i], "} &", collapse = " ")
+      headers <-  paste0(headers, " \\thead[l]{", names(data)[i], "} &", collapse = " ")
     }
   }
   headers <- fix_percent(headers)
