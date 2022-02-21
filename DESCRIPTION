@@ -12,6 +12,7 @@ Depends:
     R (>= 2.10)
 Imports:
     dplyr,
+    stringr,
     ggplot2,
     readr,
     gridExtra,

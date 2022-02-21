@@ -108,10 +108,13 @@ get_column_alignments <- function(data) {
 
   alignment <- "l"
   for (i in 2:ncol(data)) {
-    if (is.character(data[, i])) {
-      alignment <- paste0(alignment, "l", collapse = "")
-    } else {
+    col_values <- str_extract_all(as.numeric(data[, i]), boundary("character"))
+    col_values <- unlist(col_values)
+    col_values <- unique(col_values)
+    if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", "."))) {
       alignment <- paste0(alignment, "r", collapse = "")
+    } else {
+      alignment <- paste0(alignment, "l", collapse = "")
     }
   }
   return(alignment)
@@ -144,10 +147,13 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
 
   headers <- paste0("\\thead[l]{", names(data)[1], "} &", collapse = " ")
   for (i in 2:ncol(data)) {
-    if (is.character(data[, i])) {
-      headers <-  paste0(headers, "\\thead[l]{", names(data)[i], "} &", collapse = " ")
-    } else {
+    col_values <- str_extract_all(as.numeric(data[, i]), boundary("character"))
+    col_values <- unlist(col_values)
+    col_values <- unique(col_values)
+    if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", "."))) {
       headers <-  paste0(headers, "\\thead[r]{", names(data)[i], "} &", collapse = " ")
+    } else {
+      headers <-  paste0(headers, "\\thead[l]{", names(data)[i], "} &", collapse = " ")
     }
   }
   headers <- fix_percent(headers)
