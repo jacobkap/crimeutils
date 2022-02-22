@@ -111,7 +111,7 @@ get_column_alignments <- function(data) {
     col_values <- stringr::str_extract_all(data[, i, drop = TRUE], stringr::boundary("character"))
     col_values <- unlist(col_values)
     col_values <- unique(col_values)
-    if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~"))) {
+    if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~", " "))) {
       alignment <- paste0(alignment, "r", collapse = "")
     } else {
       alignment <- paste0(alignment, "l", collapse = "")
@@ -153,7 +153,7 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
     col_values <- stringr::str_extract_all(data[, i, drop = TRUE], stringr::boundary("character"))
     col_values <- unlist(col_values)
     col_values <- unique(col_values)
-    if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~"))) {
+    if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~", " "))) {
       headers <-  paste0(headers, " \\thead[r]{", col_name, "} &", collapse = " ")
     } else {
       headers <-  paste0(headers, " \\thead[l]{", col_name, "} &", collapse = " ")
