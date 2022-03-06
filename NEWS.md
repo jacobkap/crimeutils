@@ -1,3 +1,7 @@
+# crimeutils 0.5.1
+
+* Changes to latex tables.
+
 # crimeutils 0.4.1
 
 * Minor changes to latex tables.

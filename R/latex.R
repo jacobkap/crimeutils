@@ -52,7 +52,6 @@ make_latex_tables <- function(data,
   writeLines(paste0("\\begin{", table_direction, "}[H]"))
   writeLines("\\centering")
   writeLines("\\begin{subtable}[c]{1.1\\linewidth}")
-  writeLines(paste0("\\label{", label, "}"))
 
 
   if (is.data.frame(data)) {
@@ -78,6 +77,7 @@ make_latex_tables <- function(data,
     caption <- fix_percent(caption)
     writeLines(paste0("\\caption{", caption, "}"))
   }
+  writeLines(paste0("\\label{", label, "}"))
   writeLines(paste0("\\end{", table_direction, "}"))
 
   sink()
