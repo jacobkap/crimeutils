@@ -48,7 +48,7 @@ make_desc_stats_table <- function(data,
 
 
   summarize_types <- list("min"    = ~ min(.x, na.rm = TRUE),
-                          "median" = ~ median(.x, na.rm = TRUE),
+                          "median" = ~ stats::median(.x, na.rm = TRUE),
                           "mean"   = ~ mean(.x, na.rm = TRUE),
                           "sd"     = ~ sd(.x, na.rm = TRUE),
                           "max"    = ~ max(.x, na.rm = TRUE),

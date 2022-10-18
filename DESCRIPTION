@@ -25,10 +25,9 @@ Imports:
     methods,
     rlang
 License: MIT + file LICENSE
-LazyData: TRUE
 URL: https://github.com/jacobkap/crimeutils/
 BugReports: https://github.com/jacobkap/crimeutils/issues/
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Suggests: 
     spelling,
     testthat (>= 2.1.0),
