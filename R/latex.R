@@ -28,7 +28,8 @@
 #' @examples
 #' \dontrun{
 #' make_latex_tables(mtcars, file =  "text.tex", caption = "This is a description of the table",
-#' label = "internal_table_label", footnote = "Here is some info you should know to read this table")
+#' label = "internal_table_label", footnote = "Here is some info you should know to read this table",
+#' longtable = TRUE)
 #' }
 make_latex_tables <- function(data,
                               file,
@@ -36,7 +37,8 @@ make_latex_tables <- function(data,
                               label = "",
                               multi_column = NULL,
                               footnote = "",
-                              sideways = FALSE) {
+                              sideways = FALSE,
+                              longtable = FALSE) {
   if (!grepl(".tex$", file)) {
     file <- paste0(file, ".tex")
   }
@@ -47,21 +49,35 @@ make_latex_tables <- function(data,
     table_direction <- "sidewaystable"
     message("Please include '\\usepackage{rotating}' at the start of your LaTeX file for sideways table to work.")
   }
+  if (longtable)  {
+    writeLines("\\begin{footnotesize}")
+    table_direction <- "longtable"
+    message("Please include '\\usepackage{longtable}' at the start of your LaTeX file for long table to work.")
+  }
 
 
-  writeLines(paste0("\\begin{", table_direction, "}[H]"))
-  writeLines("\\centering")
-  writeLines("\\begin{subtable}[c]{1.1\\linewidth}")
+  writeLines(paste0("\\begin{", table_direction, "}"))
+  if (longtable) {
+    if (caption != "") {
+      caption <- fix_percent(caption)
+      writeLines(paste0("\\caption{", caption, "}"))
+      caption <- ""
+    }
+  }
+  if (!longtable) {
+    writeLines("\\centering")
+    writeLines("\\begin{subtable}[c]{1.1\\linewidth}")
+  }
 
 
   if (is.data.frame(data)) {
-    make_latex_table_panel(data, NULL, multi_column)
+    make_latex_table_panel(data, NULL, multi_column, longtable)
   } else if (is.list(data) && !is.data.frame(data)) {
     for (i in 1:length(data)) {
       if (i == 1) {
-        make_latex_table_panel(data[[i]], names(data)[i], multi_column)
+        make_latex_table_panel(data[[i]], names(data)[i], multi_column, longtable)
       } else {
-        make_latex_table_panel(data[[i]], names(data)[i], NULL)
+        make_latex_table_panel(data[[i]], names(data)[i], NULL, longtable)
       }
     }
   }
@@ -71,15 +87,18 @@ make_latex_tables <- function(data,
   if (footnote != "") {
     writeLines(paste0("\\floatfoot{", footnote, "}"))
   }
-
-  writeLines("\\end{subtable}")
+  if (!longtable) {
+    writeLines("\\end{subtable}")
+  }
   if (caption != "") {
     caption <- fix_percent(caption)
     writeLines(paste0("\\caption{", caption, "}"))
   }
-  writeLines(paste0("\\label{", label, "}"))
+  writeLines(paste0("\\label{table:", label, "}"))
   writeLines(paste0("\\end{", table_direction, "}"))
-
+  if (longtable) {
+    writeLines("\\end{footnotesize}")
+  }
   sink()
 
 }
@@ -120,10 +139,12 @@ get_column_alignments <- function(data) {
   return(alignment)
 }
 
-make_latex_table_panel <- function(data, panel_caption, multi_column) {
+make_latex_table_panel <- function(data, panel_caption, multi_column, longtable) {
   alignment <- get_column_alignments(data)
-  writeLines(paste0("\\begin{tabular}{@{\\extracolsep{4pt}}",
-                    alignment, "}"))
+  if (!longtable) {
+    writeLines(paste0("\\begin{tabular}{@{\\extracolsep{4pt}}",
+                      alignment, "}"))
+  }
 
   if (!is.null(multi_column)) {
     for (i in 1:length(multi_column)) {
@@ -142,18 +163,27 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
     }
   }
 
-  writeLines("\\toprule")
+  if (!longtable) {
+    writeLines("\\toprule")
+  }
 
   col_name <- names(data)[1]
   col_name <- gsub("([A-z]{9}.?) ([A-z])", "\\1 \\\\\\\\ \\2", col_name)
-  headers <- paste0(" \\thead[l]{", col_name, "} &", collapse = " ")
+  if (longtable) {
+    headers <- paste0("& ", col_name, " & ", collapse = " ")
+  } else {
+    headers <- paste0(" \\thead[l]{", col_name, "} &", collapse = " ")
+  }
+
   for (i in 2:ncol(data)) {
     col_name <- names(data)[i]
     col_name <- gsub("([A-z]{9}.?) ([A-z])", "\\1 \\\\\\\\ \\2", col_name)
     col_values <- stringr::str_extract_all(data[, i, drop = TRUE], stringr::boundary("character"))
     col_values <- unlist(col_values)
     col_values <- unique(col_values)
-    if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~", " "))) {
+    if (longtable) {
+      headers <- paste0(headers, col_name, " &", collapse = " ")
+    }  else if (all(col_values %in% c(0:9, "*", "[", "]", "-", ",", ".", "~", " "))) {
       headers <-  paste0(headers, " \\thead[r]{", col_name, "} &", collapse = " ")
     } else {
       headers <-  paste0(headers, " \\thead[l]{", col_name, "} &", collapse = " ")
@@ -177,10 +207,12 @@ make_latex_table_panel <- function(data, panel_caption, multi_column) {
     row_data <- gsub("&$", "\\\\\\\\", row_data)
     writeLines(row_data)
   }
-  writeLines("\\end{tabular}")
+  if (!longtable) {
+    writeLines("\\end{tabular}")
+  }
   writeLines("\\vspace{5pt}")
   if (!is.null(panel_caption)) {
-  writeLines(paste0("\\caption{\\textbf{", fix_percent(panel_caption), "}}"))
+    writeLines(paste0("\\caption{\\textbf{", fix_percent(panel_caption), "}}"))
   }
 }
 

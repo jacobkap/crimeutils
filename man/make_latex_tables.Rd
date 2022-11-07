@@ -11,7 +11,8 @@ make_latex_tables(
   label = "",
   multi_column = NULL,
   footnote = "",
-  sideways = FALSE
+  sideways = FALSE,
+  longtable = FALSE
 )
 }
 \arguments{
@@ -44,6 +45,7 @@ Creates a .tex file with LaTeX code to create a table from an R data.frame.
 \examples{
 \dontrun{
 make_latex_tables(mtcars, file =  "text.tex", caption = "This is a description of the table",
-label = "internal_table_label", footnote = "Here is some info you should know to read this table")
+label = "internal_table_label", footnote = "Here is some info you should know to read this table",
+longtable = TRUE)
 }
 }
