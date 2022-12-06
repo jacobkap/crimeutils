@@ -10,7 +10,7 @@ status](https://travis-ci.org/jacobkap/crimeutils.svg?branch=master)](https://tr
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/jacobkap/crimeutils?branch=master&svg=true)](https://ci.appveyor.com/project/jacobkap/crimeutils)
 [![Codecov test
-coverage](https://codecov.io/gh/jacobkap/crimeutils/branch/master/graph/badge.svg)](https://codecov.io/gh/jacobkap/crimeutils?branch=master)
+coverage](https://codecov.io/gh/jacobkap/crimeutils/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jacobkap/crimeutils?branch=master)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/crimeutils?color=blue)](https://cran.r-project.org/package=crimeutils)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)

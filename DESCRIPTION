@@ -27,9 +27,10 @@ Imports:
 License: MIT + file LICENSE
 URL: https://github.com/jacobkap/crimeutils/
 BugReports: https://github.com/jacobkap/crimeutils/issues/
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 Suggests: 
     spelling,
     testthat (>= 2.1.0),
     covr
 Language: en-US
+Encoding: UTF-8

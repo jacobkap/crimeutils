@@ -20,6 +20,9 @@
 #' @param sideways
 #' (Optional) If TRUE, will make a sideways table (useful for large tables), otherwise
 #' (default) will make a normal table.
+#' @param longtable
+#' (Optional) If TRUE, will make a longtable table (useful for long tables), otherwise
+#' (default) will make a normal table.
 #'
 #' @return
 #' Nothing. It will create a .tex file in the current working directory.
