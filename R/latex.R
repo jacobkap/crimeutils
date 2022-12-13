@@ -86,7 +86,7 @@ make_latex_tables <- function(data,
   }
 
   # End table
-  writeLines("\\bottomrule")
+ # writeLines("\\bottomrule")
   if (footnote != "") {
     writeLines(paste0("\\floatfoot{", footnote, "}"))
   }
@@ -211,6 +211,7 @@ make_latex_table_panel <- function(data, panel_caption, multi_column, longtable)
     writeLines(row_data)
   }
   if (!longtable) {
+    writeLines("\\bottomrule")
     writeLines("\\end{tabular}")
   }
   writeLines("\\vspace{5pt}")
